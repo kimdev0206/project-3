@@ -4,10 +4,14 @@ export type ColorKey = "primary" | "background";
 
 export type HeadingSize = "large" | "medium" | "small";
 
+export type ButtonSize = "large" | "medium" | "small";
+
 interface Theme {
   name: ThemeName;
   color: Record<ColorKey, string>;
   heading: Record<HeadingSize, { fontSize: string }>;
+  button: Record<ButtonSize, { fontSize: string; padding: string }>;
+  borderRadius: { default: string };
 }
 
 const light: Theme = {
@@ -21,6 +25,12 @@ const light: Theme = {
     medium: { fontSize: "1.5rem" },
     small: { fontSize: "1rem" },
   },
+  button: {
+    large: { fontSize: "1.5rem", padding: "1rem 2rem" },
+    medium: { fontSize: "1rem", padding: "0.5rem 1rem" },
+    small: { fontSize: "0.75rem", padding: "0.25rem 0.5rem" },
+  },
+  borderRadius: { default: "4px" },
 };
 
 const dark: Theme = {
