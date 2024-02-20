@@ -6,12 +6,17 @@ export type HeadingSize = "large" | "medium" | "small";
 
 export type InputSize = "large" | "medium" | "small";
 
+export type LayoutWidth = "large" | "medium" | "small";
+
 interface Theme {
   name: ThemeName;
   color: Record<ColorKey, string>;
   heading: Record<HeadingSize, { fontSize: string }>;
   input: Record<InputSize, { fontSize: string; padding: string }>;
   borderRadius: { default: string };
+  layout: {
+    width: Record<LayoutWidth, string>;
+  };
 }
 
 const light: Theme = {
@@ -31,6 +36,9 @@ const light: Theme = {
     small: { fontSize: "0.75rem", padding: "0.25rem 0.5rem" },
   },
   borderRadius: { default: "4px" },
+  layout: {
+    width: { large: "1020px", medium: "760px", small: "320px" },
+  },
 };
 
 const dark: Theme = {
