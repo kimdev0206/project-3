@@ -1,13 +1,13 @@
+import React, { ForwardedRef } from "react";
 import styled from "styled-components";
 import { InputSize } from "../../styles/theme";
 
-const Style = styled.input.attrs({ type: "button" })<Props>`
+const Style = styled.input.attrs({ type: "text" })<Props>`
   font-size: ${({ theme, size }) => theme.input[size].fontSize};
 
   padding: ${({ theme, size }) => theme.input[size].padding};
 
   color: ${({ theme }) => theme.color.primary};
-  background-color: ${({ theme }) => theme.color.background};
 
   border-color: ${({ theme }) => theme.color.primary};
   border-radius: ${({ theme }) => theme.borderRadius.default};
@@ -15,9 +15,11 @@ const Style = styled.input.attrs({ type: "button" })<Props>`
 
 interface Props {
   size: InputSize;
-  value: string;
+  placeholder?: string;
 }
 
-export default function Button({ size, value }: Props) {
-  return <Style size={size} value={value} />;
-}
+export default React.forwardRef(
+  ({ size, placeholder }: Props, ref: ForwardedRef<HTMLInputElement>) => {
+    return <Style size={size} placeholder={placeholder} ref={ref} />;
+  }
+);
