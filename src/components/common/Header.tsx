@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ThemeSwitcher from "../header/ThemeSwitcher";
 
@@ -59,19 +60,21 @@ const CATEGORY = [
 export default function Header() {
   return (
     <Style>
-      <h1>온라인 서점</h1>
+      <h1>
+        <Link to="/">온라인 서점</Link>
+      </h1>
 
       <nav className="category">
         <ul>
           {CATEGORY.map((category) => (
             <li key={category.id}>
-              <a
-                href={
+              <Link
+                to={
                   !category.id ? "/books" : `/books?category-id=${category.id}`
                 }
               >
                 {category.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -80,10 +83,10 @@ export default function Header() {
       <nav className="auth">
         <ul>
           <li>
-            <a href="/log-in">로그인</a>
+            <Link to="/log-in">로그인</Link>
           </li>
           <li>
-            <a href="/sign-in">회원가입</a>
+            <Link to="/sign-in">회원가입</Link>
           </li>
         </ul>
       </nav>
