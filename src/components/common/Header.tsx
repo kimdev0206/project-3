@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Button from "./Button";
 import ThemeSwitcher from "../header/ThemeSwitcher";
+import { useUsersStore } from "../../stores/users.store";
 
 const Style = styled.header`
   width: 100%;
@@ -58,6 +60,8 @@ const CATEGORY = [
 ];
 
 export default function Header() {
+  const { isLoggedIn, setLoggedOut } = useUsersStore();
+
   return (
     <Style>
       <h1>
@@ -81,14 +85,27 @@ export default function Header() {
       </nav>
 
       <nav className="auth">
-        <ul>
-          <li>
-            <Link to="/log-in">로그인</Link>
-          </li>
-          <li>
-            <Link to="/users/sign-up">회원가입</Link>
-          </li>
-        </ul>
+        {isLoggedIn ? (
+          <ul>
+            <li>장바구니</li>
+            <li>주문 내역</li>
+            <Button
+              size="medium"
+              value="로그아웃"
+              type="button"
+              onClick={setLoggedOut}
+            />
+          </ul>
+        ) : (
+          <ul>
+            <li>
+              <Link to="/users/log-in">로그인</Link>
+            </li>
+            <li>
+              <Link to="/users/sign-up">회원가입</Link>
+            </li>
+          </ul>
+        )}
       </nav>
 
       <ThemeSwitcher />
