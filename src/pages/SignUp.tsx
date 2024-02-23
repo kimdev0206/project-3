@@ -7,7 +7,7 @@ import InputText from "../components/common/InputText";
 import Title from "../components/common/Title";
 import { useAlert } from "../hooks/useAlert";
 
-const Style = styled.div`
+export const Style = styled.div`
   max-width: ${({ theme }) => theme.layout.width.small};
   margin: 0 auto;
 
