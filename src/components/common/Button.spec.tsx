@@ -17,7 +17,7 @@ describe("Button 컴포넌트 테스트", () => {
   it("size prop 적용", () => {
     render(
       <ThemeProvider>
-        <Button size="large" value="버튼" />
+        <Button size="large" value="버튼" type="submit" />
       </ThemeProvider>
     );
 

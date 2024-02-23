@@ -1,7 +1,8 @@
+import React from "react";
 import styled from "styled-components";
 import { InputSize } from "../../styles/theme";
 
-const Style = styled.input.attrs({ type: "button" })<Props>`
+const Style = styled.input<Props>`
   font-size: ${({ theme, size }) => theme.input[size].fontSize};
 
   padding: ${({ theme, size }) => theme.input[size].padding};
@@ -13,11 +14,11 @@ const Style = styled.input.attrs({ type: "button" })<Props>`
   border-radius: ${({ theme }) => theme.borderRadius.default};
 `;
 
-interface Props {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size: InputSize;
   value: string;
 }
 
-export default function Button({ size, value }: Props) {
-  return <Style size={size} value={value} />;
+export default function Button({ size, value, ...props }: Props) {
+  return <Style size={size} value={value} {...props} />;
 }

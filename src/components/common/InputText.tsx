@@ -2,7 +2,7 @@ import React, { ForwardedRef } from "react";
 import styled from "styled-components";
 import { InputSize } from "../../styles/theme";
 
-const Style = styled.input.attrs({ type: "text" })<Props>`
+const Style = styled.input<Props>`
   font-size: ${({ theme, size }) => theme.input[size].fontSize};
 
   padding: ${({ theme, size }) => theme.input[size].padding};
@@ -13,13 +13,26 @@ const Style = styled.input.attrs({ type: "text" })<Props>`
   border-radius: ${({ theme }) => theme.borderRadius.default};
 `;
 
-interface Props {
+interface Props
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   size: InputSize;
+  inputType?: "email" | "password" | "string";
   placeholder?: string;
 }
 
 export default React.forwardRef(
-  ({ size, placeholder }: Props, ref: ForwardedRef<HTMLInputElement>) => {
-    return <Style size={size} placeholder={placeholder} ref={ref} />;
+  (
+    { size, inputType, placeholder, ...props }: Props,
+    ref: ForwardedRef<HTMLInputElement>
+  ) => {
+    return (
+      <Style
+        size={size}
+        type={inputType}
+        placeholder={placeholder}
+        ref={ref}
+        {...props}
+      />
+    );
   }
 );

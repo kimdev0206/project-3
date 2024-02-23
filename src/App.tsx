@@ -3,6 +3,7 @@ import Error from "./components/common/Error";
 import Layout from "./components/layout/Layout";
 import { ThemeProvider } from "./contexts/theme.context";
 import Home from "./pages/Home";
+import SignUp from "./pages/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,14 @@ const router = createBrowserRouter([
       </Layout>
     ),
     errorElement: <Error />,
+  },
+  {
+    path: "/users/sign-up",
+    element: (
+      <Layout>
+        <SignUp />
+      </Layout>
+    ),
   },
 ]);
 
