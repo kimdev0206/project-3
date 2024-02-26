@@ -6,7 +6,7 @@ import {
 } from "../stores/users.store";
 import { accessToken } from "./users.api";
 
-export function createClient(config?: AxiosRequestConfig) {
+function createClient(config?: AxiosRequestConfig) {
   const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_BASE_URL,
     headers: {
@@ -55,4 +55,6 @@ export function createClient(config?: AxiosRequestConfig) {
   return axiosInstance;
 }
 
-export const httpClient = createClient();
+const httpClient = createClient();
+
+export default httpClient;
