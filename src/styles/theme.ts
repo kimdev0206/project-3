@@ -2,6 +2,8 @@ export type ThemeName = "light" | "dark";
 
 export type ColorKey = "primary" | "background";
 
+export type ButtonState = "normal" | "active";
+
 export type HeadingSize = "large" | "medium" | "small";
 
 export type InputSize = "large" | "medium" | "small";
@@ -11,6 +13,7 @@ export type LayoutWidth = "large" | "medium" | "small";
 interface Theme {
   name: ThemeName;
   color: Record<ColorKey, string>;
+  buttonState: Record<ButtonState, { primary: string; background: string }>;
   heading: Record<HeadingSize, { fontSize: string }>;
   input: Record<InputSize, { fontSize: string; padding: string }>;
   borderRadius: { default: string };
@@ -24,6 +27,10 @@ const light: Theme = {
   color: {
     primary: "black",
     background: "white",
+  },
+  buttonState: {
+    normal: { primary: "black", background: "white" },
+    active: { primary: "white", background: "black" },
   },
   heading: {
     large: { fontSize: "2rem" },
@@ -47,6 +54,10 @@ const dark: Theme = {
   color: {
     primary: "white",
     background: "black",
+  },
+  buttonState: {
+    normal: { primary: "white", background: "black" },
+    active: { primary: "black", background: "white" },
   },
 };
 

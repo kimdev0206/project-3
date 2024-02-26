@@ -76,7 +76,12 @@ export default function SignUp() {
           </fieldset>
 
           <fieldset>
-            <Button size="medium" value="회원가입" type="submit" />
+            <Button
+              size="medium"
+              state="normal"
+              value="회원가입"
+              type="submit"
+            />
           </fieldset>
 
           <div className="info">

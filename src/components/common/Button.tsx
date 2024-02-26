@@ -7,8 +7,9 @@ const Style = styled.input<Props>`
 
   padding: ${({ theme, size }) => theme.input[size].padding};
 
-  color: ${({ theme }) => theme.color.primary};
-  background-color: ${({ theme }) => theme.color.background};
+  color: ${({ theme, state }) => theme.buttonState[state].primary};
+  background-color: ${({ theme, state }) =>
+    theme.buttonState[state].background};
 
   border-color: ${({ theme }) => theme.color.primary};
   border-radius: ${({ theme }) => theme.borderRadius.default};
@@ -16,9 +17,10 @@ const Style = styled.input<Props>`
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size: InputSize;
+  state: string;
   value: string;
 }
 
-export default function Button({ size, value, ...props }: Props) {
-  return <Style size={size} value={value} {...props} />;
+export default function Button({ size, state, value, ...props }: Props) {
+  return <Style size={size} state={state} value={value} {...props} />;
 }

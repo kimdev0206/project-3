@@ -1,26 +1,36 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Button from "./Button";
 import { ThemeProvider } from "../../contexts/theme.context";
 
 describe("Button 컴포넌트 테스트", () => {
   it("렌더를 확인", () => {
-    render(
+    const { getByDisplayValue } = render(
       <ThemeProvider>
-        <Button size="large" value="버튼" />
+        <Button size="large" state="normal" value="버튼" />
       </ThemeProvider>
     );
 
-    expect(screen.getByDisplayValue("버튼")).toBeInTheDocument();
+    expect(getByDisplayValue("버튼")).toBeInTheDocument();
   });
 
   it("size prop 적용", () => {
-    render(
+    const { getByRole } = render(
       <ThemeProvider>
-        <Button size="large" value="버튼" type="submit" />
+        <Button size="large" state="normal" value="버튼" type="button" />
       </ThemeProvider>
     );
 
-    expect(screen.getByRole("button")).toHaveStyle({ fontSize: "1.5rem" });
+    expect(getByRole("button")).toHaveStyle({ fontSize: "1.5rem" });
+  });
+
+  it("state prop 적용", () => {
+    const { getByRole } = render(
+      <ThemeProvider>
+        <Button size="large" state="active" value="버튼" type="button" />
+      </ThemeProvider>
+    );
+
+    expect(getByRole("button")).toHaveStyle({ backgroundColor: "black" });
   });
 });
