@@ -66,21 +66,15 @@ export default function ResetPassword() {
 
           {isRequested ? (
             <fieldset>
-              <Button
-                size="medium"
-                state="normal"
-                value="비밀번호 초기화"
-                type="submit"
-              />
+              <Button size="medium" state="normal" type="submit">
+                비밀번호 초기화
+              </Button>
             </fieldset>
           ) : (
             <fieldset>
-              <Button
-                size="medium"
-                state="normal"
-                value="초기화 요청"
-                type="submit"
-              />
+              <Button size="medium" state="normal" type="submit">
+                초기화 요청
+              </Button>
             </fieldset>
           )}
         </form>

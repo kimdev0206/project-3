@@ -91,11 +91,11 @@ export default function Header() {
             <li>주문 내역</li>
             <Button
               size="medium"
-              state="normal"
-              value="로그아웃"
-              type="button"
+              state="normal"              
               onClick={setLoggedOut}
-            />
+            >
+              로그아웃
+            </Button>
           </ul>
         ) : (
           <ul>

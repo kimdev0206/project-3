@@ -4,20 +4,24 @@ import Button from "./Button";
 import { ThemeProvider } from "../../contexts/theme.context";
 
 describe("Button 컴포넌트 테스트", () => {
-  it("렌더를 확인", () => {
-    const { getByDisplayValue } = render(
+  it("렌더 여부", () => {
+    const { getByText } = render(
       <ThemeProvider>
-        <Button size="large" state="normal" value="버튼" />
+        <Button size="large" state="normal">
+          버튼
+        </Button>
       </ThemeProvider>
     );
 
-    expect(getByDisplayValue("버튼")).toBeInTheDocument();
+    expect(getByText("버튼")).toBeInTheDocument();
   });
 
   it("size prop 적용", () => {
     const { getByRole } = render(
       <ThemeProvider>
-        <Button size="large" state="normal" value="버튼" type="button" />
+        <Button size="large" state="normal">
+          버튼
+        </Button>
       </ThemeProvider>
     );
 
@@ -27,7 +31,9 @@ describe("Button 컴포넌트 테스트", () => {
   it("state prop 적용", () => {
     const { getByRole } = render(
       <ThemeProvider>
-        <Button size="large" state="active" value="버튼" type="button" />
+        <Button size="large" state="active">
+          버튼
+        </Button>
       </ThemeProvider>
     );
 

@@ -60,7 +60,9 @@ export default function LogIn() {
           </fieldset>
 
           <fieldset>
-            <Button size="medium" state="normal" value="로그인" type="submit" />
+            <Button size="medium" state="normal" type="submit">
+              로그인
+            </Button>
           </fieldset>
 
           <div className="info">
