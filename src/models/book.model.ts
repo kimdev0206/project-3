@@ -7,3 +7,15 @@ export interface IBookListItem {
   price: number;
   likes: number;
 }
+
+export interface IBook extends IBookListItem {
+  categoryID: number;
+  category: string;
+  form: string;
+  isbn: string;
+  detail: string;
+  pages: number;
+  contents: string;
+  liked: boolean;
+  pubDate: string;
+}

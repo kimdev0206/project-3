@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Error from "./components/common/Error";
 import Layout from "./components/layout/Layout";
 import { ThemeProvider } from "./contexts/theme.context";
+import Book from "./pages/Book";
 import Books from "./pages/Books";
 import Home from "./pages/Home";
 import LogIn from "./pages/LogIn";
@@ -9,6 +10,14 @@ import ResetPassword from "./pages/ResetPassword";
 import SignUp from "./pages/SignUp";
 
 const router = createBrowserRouter([
+  {
+    path: "/books/:bookID",
+    element: (
+      <Layout>
+        <Book />
+      </Layout>
+    ),
+  },
   {
     path: "/books",
     element: (

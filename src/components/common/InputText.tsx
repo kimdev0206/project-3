@@ -16,7 +16,7 @@ const Style = styled.input<Props>`
 interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   size: InputSize;
-  inputType?: "email" | "password" | "string";
+  inputType?: "email" | "password" | "string" | "number";
   placeholder?: string;
 }
 
