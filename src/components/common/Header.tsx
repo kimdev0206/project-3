@@ -45,7 +45,7 @@ const Style = styled.header`
 
       li {
         a {
-          font-size: 1.5rem;
+          font-size: ${({ theme }) => theme.input.medium.fontSize};
         }
       }
     }
@@ -87,13 +87,11 @@ export default function Header() {
       <nav className="auth">
         {isLoggedIn ? (
           <ul>
-            <li>장바구니</li>
+            <li>
+              <Link to="/cart-books">장바구니</Link>
+            </li>
             <li>주문 내역</li>
-            <Button
-              size="medium"
-              state="normal"              
-              onClick={setLoggedOut}
-            >
+            <Button size="medium" state="normal" onClick={setLoggedOut}>
               로그아웃
             </Button>
           </ul>

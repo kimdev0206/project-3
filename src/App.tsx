@@ -4,6 +4,7 @@ import Layout from "./components/layout/Layout";
 import { ThemeProvider } from "./contexts/theme.context";
 import Book from "./pages/Book";
 import Books from "./pages/Books";
+import CartBooks from "./pages/CartBooks";
 import Home from "./pages/Home";
 import LogIn from "./pages/LogIn";
 import ResetPassword from "./pages/ResetPassword";
@@ -23,6 +24,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <Books />
+      </Layout>
+    ),
+  },
+  {
+    path: "/cart-books",
+    element: (
+      <Layout>
+        <CartBooks />
       </Layout>
     ),
   },

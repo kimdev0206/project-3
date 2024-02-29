@@ -83,7 +83,7 @@ export default function AddtoCart({ book }: Props) {
       {isAdded && (
         <div className="added">
           <p>장바구니에 추가되었습니다.</p>
-          <Link to="/">장바구니로 이동</Link>
+          <Link to="/cart-books">장바구니로 이동</Link>
         </div>
       )}
     </Style>

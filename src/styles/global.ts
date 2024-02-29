@@ -12,4 +12,9 @@ export const GlobalStyle = createGlobalStyle<Props>`
 
     color: ${({ themeName }) => (themeName === "light" ? "black" : "white")};
   }
+
+  h1 {
+    margin: 0;
+    margin-bottom: 1rem;
+  }
 `;

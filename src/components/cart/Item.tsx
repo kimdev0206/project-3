@@ -1,0 +1,76 @@
+import { useMemo } from "react";
+import styled from "styled-components";
+import CheckButton from "./CheckButton";
+import Button from "../common/Button";
+import Title from "../common/Title";
+import { useConfirm } from "../../hooks/useAlert";
+import ICartBook from "../../models/cart-book.model";
+import { formatPrice } from "../../utils/format";
+
+const Style = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: ${({ theme }) => theme.input.medium.padding};
+  border: 1px solid ${({ theme }) => theme.color.primary};
+  border-radius: ${({ theme }) => theme.borderRadius.default};
+
+  .center {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    h1 {
+      line-height: 1;
+    }
+
+    p {
+      padding-bottom: 0.25rem;
+      margin: 0;
+    }
+  }
+`;
+
+interface Props {
+  cartBook: ICartBook;
+  checkedIDs: number[];
+  onCheck: (id: number) => void;
+  onDelete: (id: number) => void;
+}
+
+export default function Item({
+  cartBook,
+  checkedIDs,
+  onCheck,
+  onDelete,
+}: Props) {
+  const isChecked = useMemo(
+    () => checkedIDs.includes(cartBook.bookID),
+    [checkedIDs, cartBook.bookID]
+  );
+  const confirm = useConfirm();
+
+  const handleDelete = () =>
+    confirm("정말 삭제하시겠습니까?", () => onDelete(cartBook.bookID));
+
+  return (
+    <Style>
+      <CheckButton
+        isChecked={isChecked}
+        onCheck={() => onCheck(cartBook.bookID)}
+      />
+
+      <div className="center">
+        <Title size="medium">{cartBook.title}</Title>
+
+        <p className="summary">{cartBook.summary}</p>
+        <p className="price">{formatPrice(cartBook.price)}원</p>
+        <p className="count">{cartBook.count}권</p>
+      </div>
+
+      <Button size="medium" state="normal" type="button" onClick={handleDelete}>
+        장바구니 삭제
+      </Button>
+    </Style>
+  );
+}

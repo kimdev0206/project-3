@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Empty from "../components/book/Empty";
+import Empty from "../components/common/Empty";
 import Filter from "../components/book/Filter";
 import List from "../components/book/List";
 import Pagination from "../components/book/Pagination";
@@ -20,11 +21,16 @@ export default function Books() {
       <Title size="large">도서 검색 결과</Title>
 
       <Style>
-        <div className="filter">
-          <Filter />
-        </div>
+        <Filter />
 
-        {isEmpty ? <Empty /> : <List books={books} />}
+        {isEmpty ? (
+          <Empty
+            title="검색 결과가 없습니다."
+            description={<Link to="/books">전체 검색 결과로 이동</Link>}
+          />
+        ) : (
+          <List books={books} />
+        )}
         {!isEmpty && <Pagination pagination={pagination} />}
       </Style>
     </>
