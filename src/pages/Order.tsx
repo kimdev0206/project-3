@@ -1,23 +1,20 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { isAxiosError } from "axios";
-import { postOrder } from "../apis/orders.api";
 import Summary from "../components/cart/Summary";
 import Button from "../components/common/Button";
 import InputText from "../components/common/InputText";
 import Title from "../components/common/Title";
 import AddressButton from "../components/order/AddressButton";
-import { useAlert, useConfirm } from "../hooks/useAlert";
+import useOrder from "../hooks/useOrder";
 import { IDelivery, IOrder } from "../models/order.model";
 import { Style } from "./CartBooks";
 
-interface IDeliveryForm extends IDelivery {
+export interface IDeliveryForm extends IDelivery {
   addressDetail: string;
 }
 
 export default function Order() {
   const location = useLocation();
-  const navigate = useNavigate();
   const { mainBookTitle, totalCount, totalPrice }: IOrder = location.state;
   const {
     register,
@@ -25,31 +22,7 @@ export default function Order() {
     formState: { errors },
     setValue,
   } = useForm<IDeliveryForm>();
-  const alert = useAlert();
-  const confirm = useConfirm();
-
-  const onClick = async (formData: IDeliveryForm) => {
-    const params: IOrder = {
-      ...location.state,
-      delivery: {
-        ...formData,
-        address: `${formData.address} ${formData.addressDetail}`,
-      },
-    };
-
-    try {
-      const { message } = await postOrder(params);
-
-      confirm("주문을 진행하시겠습니까?", () => {
-        alert(message);
-        navigate("/");
-      });
-    } catch (error) {
-      if (isAxiosError(error)) {
-        alert(error.response?.data.message);
-      }
-    }
-  };
+  const { handleOrder } = useOrder();
 
   return (
     <>
@@ -114,8 +87,12 @@ export default function Order() {
         <div className="summary">
           <Summary totalCount={totalCount} totalPrice={totalPrice} />
 
-          <Button size="large" state="normal" onClick={handleSubmit(onClick)}>
-            결제 하기
+          <Button
+            size="large"
+            state="normal"
+            onClick={handleSubmit(handleOrder)}
+          >
+            주문 하기
           </Button>
         </div>
       </Style>

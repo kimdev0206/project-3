@@ -90,7 +90,9 @@ export default function Header() {
             <li>
               <Link to="/cart-books">장바구니</Link>
             </li>
-            <li>주문 내역</li>
+            <li>
+              <Link to="/orders">주문 내역</Link>
+            </li>
             <Button size="medium" state="normal" onClick={setLoggedOut}>
               로그아웃
             </Button>

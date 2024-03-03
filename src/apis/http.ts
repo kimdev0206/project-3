@@ -23,12 +23,14 @@ function createClient(config?: AxiosRequestConfig) {
     },
     async (error) => {
       const { status } = error.response;
-      const { message } = error.response.data;
 
       if (status === HttpStatusCode.BadRequest) {
-        window.location.href = "/users/log-in";
+        const { errors } = error.response.data;
+        window.alert(errors[0].msg);
         return;
       }
+
+      const { message } = error.response.data;
 
       if (status === HttpStatusCode.Unauthorized) {
         if (message.startsWith("접근 토큰이 만료되었습니다.")) {

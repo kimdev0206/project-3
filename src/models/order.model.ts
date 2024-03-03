@@ -14,3 +14,17 @@ export interface IDelivery {
   receiver: string;
   contact: string;
 }
+
+export interface IOrderListItem extends Omit<IOrder, "delivery">, IDelivery {
+  orderID: number;
+  createdAt: string;
+  details?: IOrderListItemDetail[];
+}
+
+export interface IOrderListItemDetail {
+  bookID: number;
+  title: string;
+  author: string;
+  price: number;
+  count: number;
+}
