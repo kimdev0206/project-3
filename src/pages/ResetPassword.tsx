@@ -6,12 +6,7 @@ import Button from "../components/common/Button";
 import InputText from "../components/common/InputText";
 import Title from "../components/common/Title";
 import { useAlert } from "../hooks/useAlert";
-import { Style } from "./SignUp";
-
-export interface Props {
-  email: string;
-  password: string;
-}
+import { Props, Style } from "./SignUp";
 
 export default function ResetPassword() {
   const [isRequested, setIsRequested] = useState(false);

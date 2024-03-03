@@ -5,13 +5,8 @@ import Button from "../components/common/Button";
 import InputText from "../components/common/InputText";
 import Title from "../components/common/Title";
 import { useAlert } from "../hooks/useAlert";
-import { Style } from "./SignUp";
+import { Props, Style } from "./SignUp";
 import { useUsersStore } from "../stores/users.store";
-
-export interface Props {
-  email: string;
-  password: string;
-}
 
 export default function LogIn() {
   const navigate = useNavigate();
