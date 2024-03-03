@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Item from "../components/cart/Item";
 import Summary from "../components/cart/Summary";
@@ -9,15 +10,52 @@ import { useAlert, useConfirm } from "../hooks/useAlert";
 import useCartBooks from "../hooks/useCartBooks";
 import { IOrder } from "../models/order.model";
 
-const Style = styled.div`
+export const Style = styled.div`
   display: flex;
   gap: 24px;
   justify-content: space-between;
 
   .items {
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 12px;
+
+    .item {
+      padding: ${({ theme }) => theme.input.medium.padding};
+      border: 1px solid ${({ theme }) => theme.color.primary};
+      border-radius: ${({ theme }) => theme.borderRadius.default};
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        fieldset {
+          display: flex;
+          justify-content: start;
+          gap: 8px;
+          margin: 0;
+          padding: 0;
+
+          border: 0;
+
+          label {
+            width: 80px;
+          }
+
+          input {
+            flex: 1;
+          }
+        }
+
+        p {
+          padding: 0.5rem 0;
+          margin: 0;
+          text-align: right;
+        }
+      }
+    }
   }
 
   .summary {
@@ -28,6 +66,7 @@ const Style = styled.div`
 `;
 
 export default function CartBooks() {
+  const navigate = useNavigate();
   const { cartBooks, isEmpty, deleteCartBook } = useCartBooks();
   const [checkedIDs, setCheckedIDs] = useState<number[]>([]);
   const alert = useAlert();
@@ -66,7 +105,7 @@ export default function CartBooks() {
       totalPrice,
     };
 
-    confirm("주문하시겠습니까?", () => {});
+    confirm("주문하시겠습니까?", () => navigate("/order", { state: data }));
   };
 
   const totalCount = useMemo(() => {

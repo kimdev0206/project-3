@@ -7,6 +7,7 @@ import Books from "./pages/Books";
 import CartBooks from "./pages/CartBooks";
 import Home from "./pages/Home";
 import LogIn from "./pages/LogIn";
+import Order from "./pages/Order";
 import ResetPassword from "./pages/ResetPassword";
 import SignUp from "./pages/SignUp";
 
@@ -43,6 +44,14 @@ const router = createBrowserRouter([
       </Layout>
     ),
     errorElement: <Error />,
+  },
+  {
+    path: "/order",
+    element: (
+      <Layout>
+        <Order />
+      </Layout>
+    ),
   },
   {
     path: "/users/sign-up",

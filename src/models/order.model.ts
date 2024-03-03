@@ -4,11 +4,13 @@ export interface IOrder {
     bookID: number;
     count: number;
   }[];
-  delivery: {
-    address: string;
-    receiver: string;
-    contact: string;
-  };
+  delivery: IDelivery;
   totalCount: number;
   totalPrice: number;
+}
+
+export interface IDelivery {
+  address: string;
+  receiver: string;
+  contact: string;
 }
