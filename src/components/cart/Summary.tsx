@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Title from "../common/Title";
+import Common from "../common";
 import { formatPrice } from "../../utils/format";
 
 const Style = styled.div`
@@ -22,7 +22,7 @@ interface Props {
 export default function Summary({ totalCount, totalPrice }: Props) {
   return (
     <Style>
-      <Title size="medium">주문 요약</Title>
+      <Common.Title size="medium">주문 요약</Common.Title>
 
       <dl>
         <dt>총 수량</dt>

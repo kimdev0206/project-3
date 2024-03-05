@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FaAngleDown } from "react-icons/fa";
-import Button from "./Button";
+import Common from ".";
 
 const Style = styled.div<Omit<Props, "children">>`
   p {
@@ -38,13 +38,13 @@ export default function ExpandBox({ children, limit }: Props) {
       <p>{children}</p>
 
       <div className="toggle">
-        <Button
+        <Common.Button
           size="small"
           state="normal"
           onClick={() => setIsExpand(!isExpand)}
         >
           {isExpand ? "접기" : "펼치기"} <FaAngleDown />
-        </Button>
+        </Common.Button>
       </div>
     </Style>
   );

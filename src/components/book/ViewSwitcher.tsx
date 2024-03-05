@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import { FaList, FaTh } from "react-icons/fa";
-import Button from "../common/Button";
+import Common from "../common";
 
 const Style = styled.div`
   display: flex;
@@ -35,7 +35,7 @@ export default function ViewSwitcher() {
   return (
     <Style>
       {options.map((option) => (
-        <Button
+        <Common.Button
           size="medium"
           state={
             searchParams.get("view") === option.value ? "active" : "normal"
@@ -44,7 +44,7 @@ export default function ViewSwitcher() {
           onClick={() => handleSwitch(option.value as View)}
         >
           {option.icon}
-        </Button>
+        </Common.Button>
       ))}
     </Style>
   );

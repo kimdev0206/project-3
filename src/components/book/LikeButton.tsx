@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { GoHeartFill, GoHeart } from "react-icons/go";
-import Button from "../common/Button";
+import Common from "../common";
 import { IBook } from "../../models/book.model";
 
-const Style = styled(Button)`
+const Style = styled(Common.Button)`
   display: flex;
   gap: 6px;
 `;

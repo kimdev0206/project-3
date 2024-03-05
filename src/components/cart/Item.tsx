@@ -1,8 +1,7 @@
 import { useMemo } from "react";
 import styled from "styled-components";
 import CheckButton from "./CheckButton";
-import Button from "../common/Button";
-import Title from "../common/Title";
+import Common from "../common";
 import { useConfirm } from "../../hooks/useAlert";
 import ICartBook from "../../models/cart-book.model";
 import { formatPrice } from "../../utils/format";
@@ -61,16 +60,21 @@ export default function Item({
       />
 
       <div className="center">
-        <Title size="medium">{cartBook.title}</Title>
+        <Common.Title size="medium">{cartBook.title}</Common.Title>
 
         <p className="summary">{cartBook.summary}</p>
         <p className="price">{formatPrice(cartBook.price)}원</p>
         <p className="count">{cartBook.count}권</p>
       </div>
 
-      <Button size="medium" state="normal" type="button" onClick={handleDelete}>
+      <Common.Button
+        size="medium"
+        state="normal"
+        type="button"
+        onClick={handleDelete}
+      >
         장바구니 삭제
-      </Button>
+      </Common.Button>
     </Style>
   );
 }

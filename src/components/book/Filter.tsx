@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
-import Button from "../common/Button";
+import Common from "../common";
 import ViewSwitcher from "./ViewSwitcher";
 import useCategories from "../../hooks/useCategories";
 
@@ -46,25 +46,25 @@ export default function Filter() {
     <Style>
       <div className="categories">
         {categories.map((category) => (
-          <Button
+          <Common.Button
             size="medium"
-            state={category.isActive ? "active" : "normal"}            
+            state={category.isActive ? "active" : "normal"}
             key={category.id}
             onClick={() => handleCategory(category.id)}
           >
             {category.category}
-          </Button>
+          </Common.Button>
         ))}
       </div>
 
       <div className="new">
-        <Button
+        <Common.Button
           size="medium"
-          state={searchParams.get("isNew") ? "active" : "normal"}          
+          state={searchParams.get("isNew") ? "active" : "normal"}
           onClick={() => handleNew()}
         >
           신간
-        </Button>
+        </Common.Button>
       </div>
 
       <ViewSwitcher />

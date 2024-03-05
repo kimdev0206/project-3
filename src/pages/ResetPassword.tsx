@@ -2,13 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { postResetPassword, putResetPassword } from "../apis/users.api";
-import Button from "../components/common/Button";
-import InputText from "../components/common/InputText";
-import Title from "../components/common/Title";
+import Common from "../components/common";
 import { useAlert } from "../hooks/useAlert";
 import { Props, Style } from "./SignUp";
 
-export default function ResetPassword() {
+export default function ResetPasswordPage() {
   const [isRequested, setIsRequested] = useState(false);
   const navigate = useNavigate();
   const {
@@ -31,12 +29,12 @@ export default function ResetPassword() {
 
   return (
     <>
-      <Title size="large">비밀번호 초기화</Title>
+      <Common.Title size="large">비밀번호 초기화</Common.Title>
 
       <Style>
         <form onSubmit={handleSubmit(onSubmit)}>
           <fieldset>
-            <InputText
+            <Common.InputText
               size="medium"
               inputType="email"
               placeholder="이메일"
@@ -48,7 +46,7 @@ export default function ResetPassword() {
 
           {isRequested && (
             <fieldset>
-              <InputText
+              <Common.InputText
                 size="medium"
                 inputType="password"
                 placeholder="비밀번호"
@@ -61,15 +59,15 @@ export default function ResetPassword() {
 
           {isRequested ? (
             <fieldset>
-              <Button size="medium" state="normal" type="submit">
+              <Common.Button size="medium" state="normal" type="submit">
                 비밀번호 초기화
-              </Button>
+              </Common.Button>
             </fieldset>
           ) : (
             <fieldset>
-              <Button size="medium" state="normal" type="submit">
+              <Common.Button size="medium" state="normal" type="submit">
                 초기화 요청
-              </Button>
+              </Common.Button>
             </fieldset>
           )}
         </form>

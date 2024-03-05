@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import styled from "styled-components";
-import Button from "../common/Button";
+import Common from "../common";
 
 const Style = styled.div``;
 
@@ -30,9 +30,14 @@ export default function AddressButton({ onCompleted }: Props) {
 
   return (
     <Style>
-      <Button size="medium" state="normal" type="button" onClick={handleOpen}>
+      <Common.Button
+        size="medium"
+        state="normal"
+        type="button"
+        onClick={handleOpen}
+      >
         주소 찾기
-      </Button>
+      </Common.Button>
     </Style>
   );
 }

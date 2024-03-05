@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import Footer from "../common/Footer";
-import Header from "../common/Header";
+import Common from "../common";
 
 const Style = styled.main`
   width: 100%;
@@ -17,9 +16,9 @@ interface Props {
 export default function Layout({ children }: Props) {
   return (
     <>
-      <Header />
+      <Common.Header />
       <Style>{children}</Style>
-      <Footer />
+      <Common.Footer />
     </>
   );
 }

@@ -1,9 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import styled from "styled-components";
-import AddtoCart from "../components/book/AddtoCart";
-import LikeButton from "../components/book/LikeButton";
-import ExpandBox from "../components/common/ExpandBox";
-import Title from "../components/common/Title";
+import Book from "../components/book";
+import Common from "../components/common";
 import useBook from "../hooks/useBook";
 import { IBook } from "../models/book.model";
 import { getImgSrc } from "../utils/image";
@@ -56,7 +54,7 @@ const items = [
   },
 ];
 
-export default function Book() {
+export default function BookPage() {
   const { bookID } = useParams();
   const { book, handleLike } = useBook(Number(bookID));
 
@@ -70,7 +68,7 @@ export default function Book() {
         </div>
 
         <div className="items">
-          <Title size="large">{book.title}</Title>
+          <Common.Title size="large">{book.title}</Common.Title>
 
           {items.map((item) => (
             <dl key={item.key}>
@@ -87,19 +85,19 @@ export default function Book() {
         <p className="summary">{book.summary}</p>
 
         <div className="like">
-          <LikeButton book={book} onClick={() => handleLike()} />
+          <Book.LikeButton book={book} onClick={() => handleLike()} />
         </div>
 
-        <AddtoCart book={book} />
+        <Book.AddtoCart book={book} />
       </header>
 
       <main>
-        <Title size="medium">상세 설명</Title>
-        <ExpandBox limit={4} $isExpand={false}>
+        <Common.Title size="medium">상세 설명</Common.Title>
+        <Common.ExpandBox limit={4} $isExpand={false}>
           {book.detail}
-        </ExpandBox>
+        </Common.ExpandBox>
 
-        <Title size="medium">목차</Title>
+        <Common.Title size="medium">목차</Common.Title>
         <p className="contents">{book.contents}</p>
       </main>
     </Style>

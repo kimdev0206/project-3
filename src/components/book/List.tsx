@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
-import Item from "./Item";
+import Book from ".";
 import { View } from "./ViewSwitcher";
 import { IBookListItem } from "../../models/book.model";
 
@@ -22,7 +22,7 @@ export default function List({ books }: Props) {
   return (
     <Style view={searchParams.get("view") as View}>
       {books?.map((book) => (
-        <Item
+        <Book.Item
           book={book}
           view={searchParams.get("view") as View}
           key={book.id}

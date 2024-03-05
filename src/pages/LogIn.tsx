@@ -1,14 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { logIn } from "../apis/users.api";
-import Button from "../components/common/Button";
-import InputText from "../components/common/InputText";
-import Title from "../components/common/Title";
+import Common from "../components/common";
 import { useAlert } from "../hooks/useAlert";
 import { Props, Style } from "./SignUp";
 import { useUsersStore } from "../stores/users.store";
 
-export default function LogIn() {
+export default function LogInPage() {
   const navigate = useNavigate();
   const {
     register,
@@ -28,12 +26,12 @@ export default function LogIn() {
 
   return (
     <>
-      <Title size="large">로그인</Title>
+      <Common.Title size="large">로그인</Common.Title>
 
       <Style>
         <form onSubmit={handleSubmit(onSubmit)}>
           <fieldset>
-            <InputText
+            <Common.InputText
               size="medium"
               inputType="email"
               placeholder="이메일"
@@ -44,7 +42,7 @@ export default function LogIn() {
           </fieldset>
 
           <fieldset>
-            <InputText
+            <Common.InputText
               size="medium"
               inputType="password"
               placeholder="비밀번호"
@@ -55,9 +53,9 @@ export default function LogIn() {
           </fieldset>
 
           <fieldset>
-            <Button size="medium" state="normal" type="submit">
+            <Common.Button size="medium" state="normal" type="submit">
               로그인
-            </Button>
+            </Common.Button>
           </fieldset>
 
           <div className="info">

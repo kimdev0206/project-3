@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
-import Button from "../common/Button";
+import Common from "../common";
 import IPagination from "../../models/pagination.model";
 
 const Style = styled.div`
@@ -37,13 +37,13 @@ export default function Pagination({ pagination }: Props) {
             .fill(0)
             .map((_, index) => (
               <li key={index}>
-                <Button
+                <Common.Button
                   size="small"
-                  state={index + 1 === page ? "active" : "normal"}                  
+                  state={index + 1 === page ? "active" : "normal"}
                   onClick={() => onClick(index + 1)}
                 >
                   {(index + 1).toString()}
-                </Button>
+                </Common.Button>
               </li>
             ))}
         </ol>

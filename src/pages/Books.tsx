@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Empty from "../components/common/Empty";
-import Filter from "../components/book/Filter";
-import List from "../components/book/List";
-import Pagination from "../components/book/Pagination";
-import Title from "../components/common/Title";
+import Book from "../components/book";
+import Common from "../components/common";
 import useBooks from "../hooks/useBooks";
 
 const Style = styled.div`
@@ -13,25 +10,25 @@ const Style = styled.div`
   gap: 24px;
 `;
 
-export default function Books() {
+export default function BooksPage() {
   const { books, pagination, isEmpty } = useBooks();
 
   return (
     <>
-      <Title size="large">도서 검색 결과</Title>
+      <Common.Title size="large">도서 검색 결과</Common.Title>
 
       <Style>
-        <Filter />
+        <Book.Filter />
 
         {isEmpty ? (
-          <Empty
+          <Common.Empty
             title="검색 결과가 없습니다."
             description={<Link to="/books">전체 검색 결과로 이동</Link>}
           />
         ) : (
-          <List books={books} />
+          <Book.List books={books} />
         )}
-        {!isEmpty && <Pagination pagination={pagination} />}
+        {!isEmpty && <Book.Pagination pagination={pagination} />}
       </Style>
     </>
   );

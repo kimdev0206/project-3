@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Item from "./Item";
+import Order from ".";
 import { IOrderListItem } from "../../models/order.model";
 import { formatPrice } from "../../utils/format";
 
@@ -45,7 +45,7 @@ export default function List({ orders, selectedID, onSelect }: Props) {
       <tbody>
         {orders.map((order) => (
           <React.Fragment key={order.orderID}>
-            <Item order={order} onSelect={onSelect} />
+            <Order.Item order={order} onSelect={onSelect} />
 
             {selectedID === order.orderID && (
               <>

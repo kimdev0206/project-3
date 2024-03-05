@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Button from "../common/Button";
-import InputText from "../common/InputText";
+import Common from "../common";
 import useBook from "../../hooks/useBook";
 import { IBook } from "../../models/book.model";
 
@@ -45,40 +44,40 @@ export default function AddtoCart({ book }: Props) {
   return (
     <Style>
       <div>
-        <InputText
+        <Common.InputText
           size="medium"
           inputType="number"
           value={count}
           onChange={onChange}
         />
 
-        <Button
+        <Common.Button
           size="medium"
           state="normal"
           type="button"
           onClick={() => setCount(count + 1)}
         >
           +
-        </Button>
+        </Common.Button>
 
-        <Button
+        <Common.Button
           size="medium"
           state="normal"
           type="button"
           onClick={() => count > 1 && setCount(count - 1)}
         >
           -
-        </Button>
+        </Common.Button>
       </div>
 
-      <Button
+      <Common.Button
         size="medium"
         state="normal"
         type="button"
         onClick={() => handleAddtoCart(count)}
       >
         장바구니 담기
-      </Button>
+      </Common.Button>
 
       {isAdded && (
         <div className="added">

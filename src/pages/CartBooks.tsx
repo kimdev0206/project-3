@@ -1,11 +1,8 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Item from "../components/cart/Item";
-import Summary from "../components/cart/Summary";
-import Button from "../components/common/Button";
-import Empty from "../components/common/Empty";
-import Title from "../components/common/Title";
+import Cart from "../components/cart";
+import Common from "../components/common";
 import { useAlert, useConfirm } from "../hooks/useAlert";
 import useCartBooks from "../hooks/useCartBooks";
 import { IOrder } from "../models/order.model";
@@ -65,7 +62,7 @@ export const Style = styled.div`
   }
 `;
 
-export default function CartBooks() {
+export default function CartBooksPage() {
   const navigate = useNavigate();
   const { cartBooks, isEmpty, deleteCartBook } = useCartBooks();
   const [checkedIDs, setCheckedIDs] = useState<number[]>([]);
@@ -124,16 +121,16 @@ export default function CartBooks() {
 
   return (
     <>
-      <Title size="large">장바구니</Title>
+      <Common.Title size="large">장바구니</Common.Title>
 
       <Style>
         {isEmpty ? (
-          <Empty title="장바구니가 비었습니다." />
+          <Common.Empty title="장바구니가 비었습니다." />
         ) : (
           <>
             <div className="items">
               {cartBooks.map((cartBook) => (
-                <Item
+                <Cart.Item
                   cartBook={cartBook}
                   checkedIDs={checkedIDs}
                   onCheck={handleCheckID}
@@ -144,16 +141,16 @@ export default function CartBooks() {
             </div>
 
             <div className="summary">
-              <Summary totalCount={totalCount} totalPrice={totalPrice} />
+              <Cart.Summary totalCount={totalCount} totalPrice={totalPrice} />
 
-              <Button
+              <Common.Button
                 size="large"
                 state="normal"
                 type="button"
                 onClick={handleOrder}
               >
                 주문 하기
-              </Button>
+              </Common.Button>
             </div>
           </>
         )}

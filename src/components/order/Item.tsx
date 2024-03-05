@@ -1,4 +1,4 @@
-import Button from "../common/Button";
+import Common from "../common";
 import { IOrderListItem } from "../../models/order.model";
 import { formatDate, formatPrice } from "../../utils/format";
 
@@ -19,13 +19,13 @@ export default function Item({ order, onSelect }: Props) {
       <td>{order.totalCount}권</td>
       <td>{formatPrice(order.totalPrice)}원</td>
       <td>
-        <Button
+        <Common.Button
           size="small"
           state="normal"
           onClick={() => onSelect(order.orderID)}
         >
           자세히
-        </Button>
+        </Common.Button>
       </td>
     </tr>
   );

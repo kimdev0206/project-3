@@ -2,9 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { signUp } from "../apis/users.api";
-import Button from "../components/common/Button";
-import InputText from "../components/common/InputText";
-import Title from "../components/common/Title";
+import Common from "../components/common";
 import { useAlert } from "../hooks/useAlert";
 
 export const Style = styled.div`
@@ -31,7 +29,7 @@ export interface Props {
   password: string;
 }
 
-export default function SignUp() {
+export default function SignUpPage() {
   const {
     register,
     handleSubmit,
@@ -49,12 +47,12 @@ export default function SignUp() {
 
   return (
     <>
-      <Title size="large">회원가입</Title>
+      <Common.Title size="large">회원가입</Common.Title>
 
       <Style>
         <form onSubmit={handleSubmit(onSubmit)}>
           <fieldset>
-            <InputText
+            <Common.InputText
               size="medium"
               inputType="email"
               placeholder="이메일"
@@ -65,7 +63,7 @@ export default function SignUp() {
           </fieldset>
 
           <fieldset>
-            <InputText
+            <Common.InputText
               size="medium"
               inputType="password"
               placeholder="비밀번호"
@@ -76,9 +74,9 @@ export default function SignUp() {
           </fieldset>
 
           <fieldset>
-            <Button size="medium" state="normal" type="submit">
+            <Common.Button size="medium" state="normal" type="submit">
               회원가입
-            </Button>
+            </Common.Button>
           </fieldset>
 
           <div className="info">

@@ -1,10 +1,8 @@
 import { useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import Summary from "../components/cart/Summary";
-import Button from "../components/common/Button";
-import InputText from "../components/common/InputText";
-import Title from "../components/common/Title";
-import AddressButton from "../components/order/AddressButton";
+import Cart from "../components/cart";
+import Common from "../components/common";
+import Order from "../components/order";
 import useOrder from "../hooks/useOrder";
 import { IDelivery, IOrder } from "../models/order.model";
 import { Style } from "./CartBooks";
@@ -13,7 +11,7 @@ export interface IDeliveryForm extends IDelivery {
   addressDetail: string;
 }
 
-export default function Order() {
+export default function OrderPage() {
   const location = useLocation();
   const { mainBookTitle, totalCount, totalPrice }: IOrder = location.state;
   const {
@@ -26,22 +24,22 @@ export default function Order() {
 
   return (
     <>
-      <Title size="large">주문서</Title>
+      <Common.Title size="large">주문서</Common.Title>
 
       <Style>
         <div className="items">
           <div className="item">
-            <Title size="medium">배송 정보</Title>
+            <Common.Title size="medium">배송 정보</Common.Title>
 
             <form>
               <fieldset>
                 <label>주소</label>
-                <InputText
+                <Common.InputText
                   size="medium"
                   {...register("address", { required: true })}
                 />
 
-                <AddressButton
+                <Order.AddressButton
                   onCompleted={(address) => setValue("address", address)}
                 />
               </fieldset>
@@ -49,7 +47,7 @@ export default function Order() {
 
               <fieldset>
                 <label>상세 주소</label>
-                <InputText
+                <Common.InputText
                   size="medium"
                   {...register("addressDetail", { required: true })}
                 />
@@ -58,7 +56,7 @@ export default function Order() {
 
               <fieldset>
                 <label>수령인</label>
-                <InputText
+                <Common.InputText
                   size="medium"
                   {...register("receiver", { required: true })}
                 />
@@ -67,7 +65,7 @@ export default function Order() {
 
               <fieldset>
                 <label>전화번호</label>
-                <InputText
+                <Common.InputText
                   size="medium"
                   {...register("contact", { required: true })}
                 />
@@ -77,7 +75,7 @@ export default function Order() {
           </div>
 
           <div className="item">
-            <Title size="medium">주문 상품</Title>
+            <Common.Title size="medium">주문 상품</Common.Title>
             <strong>
               {mainBookTitle} 등 총 {totalCount}권
             </strong>
@@ -85,15 +83,15 @@ export default function Order() {
         </div>
 
         <div className="summary">
-          <Summary totalCount={totalCount} totalPrice={totalPrice} />
+          <Cart.Summary totalCount={totalCount} totalPrice={totalPrice} />
 
-          <Button
+          <Common.Button
             size="large"
             state="normal"
             onClick={handleSubmit(handleOrder)}
           >
             주문 하기
-          </Button>
+          </Common.Button>
         </div>
       </Style>
     </>
