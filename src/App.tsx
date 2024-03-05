@@ -12,81 +12,54 @@ import Orders from "./pages/Orders";
 import ResetPassword from "./pages/ResetPassword";
 import SignUp from "./pages/SignUp";
 
-const router = createBrowserRouter([
+const routes = [
   {
     path: "/books/:bookID",
-    element: (
-      <Layout>
-        <Book />
-      </Layout>
-    ),
+    element: <Book />,
   },
   {
     path: "/books",
-    element: (
-      <Layout>
-        <Books />
-      </Layout>
-    ),
+    element: <Books />,
   },
   {
     path: "/cart-books",
-    element: (
-      <Layout>
-        <CartBooks />
-      </Layout>
-    ),
+    element: <CartBooks />,
   },
   {
     path: "/",
-    element: (
-      <Layout>
-        <Home />
-      </Layout>
-    ),
+    element: <Home />,
     errorElement: <Common.Error />,
   },
   {
     path: "/order",
-    element: (
-      <Layout>
-        <Order />
-      </Layout>
-    ),
+    element: <Order />,
   },
   {
     path: "/orders",
-    element: (
-      <Layout>
-        <Orders />
-      </Layout>
-    ),
+    element: <Orders />,
   },
   {
     path: "/users/sign-up",
-    element: (
-      <Layout>
-        <SignUp />
-      </Layout>
-    ),
+    element: <SignUp />,
   },
   {
     path: "/users/reset-password",
-    element: (
-      <Layout>
-        <ResetPassword />
-      </Layout>
-    ),
+    element: <ResetPassword />,
   },
   {
     path: "/users/log-in",
-    element: (
-      <Layout>
-        <LogIn />
-      </Layout>
-    ),
+    element: <LogIn />,
   },
-]);
+];
+
+const router = createBrowserRouter(
+  routes.map((route) => {
+    return {
+      ...route,
+      element: <Layout>{route.element}</Layout>,
+    };
+  })
+);
 
 export default function App() {
   return (
