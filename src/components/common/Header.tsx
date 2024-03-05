@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Common from ".";
 import ThemeSwitcher from "../header/ThemeSwitcher";
+import useCategories from "../../hooks/useCategories";
 import { useUsersStore } from "../../stores/users.store";
 
 const Style = styled.header`
@@ -52,14 +53,8 @@ const Style = styled.header`
   }
 `;
 
-const CATEGORY = [
-  { id: null, name: "전체" },
-  { id: 0, name: "동화" },
-  { id: 1, name: "소설" },
-  { id: 2, name: "사회" },
-];
-
 export default function Header() {
+  const { categories } = useCategories();
   const { isLoggedIn, setLoggedOut } = useUsersStore();
 
   return (
@@ -70,14 +65,16 @@ export default function Header() {
 
       <nav className="category">
         <ul>
-          {CATEGORY.map((category) => (
+          {categories.map((category) => (
             <li key={category.id}>
               <Link
                 to={
-                  !category.id ? "/books" : `/books?category-id=${category.id}`
+                  !category.id
+                    ? "/books"
+                    : `/books?categoryID=${category.id}&view=grid`
                 }
               >
-                {category.name}
+                {category.category}
               </Link>
             </li>
           ))}

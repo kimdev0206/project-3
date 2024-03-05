@@ -1,12 +1,11 @@
 import httpClient from "./http";
 import ICategory from "../models/category.model";
 
-interface Response {
-  data: ICategory[];
-}
 export async function getCategories() {
   try {
-    const response = await httpClient.get<Response>("/books/categories");
+    const response = await httpClient.get<{ data: ICategory[] }>(
+      "/books/categories"
+    );
     return response.data;
   } catch (error) {
     return {

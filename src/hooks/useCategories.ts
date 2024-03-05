@@ -36,7 +36,9 @@ export default function useCategories() {
   }, [location.search]);
 
   useEffect(() => {
-    getCategories().then(({ data }) => setCategories(data));
+    getCategories().then(({ data }) =>
+      setCategories([{ id: null, category: "전체" }, ...data])
+    );
   }, []);
 
   return { categories };
