@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { isAxiosError } from "axios";
-import { fetchBook } from "../apis/books.api";
-import { postCartBooks } from "../apis/cart-books.api";
-import { postLike, deleteike } from "../apis/likes.api";
+import { getBook } from "../apis/books.api";
+import { postCartBook } from "../apis/cart-books.api";
+import { postLike, deleteLike } from "../apis/likes.api";
 import { useAlert } from "./useAlert";
 import { IBook } from "../models/book.model";
 import { useUsersStore } from "../stores/users.store";
@@ -23,7 +23,7 @@ export default function useBook(bookID: number | undefined) {
 
     try {
       if (book.liked) {
-        await deleteike(book.id);
+        await deleteLike(book.id);
         setBook({ ...book, liked: false, likes: book.likes - 1 });
       } else {
         await postLike(book.id);
@@ -45,7 +45,7 @@ export default function useBook(bookID: number | undefined) {
     if (!book) return;
 
     try {
-      await postCartBooks(book.id, { count });
+      await postCartBook(book.id, { count });
       setIsAdded(true);
     } catch (error) {
       if (isAxiosError(error)) {
@@ -57,7 +57,7 @@ export default function useBook(bookID: number | undefined) {
   useEffect(() => {
     if (!bookID) return;
 
-    fetchBook(bookID).then(({ data }) => setBook(data));
+    getBook(bookID).then(({ data }) => setBook(data));
   }, [bookID]);
 
   return { book, handleLike, handleAddtoCart, isAdded };

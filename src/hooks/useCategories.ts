@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { fetchCategories } from "../apis/categories.api";
+import { getCategories } from "../apis/categories.api";
 import ICategory from "../models/category.model";
 
 export default function useCategories() {
@@ -36,7 +36,7 @@ export default function useCategories() {
   }, [location.search]);
 
   useEffect(() => {
-    fetchCategories().then(({ data }) => setCategories(data));
+    getCategories().then(({ data }) => setCategories(data));
   }, []);
 
   return { categories };

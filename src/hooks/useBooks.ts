@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { fetchBooks } from "../apis/books.api";
+import { getBooks } from "../apis/books.api";
 import { IBookListItem } from "../models/book.model";
 import IPagination from "../models/pagination.model";
 
@@ -16,7 +16,7 @@ export default function useBooks() {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
 
-    fetchBooks({
+    getBooks({
       categoryID: searchParams.get("categoryID")
         ? Number(searchParams.get("categoryID"))
         : undefined,

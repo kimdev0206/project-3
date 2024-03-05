@@ -5,7 +5,7 @@ interface Params {
   count: number;
 }
 
-export async function postCartBooks(bookID: number, params: Params) {
+export async function postCartBook(bookID: number, params: Params) {
   const response = await httpClient.post<{ message: string }>(
     `/cart-books/${bookID}`,
     params
@@ -18,7 +18,7 @@ export async function getCartBooks() {
   return response.data;
 }
 
-export async function deleteCartBooks(bookID: number) {
+export async function deleteCartBook(bookID: number) {
   const response = await httpClient.delete<{ message?: string }>(
     `/cart-books/${bookID}`
   );

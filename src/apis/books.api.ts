@@ -14,7 +14,7 @@ interface Response {
   meta: IPagination;
 }
 
-export async function fetchBooks(params: Params) {
+export async function getBooks(params: Params) {
   try {
     const response = await httpClient.get<Response>("/books", {
       params,
@@ -31,7 +31,7 @@ export async function fetchBooks(params: Params) {
   }
 }
 
-export async function fetchBook(bookID: number) {
+export async function getBook(bookID: number) {
   const response = await httpClient.get<{ data: IBook }>(`/books/${bookID}`);
   return response.data;
 }

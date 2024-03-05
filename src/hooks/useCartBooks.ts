@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { isAxiosError } from "axios";
-import { deleteCartBooks, getCartBooks } from "../apis/cart-books.api";
+import { deleteCartBook, getCartBooks } from "../apis/cart-books.api";
 import { useAlert } from "./useAlert";
 import ICartBook from "../models/cart-book.model";
 
@@ -9,8 +9,8 @@ export default function useCartBooks() {
   const [isEmpty, setIsEmpty] = useState(true);
   const alert = useAlert();
 
-  const deleteCartBook = async (bookID: number) => {
-    await deleteCartBooks(bookID);
+  const handleDelete = async (bookID: number) => {
+    await deleteCartBook(bookID);
     setCartBooks(cartBooks.filter((cartBook) => cartBook.bookID !== bookID));
   };
 
@@ -27,5 +27,5 @@ export default function useCartBooks() {
       });
   }, []);
 
-  return { cartBooks, isEmpty, deleteCartBook };
+  return { cartBooks, isEmpty, handleDelete };
 }

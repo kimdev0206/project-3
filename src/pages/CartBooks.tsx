@@ -64,7 +64,7 @@ export const Style = styled.div`
 
 export default function CartBooksPage() {
   const navigate = useNavigate();
-  const { cartBooks, isEmpty, deleteCartBook } = useCartBooks();
+  const { cartBooks, isEmpty, handleDelete } = useCartBooks();
   const [checkedIDs, setCheckedIDs] = useState<number[]>([]);
   const alert = useAlert();
   const confirm = useConfirm();
@@ -134,7 +134,7 @@ export default function CartBooksPage() {
                   cartBook={cartBook}
                   checkedIDs={checkedIDs}
                   onCheck={handleCheckID}
-                  onDelete={() => deleteCartBook(cartBook.bookID)}
+                  onDelete={() => handleDelete(cartBook.bookID)}
                   key={cartBook.bookID}
                 />
               ))}

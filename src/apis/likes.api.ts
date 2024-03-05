@@ -7,7 +7,7 @@ export async function postLike(bookID: number) {
   return response.data;
 }
 
-export async function deleteike(bookID: number) {
+export async function deleteLike(bookID: number) {
   const response = await httpClient.delete<{ message?: string }>(
     `/likes/${bookID}`
   );
