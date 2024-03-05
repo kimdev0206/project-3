@@ -4,21 +4,17 @@ export type ColorKey = "primary" | "background";
 
 export type ButtonState = "normal" | "active";
 
-export type HeadingSize = "large" | "medium" | "small";
-
-export type InputSize = "large" | "medium" | "small";
-
-export type LayoutWidth = "large" | "medium" | "small";
+export type Size = "large" | "medium" | "small";
 
 interface Theme {
   name: ThemeName;
   color: Record<ColorKey, string>;
   buttonState: Record<ButtonState, { primary: string; background: string }>;
-  heading: Record<HeadingSize, { fontSize: string }>;
-  input: Record<InputSize, { fontSize: string; padding: string }>;
+  heading: Record<Size, { fontSize: string }>;
+  input: Record<Size, { fontSize: string; padding: string }>;
   borderRadius: { default: string };
   layout: {
-    width: Record<LayoutWidth, string>;
+    width: Record<Size, string>;
   };
 }
 

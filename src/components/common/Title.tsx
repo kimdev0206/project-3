@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ColorKey, HeadingSize } from "../../styles/theme";
+import { ColorKey, Size } from "../../styles/theme";
 
 const Style = styled.h1<Omit<Props, "children">>`
   font-size: ${({ theme, size }) => theme.heading[size].fontSize};
@@ -10,7 +10,7 @@ const Style = styled.h1<Omit<Props, "children">>`
 
 interface Props {
   children: React.ReactNode;
-  size: HeadingSize;
+  size: Size;
   color?: ColorKey;
 }
 

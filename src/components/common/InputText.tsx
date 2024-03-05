@@ -1,6 +1,6 @@
 import React, { ForwardedRef } from "react";
 import styled from "styled-components";
-import { InputSize } from "../../styles/theme";
+import { Size } from "../../styles/theme";
 
 const Style = styled.input<Props>`
   font-size: ${({ theme, size }) => theme.input[size].fontSize};
@@ -15,7 +15,7 @@ const Style = styled.input<Props>`
 
 interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
-  size: InputSize;
+  size: Size;
   inputType?: "email" | "password" | "string" | "number";
   placeholder?: string;
 }

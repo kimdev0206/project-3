@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { InputSize } from "../../styles/theme";
+import { Size } from "../../styles/theme";
 
 const Style = styled.button<Omit<Props, "children">>`
   font-size: ${({ theme, size }) => theme.input[size].fontSize};
@@ -15,7 +15,7 @@ const Style = styled.button<Omit<Props, "children">>`
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  size: InputSize;
+  size: Size;
   state: string;
 }
 
