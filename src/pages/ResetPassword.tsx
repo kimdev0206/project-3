@@ -1,38 +1,22 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { postResetPassword, putResetPassword } from "../apis/users.api";
 import Common from "../components/common";
-import { useAlert } from "../hooks/useAlert";
+import useUsers from "../hooks/useUsers";
 import { Props, Style } from "./SignUp";
 
 export default function ResetPasswordPage() {
-  const [isRequested, setIsRequested] = useState(false);
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Props>();
-  const alert = useAlert();
-
-  const onSubmit = async (props: Props) => {
-    if (isRequested) {
-      const response = await putResetPassword(props);
-      alert(response.message);
-      return navigate("/users/log-in");
-    }
-
-    await postResetPassword(props);
-    setIsRequested(true);
-  };
+  const { handleResetPassword, isRequested } = useUsers();
 
   return (
     <>
       <Common.Title size="large">비밀번호 초기화</Common.Title>
 
       <Style>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(handleResetPassword)}>
           <fieldset>
             <Common.InputText
               size="medium"

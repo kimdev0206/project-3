@@ -1,9 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import { signUp } from "../apis/users.api";
 import Common from "../components/common";
-import { useAlert } from "../hooks/useAlert";
+import useUsers from "../hooks/useUsers";
 
 export const Style = styled.div`
   max-width: ${({ theme }) => theme.layout.width.small};
@@ -35,22 +34,14 @@ export default function SignUpPage() {
     handleSubmit,
     formState: { errors },
   } = useForm<Props>();
-  const navigate = useNavigate();
-  const alert = useAlert();
-
-  const onSubmit = async (props: Props) => {
-    const response = await signUp(props);
-
-    alert(response.message);
-    navigate("/users/log-in");
-  };
+  const { handleSignUp } = useUsers();
 
   return (
     <>
       <Common.Title size="large">회원가입</Common.Title>
 
       <Style>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(handleSignUp)}>
           <fieldset>
             <Common.InputText
               size="medium"
