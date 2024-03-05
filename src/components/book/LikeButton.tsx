@@ -5,7 +5,7 @@ import { IBook } from "../../models/book.model";
 
 const Style = styled(Common.Button)`
   display: flex;
-  gap: 6px;
+  gap: ${({ theme }) => theme.gap.small};
 `;
 
 interface Props {

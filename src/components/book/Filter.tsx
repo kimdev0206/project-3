@@ -6,11 +6,11 @@ import useCategories from "../../hooks/useCategories";
 
 const Style = styled.div`
   display: flex;
-  gap: 24px;
+  gap: ${({ theme }) => theme.gap.large};
 
   .categories {
     display: flex;
-    gap: 8px;
+    gap: ${({ theme }) => theme.gap.small};
   }
 `;
 

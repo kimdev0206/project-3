@@ -44,7 +44,7 @@ const Style = styled.div<Pick<Props, "view">>`
       right: 16px;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: ${({ theme }) => theme.gap.small};
       padding: 4px 16px;
       border: 1px solid ${({ theme }) => theme.color.border};
       border-radius: ${({ theme }) => theme.borderRadius.default};

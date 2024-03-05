@@ -8,7 +8,7 @@ const Style = styled.div<{ view: View }>`
   display: grid;
   grid-template-columns: ${({ view }) =>
     view === "grid" ? "repeat(4, 1fr)" : "repeat(1, 1fr)"};
-  gap: 24px;
+  gap: ${({ theme }) => theme.gap.large};
 `;
 
 interface Props {

@@ -9,14 +9,14 @@ import { IOrder } from "../models/order.model";
 
 export const Style = styled.div`
   display: flex;
-  gap: 24px;
+  gap: ${({ theme }) => theme.gap.large};
   justify-content: space-between;
 
   .items {
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 12px;
+    gap: ${({ theme }) => theme.gap.medium};
 
     .item {
       padding: ${({ theme }) => theme.input.medium.padding};
@@ -26,12 +26,12 @@ export const Style = styled.div`
       form {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: ${({ theme }) => theme.gap.small};
 
         fieldset {
           display: flex;
           justify-content: start;
-          gap: 8px;
+          gap: ${({ theme }) => theme.gap.small};
           margin: 0;
           padding: 0;
 
@@ -58,7 +58,7 @@ export const Style = styled.div`
   .summary {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: ${({ theme }) => theme.gap.large};
   }
 `;
 

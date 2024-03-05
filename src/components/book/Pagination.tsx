@@ -6,7 +6,7 @@ import IPagination from "../../models/pagination.model";
 const Style = styled.div`
   ol {
     display: flex;
-    gap: 8px;
+    gap: ${({ theme }) => theme.gap.small};
     list-style: none;
     padding: 0;
     margin: 0;

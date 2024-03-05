@@ -11,12 +11,12 @@ const Style = styled.div`
   header {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: ${({ theme }) => theme.gap.large};
 
     .items {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: ${({ theme }) => theme.gap.medium};
 
       dl {
         display: flex;

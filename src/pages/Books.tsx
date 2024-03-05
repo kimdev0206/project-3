@@ -7,7 +7,7 @@ import useBooks from "../hooks/useBooks";
 const Style = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: ${({ theme }) => theme.gap.large};
 `;
 
 export default function BooksPage() {

@@ -24,7 +24,7 @@ const Style = styled.header`
   .category {
     ul {
       display: flex;
-      gap: 32px;
+      gap: ${({ theme }) => theme.gap.large};
       list-style: none;
       padding-left: 0px;
 
@@ -39,7 +39,7 @@ const Style = styled.header`
   .auth {
     ul {
       display: flex;
-      gap: 16px;
+      gap: ${({ theme }) => theme.gap.medium};
       list-style: none;
       padding-left: 0px;
 

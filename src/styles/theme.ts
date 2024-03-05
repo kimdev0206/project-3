@@ -12,6 +12,7 @@ interface Theme {
   buttonState: Record<ButtonState, { primary: string; background: string }>;
   heading: Record<Size, { fontSize: string }>;
   input: Record<Size, { fontSize: string; padding: string }>;
+  gap: Record<Size, string>;
   borderRadius: { default: string };
   layout: {
     width: Record<Size, string>;
@@ -37,6 +38,11 @@ const light: Theme = {
     large: { fontSize: "1.5rem", padding: "1rem 2rem" },
     medium: { fontSize: "1rem", padding: "0.5rem 1rem" },
     small: { fontSize: "0.75rem", padding: "0.25rem 0.5rem" },
+  },
+  gap: {
+    large: "24px",
+    medium: "12px",
+    small: "8px",
   },
   borderRadius: { default: "4px" },
   layout: {

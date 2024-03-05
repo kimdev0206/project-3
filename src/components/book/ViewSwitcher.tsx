@@ -6,7 +6,7 @@ import Common from "../common";
 
 const Style = styled.div`
   display: flex;
-  gap: 8px;
+  gap: ${({ theme }) => theme.gap.small};
 `;
 
 const options = [
