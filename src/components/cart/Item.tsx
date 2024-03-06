@@ -21,6 +21,8 @@ const Style = styled.div`
 
     h1 {
       line-height: 1;
+      margin: 0;
+      margin-bottom: 1rem;
     }
 
     p {
