@@ -22,39 +22,8 @@ export const Style = styled.div`
       padding: ${({ theme }) => theme.input.medium.padding};
       border: 1px solid ${({ theme }) => theme.color.primary};
       border-radius: ${({ theme }) => theme.borderRadius.default};
-
-      form {
-        display: flex;
-        flex-direction: column;
-        gap: ${({ theme }) => theme.gap.small};
-
-        fieldset {
-          display: flex;
-          justify-content: start;
-          gap: ${({ theme }) => theme.gap.small};
-          margin: 0;
-          padding: 0;
-
-          border: 0;
-
-          label {
-            width: 80px;
-          }
-
-          input {
-            flex: 1;
-          }
-        }
-
-        p {
-          padding: 0.5rem 0;
-          margin: 0;
-          text-align: right;
-        }
-      }
     }
   }
-
   .summary {
     display: flex;
     flex-direction: column;

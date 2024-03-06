@@ -1,11 +1,63 @@
 import { useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
 import Cart from "../components/cart";
 import Common from "../components/common";
 import Order from "../components/order";
 import useOrder from "../hooks/useOrder";
 import { IDelivery, IOrder } from "../models/order.model";
-import { Style } from "./CartBooks";
+
+export const Style = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.gap.large};
+  justify-content: space-between;
+
+  .items {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: ${({ theme }) => theme.gap.medium};
+
+    .item {
+      padding: ${({ theme }) => theme.input.medium.padding};
+      border: 1px solid ${({ theme }) => theme.color.primary};
+      border-radius: ${({ theme }) => theme.borderRadius.default};
+    }
+  }
+  .summary {
+    display: flex;
+    flex-direction: column;
+    gap: ${({ theme }) => theme.gap.large};
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: ${({ theme }) => theme.gap.small};
+
+    fieldset {
+      display: flex;
+      justify-content: start;
+      gap: ${({ theme }) => theme.gap.small};
+      margin: 0;
+      padding: 0;
+      border: 0;
+
+      label {
+        width: 80px;
+      }
+      input {
+        flex: 1;
+      }
+    }
+  }
+
+  p {
+    text-align: right;
+    margin: 0;
+    padding-bottom: 0.5rem;
+  }
+`;
 
 export interface IDeliveryForm extends IDelivery {
   addressDetail: string;
