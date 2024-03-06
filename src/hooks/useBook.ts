@@ -3,13 +3,15 @@ import { isAxiosError } from "axios";
 import { getBook } from "../apis/books.api";
 import { postCartBook } from "../apis/cart-books.api";
 import { postLike, deleteLike } from "../apis/likes.api";
+import { getReviews } from "../apis/reviews.api";
 import { useAlert } from "./useAlert";
-import { IBook } from "../models/book.model";
+import { IBook, IReview } from "../models/book.model";
 import { useUsersStore } from "../stores/users.store";
 
 export default function useBook(bookID: number | undefined) {
   const [book, setBook] = useState<IBook>();
   const [isAdded, setIsAdded] = useState(false);
+  const [reviews, setReviews] = useState<IReview[]>([]);
   const isRendered = useRef(false);
   const alert = useAlert();
   const { isLoggedIn } = useUsersStore();
@@ -61,9 +63,10 @@ export default function useBook(bookID: number | undefined) {
     if (isRendered.current) return;
 
     getBook(bookID).then(({ data }) => setBook(data));
+    getReviews(bookID).then(({ data }) => setReviews(data));
 
     isRendered.current = true;
   }, [bookID]);
 
-  return { book, handleLike, handleAddtoCart, isAdded };
+  return { book, reviews, handleLike, handleAddtoCart, isAdded };
 }

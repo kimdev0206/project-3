@@ -19,3 +19,11 @@ export interface IBook extends IBookListItem {
   liked: boolean;
   pubDate: string;
 }
+
+export interface IReview {
+  id: number;
+  userID: string;
+  review: string;
+  score: number;
+  createdAt: string;
+}

@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import styled from "styled-components";
 import Book from "../components/book";
 import Common from "../components/common";
+import Review from "../components/review";
 import useBook from "../hooks/useBook";
 import { IBook } from "../models/book.model";
 import { getImgSrc } from "../utils/image";
@@ -56,7 +57,7 @@ const items = [
 
 export default function BookPage() {
   const { bookID } = useParams();
-  const { book, handleLike } = useBook(Number(bookID));
+  const { book, reviews, handleLike } = useBook(Number(bookID));
 
   if (!book) return null;
 
@@ -99,6 +100,9 @@ export default function BookPage() {
 
         <Common.Title size="medium">목차</Common.Title>
         <p className="contents">{book.contents}</p>
+
+        <Common.Title size="medium">리뷰</Common.Title>
+        <Review.List reviews={reviews} />
       </main>
     </Style>
   );
