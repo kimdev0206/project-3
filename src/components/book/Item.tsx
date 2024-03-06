@@ -2,17 +2,19 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FaHeart } from "react-icons/fa";
 import { View } from "./ViewSwitcher";
+import Common from "../common";
 import { IBookListItem } from "../../models/book.model";
 import { formatPrice } from "../../utils/format";
 import { getImgSrc } from "../../utils/image";
 
-const Style = styled.div<Pick<Props, "view">>`
-  a {
-    display: flex;
-    flex-direction: ${({ view }) => (view === "grid" ? "column" : "row")};
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-    text-decoration: none;
-  }
+const Style = styled(Link)<Pick<Props, "view">>`
+  display: flex;
+  flex-direction: ${({ view }) => (view === "grid" ? "column" : "row")};
+  box-shadow: ${({ theme }) =>
+    theme.name === "light"
+      ? "0 0 4px rgba(0, 0, 0, 0.2)"
+      : "0 0 4px rgba(255, 255, 255, 0.2)"};
+  text-decoration: none;
 
   .img {
     width: ${({ view }) => (view === "grid" ? "auto" : "160px")};
@@ -23,29 +25,31 @@ const Style = styled.div<Pick<Props, "view">>`
   }
 
   .content {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     flex: ${({ view }) => (view === "grid" ? 0 : 1)};
-    padding: 16px;
+    padding: ${({ theme }) => theme.input.medium.padding};
 
-    .title {
-      margin: 0 0 12px 0;
-    }
-    .summary {
+    p {
       margin: 0;
     }
-    .price {
-      position: absolute;
-      bottom: 16px;
-      left: 16px;
-    }
+  }
+
+  footer {
+    display: flex;
+    flex-direction: ${({ view }) => (view === "grid" ? "row" : "column")};
+    gap: ${({ theme, view }) => view === "list" && theme.gap.small};
+    justify-content: ${({ view }) => view === "grid" && "space-between"};
+    align-items: end;
+    margin-top: auto;
+    padding: ${({ theme }) => theme.input.medium.padding};
+
     .likes {
-      position: absolute;
-      bottom: 16px;
-      right: 16px;
       display: inline-flex;
       align-items: center;
       gap: ${({ theme }) => theme.gap.small};
-      padding: 4px 16px;
+      padding: ${({ theme }) => theme.input.small.padding};
       border: 1px solid ${({ theme }) => theme.color.border};
       border-radius: ${({ theme }) => theme.borderRadius.default};
     }
@@ -59,26 +63,26 @@ interface Props {
 
 export default function Item({ book, view }: Props) {
   return (
-    <Style view={view}>
-      <Link to={`/books/${book.id}`}>
-        <div className="img">
-          <img src={getImgSrc(book.imgID)} alt={book.title} />
-        </div>
+    <Style view={view} to={`/books/${book.id}`}>
+      <div className="img">
+        <img src={getImgSrc(book.imgID)} alt={book.title} />
+      </div>
 
-        <div className="content">
-          <h2 className="title">{book.title}</h2>
-          <p className="summary">{book.summary}</p>
-          <p className="author">{book.author}</p>
-          <div className="price">
-            <b>{formatPrice(book.price)}원</b>
-          </div>
+      <div className="content">
+        <Common.Title size="medium">{book.title}</Common.Title>
 
-          <div className="likes">
-            <FaHeart />
-            <span>{book.likes}</span>
-          </div>
+        <p>{book.summary}</p>
+        <p>{book.author}</p>
+      </div>
+
+      <footer>
+        <b>{formatPrice(book.price)}원</b>
+
+        <div className="likes">
+          <FaHeart />
+          <span>{book.likes}</span>
         </div>
-      </Link>
+      </footer>
     </Style>
   );
 }
