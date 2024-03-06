@@ -1,13 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Common from ".";
+import Title from "./Title";
 import { ThemeProvider } from "../../contexts/theme.context";
 
-describe("Common.Title 컴포넌트 테스트", () => {
+describe("Title 컴포넌트 테스트", () => {
   it("렌더를 확인", () => {
     render(
       <ThemeProvider>
-        <Common.Title size="large">제목</Common.Title>
+        <Title size="large">제목</Title>
       </ThemeProvider>
     );
 
@@ -17,7 +17,7 @@ describe("Common.Title 컴포넌트 테스트", () => {
   it("size prop 적용", () => {
     const { container } = render(
       <ThemeProvider>
-        <Common.Title size="large">제목</Common.Title>
+        <Title size="large">제목</Title>
       </ThemeProvider>
     );
 
@@ -27,9 +27,9 @@ describe("Common.Title 컴포넌트 테스트", () => {
   it("color prop 적용", () => {
     const { container } = render(
       <ThemeProvider>
-        <Common.Title size="large" color="primary">
+        <Title size="large" color="primary">
           제목
-        </Common.Title>
+        </Title>
       </ThemeProvider>
     );
 

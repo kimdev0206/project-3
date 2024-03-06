@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Common from ".";
+import Title from "./Title";
 
 const Style = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ interface Props {
 export default function Empty({ title, description }: Props) {
   return (
     <Style>
-      <Common.Title size="large">{title}</Common.Title>
+      <Title size="large">{title}</Title>
 
       <p>{description}</p>
     </Style>

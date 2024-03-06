@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Common from ".";
+import Button from "./Button";
 import ThemeSwitcher from "../header/ThemeSwitcher";
 import useCategories from "../../hooks/useCategories";
 import { useUsersStore } from "../../stores/users.store";
@@ -90,9 +90,9 @@ export default function Header() {
             <li>
               <Link to="/orders">주문 내역</Link>
             </li>
-            <Common.Button size="medium" state="normal" onClick={setLoggedOut}>
+            <Button size="medium" state="normal" onClick={setLoggedOut}>
               로그아웃
-            </Common.Button>
+            </Button>
           </ul>
         ) : (
           <ul>

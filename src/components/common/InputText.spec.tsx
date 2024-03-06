@@ -1,14 +1,14 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Common from ".";
+import InputText from "./InputText";
 import { ThemeProvider } from "../../contexts/theme.context";
 
 describe("InputText 컴포넌트 테스트", () => {
   it("렌더를 확인", () => {
     render(
       <ThemeProvider>
-        <Common.InputText size="large" placeholder="여기에 입력하세요." />
+        <InputText size="large" placeholder="여기에 입력하세요." />
       </ThemeProvider>
     );
 
@@ -20,7 +20,7 @@ describe("InputText 컴포넌트 테스트", () => {
   it("size prop 적용", () => {
     render(
       <ThemeProvider>
-        <Common.InputText size="large" placeholder="여기에 입력하세요." />
+        <InputText size="large" placeholder="여기에 입력하세요." />
       </ThemeProvider>
     );
 
@@ -32,7 +32,7 @@ describe("InputText 컴포넌트 테스트", () => {
 
     render(
       <ThemeProvider>
-        <Common.InputText size="large" ref={ref} />
+        <InputText size="large" ref={ref} />
       </ThemeProvider>
     );
 
