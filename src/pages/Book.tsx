@@ -57,7 +57,7 @@ const items = [
 
 export default function BookPage() {
   const { bookID } = useParams();
-  const { book, reviews, handleLike } = useBook(Number(bookID));
+  const { book, reviews, handleLike, handleReview } = useBook(Number(bookID));
 
   if (!book) return null;
 
@@ -102,7 +102,7 @@ export default function BookPage() {
         <p className="contents">{book.contents}</p>
 
         <Common.Title size="medium">리뷰</Common.Title>
-        <Review.List reviews={reviews} />
+        <Review.List reviews={reviews} onPost={handleReview} />
       </main>
     </Style>
   );

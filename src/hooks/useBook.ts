@@ -3,9 +3,9 @@ import { isAxiosError } from "axios";
 import { getBook } from "../apis/books.api";
 import { postCartBook } from "../apis/cart-books.api";
 import { postLike, deleteLike } from "../apis/likes.api";
-import { getReviews } from "../apis/reviews.api";
+import { getReviews, postReview } from "../apis/reviews.api";
 import { useAlert } from "./useAlert";
-import { IBook, IReview } from "../models/book.model";
+import { IBook, IReview, IReviewForm } from "../models/book.model";
 import { useUsersStore } from "../stores/users.store";
 
 export default function useBook(bookID: number | undefined) {
@@ -57,6 +57,27 @@ export default function useBook(bookID: number | undefined) {
     }
   };
 
+  const handleReview = async (formData: IReviewForm) => {
+    if (!isLoggedIn) {
+      alert("로그인이 필요합니다.");
+      return;
+    }
+
+    if (!book) return;
+
+    try {
+      const { message } = await postReview(book.id, formData);
+      alert(message);
+
+      const { data } = await getReviews(book.id);
+      setReviews(data);
+    } catch (error) {
+      if (isAxiosError(error)) {
+        alert(error.response?.data.message);
+      }
+    }
+  };
+
   useEffect(() => {
     if (!bookID) return;
 
@@ -68,5 +89,5 @@ export default function useBook(bookID: number | undefined) {
     isRendered.current = true;
   }, [bookID]);
 
-  return { book, reviews, handleLike, handleAddtoCart, isAdded };
+  return { book, reviews, handleLike, handleAddtoCart, handleReview, isAdded };
 }

@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import Form from "./Form";
 import Item from "./Item";
-import { IReview } from "../../models/book.model";
+import { IReview, IReviewForm } from "../../models/book.model";
 
 const Style = styled.div`
   display: flex;
@@ -10,11 +11,14 @@ const Style = styled.div`
 
 interface Props {
   reviews: IReview[];
+  onPost: (formData: IReviewForm) => void;
 }
 
-export default function List({ reviews }: Props) {
+export default function List({ reviews, onPost }: Props) {
   return (
     <Style>
+      <Form onPost={onPost} />
+
       {reviews.map((review) => (
         <Item review={review} key={review.id} />
       ))}

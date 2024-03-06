@@ -14,3 +14,9 @@ export const getReviews = http.get(
   process.env.REACT_APP_BASE_URL + "/reviews/:bookID",
   () => HttpResponse.json({ data }, { status: 200 })
 );
+
+export const postReview = http.post(
+  process.env.REACT_APP_BASE_URL + "/reviews/:bookID",
+  () =>
+    HttpResponse.json({ message: "리뷰가 등록되었습니다." }, { status: 200 })
+);

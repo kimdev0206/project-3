@@ -20,10 +20,13 @@ export interface IBook extends IBookListItem {
   pubDate: string;
 }
 
-export interface IReview {
-  id: number;
-  userID: string;
+export interface IReviewForm {
   review: string;
   score: number;
+}
+
+export interface IReview extends IReviewForm {
+  id: number;
+  userID: string;
   createdAt: string;
 }
