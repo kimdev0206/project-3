@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getCategories } from "../apis/categories.api";
 import ICategory from "../models/category.model";
 
 export default function useCategories() {
   const [categories, setCategories] = useState<ICategory[]>([]);
+  const isRendered = useRef(false);
   const location = useLocation();
 
   const setActive = () => {
@@ -36,9 +37,13 @@ export default function useCategories() {
   }, [location.search]);
 
   useEffect(() => {
+    if (isRendered.current) return;
+
     getCategories().then(({ data }) =>
       setCategories([{ id: null, category: "전체" }, ...data])
     );
+
+    isRendered.current = true;
   }, []);
 
   return { categories };

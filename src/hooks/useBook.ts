@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { isAxiosError } from "axios";
 import { getBook } from "../apis/books.api";
 import { postCartBook } from "../apis/cart-books.api";
@@ -10,6 +10,7 @@ import { useUsersStore } from "../stores/users.store";
 export default function useBook(bookID: number | undefined) {
   const [book, setBook] = useState<IBook>();
   const [isAdded, setIsAdded] = useState(false);
+  const isRendered = useRef(false);
   const alert = useAlert();
   const { isLoggedIn } = useUsersStore();
 
@@ -57,7 +58,11 @@ export default function useBook(bookID: number | undefined) {
   useEffect(() => {
     if (!bookID) return;
 
+    if (isRendered.current) return;
+
     getBook(bookID).then(({ data }) => setBook(data));
+
+    isRendered.current = true;
   }, [bookID]);
 
   return { book, handleLike, handleAddtoCart, isAdded };
