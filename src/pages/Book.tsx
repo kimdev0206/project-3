@@ -10,6 +10,7 @@ import { formatDate, formatPrice } from "../utils/format";
 const Style = styled.div`
   display: flex;
   flex-direction: column;
+  gap: ${({ theme }) => theme.gap.large};
 
   header {
     display: flex;
@@ -93,15 +94,19 @@ export default function BookPage() {
         </div>
       </header>
 
-      <main>
-        <Common.Title size="medium">상세 설명</Common.Title>
-        <Common.ExpandBox limit={4} $isExpand={false}>
-          {book.detail}
-        </Common.ExpandBox>
+      <Common.Tabs>
+        <Common.Tab title="상세 설명">
+          <Common.ExpandBox limit={4} $isExpand={false}>
+            {book.detail}
+          </Common.ExpandBox>
+        </Common.Tab>
 
-        <Common.Title size="medium">목차</Common.Title>
-        <p className="contents">{book.contents}</p>
-      </main>
+        <Common.Tab title="목차">
+          <Common.ExpandBox limit={4} $isExpand={false}>
+            {book.contents}
+          </Common.ExpandBox>
+        </Common.Tab>
+      </Common.Tabs>
     </Style>
   );
 }
