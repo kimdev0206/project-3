@@ -8,16 +8,30 @@ import { IBook } from "../../models/book.model";
 const Style = styled.div`
   position: relative;
   display: flex;
-  justify-content: space-between;
+  align-items: end;
+  gap: ${({ theme }) => theme.gap.small};
 
   input::-webkit-inner-spin-button {
     appearance: none;
   }
 
+  .left {
+    display: inline-flex;
+    width: 50%;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  .right {
+    margin-left: auto;
+  }
+
   .added {
     position: absolute;
     right: 0;
-    top: -90px;
+    top: -70px;
     padding: ${({ theme }) => theme.input.medium.padding};
     border-radius: ${({ theme }) => theme.borderRadius.default};
     border: 1px solid ${({ theme }) => theme.color.primary};
@@ -43,7 +57,7 @@ export default function AddtoCart({ book }: Props) {
 
   return (
     <Style>
-      <div>
+      <div className="left">
         <Common.InputText
           size="medium"
           inputType="number"
@@ -54,7 +68,6 @@ export default function AddtoCart({ book }: Props) {
         <Common.Button
           size="medium"
           state="normal"
-          type="button"
           onClick={() => setCount(count + 1)}
         >
           +
@@ -63,21 +76,21 @@ export default function AddtoCart({ book }: Props) {
         <Common.Button
           size="medium"
           state="normal"
-          type="button"
           onClick={() => count > 1 && setCount(count - 1)}
         >
           -
         </Common.Button>
       </div>
 
-      <Common.Button
-        size="medium"
-        state="normal"
-        type="button"
-        onClick={() => handleAddtoCart(count)}
-      >
-        장바구니 담기
-      </Common.Button>
+      <div className="right">
+        <Common.Button
+          size="medium"
+          state="normal"
+          onClick={() => handleAddtoCart(count)}
+        >
+          장바구니 담기
+        </Common.Button>
+      </div>
 
       {isAdded && (
         <div className="added">

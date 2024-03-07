@@ -8,12 +8,14 @@ import { getImgSrc } from "../utils/image";
 import { formatDate, formatPrice } from "../utils/format";
 
 const Style = styled.div`
+  display: flex;
+  flex-direction: column;
+
   header {
     display: flex;
-    flex-direction: column;
     gap: ${({ theme }) => theme.gap.large};
 
-    .items {
+    .right {
       display: flex;
       flex-direction: column;
       gap: ${({ theme }) => theme.gap.medium};
@@ -25,6 +27,9 @@ const Style = styled.div`
         dt {
           width: 80px;
         }
+      }
+      footer {
+        margin-top: auto;
       }
     }
   }
@@ -63,11 +68,9 @@ export default function BookPage() {
   return (
     <Style>
       <header>
-        <div className="img">
-          <img src={getImgSrc(book.imgID)} alt={book.title} />
-        </div>
+        <img src={getImgSrc(book.imgID)} alt={book.title} />
 
-        <div className="items">
+        <div className="right">
           <Common.Title size="large">{book.title}</Common.Title>
 
           {items.map((item) => (
@@ -80,15 +83,14 @@ export default function BookPage() {
               </dd>
             </dl>
           ))}
+
+          <p className="summary">{book.summary}</p>
+
+          <footer>
+            <Book.LikeButton book={book} onClick={() => handleLike()} />
+            <Book.AddtoCart book={book} />
+          </footer>
         </div>
-
-        <p className="summary">{book.summary}</p>
-
-        <div className="like">
-          <Book.LikeButton book={book} onClick={() => handleLike()} />
-        </div>
-
-        <Book.AddtoCart book={book} />
       </header>
 
       <main>
