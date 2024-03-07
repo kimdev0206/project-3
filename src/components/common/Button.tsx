@@ -14,7 +14,7 @@ const Style = styled.button<Omit<Props, "children">>`
 `;
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   size: Size;
   state: string;
 }

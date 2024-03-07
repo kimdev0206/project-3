@@ -1,15 +1,38 @@
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import Common from "../common";
 import IPagination from "../../models/pagination.model";
 
-const Style = styled.div`
-  ol {
+const Style = styled.div<{ transform: number }>`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.gap.small};
+  overflow: hidden;
+
+  .slider {
     display: flex;
+    transform: translateX(${({ transform }) => transform}%);
+    transition: transform 0.5s ease-in-out;
+
+    button {
+      display: inline-flex;
+      flex: 0 0 10%;
+      justify-content: center;
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
     gap: ${({ theme }) => theme.gap.small};
-    list-style: none;
-    padding: 0;
-    margin: 0;
+
+    button {
+      width: 16px;
+      height: 16px;
+      border: 1px solid ${({ theme }) => theme.color.primary};
+      border-radius: 50%;
+    }
   }
 `;
 
@@ -18,9 +41,11 @@ interface Props {
 }
 
 export default function Pagination({ pagination }: Props) {
+  const [pageGroup, setPageGroup] = useState<number>(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const { page, count } = pagination;
   const pages = Math.ceil(count / 8);
+  const pageGroups = Math.ceil(pages / 10);
 
   const onClick = (page: number) => {
     const newSearchParams = new URLSearchParams(searchParams);
@@ -30,24 +55,34 @@ export default function Pagination({ pagination }: Props) {
   };
 
   return (
-    <Style>
+    <>
       {pages > 0 && (
-        <ol>
-          {Array(pages)
-            .fill(0)
-            .map((_, index) => (
-              <li key={index}>
-                <Common.Button
-                  size="small"
-                  state={index + 1 === page ? "active" : "normal"}
-                  onClick={() => onClick(index + 1)}
-                >
-                  {(index + 1).toString()}
-                </Common.Button>
-              </li>
+        <Style transform={pageGroup * -100}>
+          <div className="slider">
+            {Array.from({ length: pages }, (_, index) => (
+              <Common.Button
+                size="small"
+                state={index + 1 === +page ? "active" : "normal"}
+                onClick={() => onClick(index + 1)}
+                key={index}
+              >
+                {index + 1}
+              </Common.Button>
             ))}
-        </ol>
+          </div>
+
+          <div className="pagination">
+            {Array.from({ length: pageGroups }, (_, index) => (
+              <Common.Button
+                size="small"
+                state={index === pageGroup ? "active" : "normal"}
+                onClick={() => setPageGroup(index)}
+                key={index}
+              />
+            ))}
+          </div>
+        </Style>
       )}
-    </Style>
+    </>
   );
 }

@@ -20,6 +20,8 @@ export default function BooksPage() {
       <Style>
         <Book.Filter />
 
+        {!isEmpty && <Book.Pagination pagination={pagination} />}
+
         {isEmpty ? (
           <Common.Empty
             title="검색 결과가 없습니다."
@@ -28,7 +30,6 @@ export default function BooksPage() {
         ) : (
           <Book.List books={books} />
         )}
-        {!isEmpty && <Book.Pagination pagination={pagination} />}
       </Style>
     </>
   );
