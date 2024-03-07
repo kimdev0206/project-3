@@ -4,7 +4,6 @@ import Book from "../components/book";
 import Common from "../components/common";
 import useBook from "../hooks/useBook";
 import { IBook } from "../models/book.model";
-import { getImgSrc } from "../utils/image";
 import { formatDate, formatPrice } from "../utils/format";
 
 const Style = styled.div`
@@ -69,7 +68,7 @@ export default function BookPage() {
   return (
     <Style>
       <header>
-        <img src={getImgSrc(book.imgID)} alt={book.title} />
+        <Common.Image imgID={book.imgID} emptySize="large" alt={book.title} />
 
         <div className="right">
           <Common.Title size="large">{book.title}</Common.Title>

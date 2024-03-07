@@ -4,6 +4,7 @@ import Error from "./Error";
 import ExpandBox from "./ExpandBox";
 import Footer from "./Footer";
 import Header from "./Header";
+import Image from "./Image";
 import InputText from "./InputText";
 import Tab from "./Tab";
 import Tabs from "./Tabs";
@@ -16,6 +17,7 @@ export default {
   ExpandBox,
   Footer,
   Header,
+  Image,
   InputText,
   Tab,
   Tabs,

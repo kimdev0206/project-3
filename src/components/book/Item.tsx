@@ -5,7 +5,6 @@ import { View } from "./ViewSwitcher";
 import Common from "../common";
 import { IBookListItem } from "../../models/book.model";
 import { formatPrice } from "../../utils/format";
-import { getImgSrc } from "../../utils/image";
 
 const Style = styled(Link)<Pick<Props, "view">>`
   display: flex;
@@ -65,7 +64,7 @@ export default function Item({ book, view }: Props) {
   return (
     <Style view={view} to={`/books/${book.id}`}>
       <div className="img">
-        <img src={getImgSrc(book.imgID)} alt={book.title} />
+        <Common.Image imgID={book.imgID} emptySize="small" alt={book.title} />
       </div>
 
       <div className="content">
