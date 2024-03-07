@@ -6,7 +6,7 @@ import Common from "../common";
 import { IBookListItem } from "../../models/book.model";
 import { formatPrice } from "../../utils/format";
 
-const Style = styled(Link)<Pick<Props, "view">>`
+export const Style = styled(Link)<Pick<Props, "view">>`
   display: flex;
   flex-direction: ${({ view }) => (view === "grid" ? "column" : "row")};
   box-shadow: ${({ theme }) =>
@@ -30,12 +30,23 @@ const Style = styled(Link)<Pick<Props, "view">>`
     flex: ${({ view }) => (view === "grid" ? 0 : 1)};
     padding: ${({ theme }) => theme.input.medium.padding};
 
+    h1,
+    .summary {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .summary {
+      -webkit-line-clamp: 4;
+    }
     p {
       margin: 0;
     }
   }
 
-  footer {
+  .footer {
     display: flex;
     flex-direction: ${({ view }) => (view === "grid" ? "row" : "column")};
     gap: ${({ theme, view }) => view === "list" && theme.gap.small};
@@ -70,18 +81,18 @@ export default function Item({ book, view }: Props) {
       <div className="content">
         <Common.Title size="medium">{book.title}</Common.Title>
 
-        <p>{book.summary}</p>
+        <p className="summary">{book.summary}</p>
         <p>{book.author}</p>
       </div>
 
-      <footer>
+      <div className="footer">
         <b>{formatPrice(book.price)}원</b>
 
         <div className="likes">
           <FaHeart />
           <span>{book.likes}</span>
         </div>
-      </footer>
+      </div>
     </Style>
   );
 }

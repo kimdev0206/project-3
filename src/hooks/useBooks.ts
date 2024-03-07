@@ -21,6 +21,7 @@ export default function useBooks() {
         ? Number(searchParams.get("categoryID"))
         : undefined,
       isNew: searchParams.get("isNew") ? true : false,
+      isBest: false,
       page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
       limit: 8,
     }).then(({ data, meta }) => {

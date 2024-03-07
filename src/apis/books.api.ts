@@ -5,6 +5,7 @@ import IPagination from "../models/pagination.model";
 interface Params {
   categoryID?: number;
   isNew: boolean;
+  isBest: boolean;
   page: number;
   limit: number;
 }
