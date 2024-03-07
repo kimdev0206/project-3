@@ -39,8 +39,6 @@ function createClient(config?: AxiosRequestConfig) {
             getRefreshToken()
           );
           setAccessToken(response.accessToken);
-
-          window.alert(response.message);
           return;
         }
 
