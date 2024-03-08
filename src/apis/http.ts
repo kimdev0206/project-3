@@ -30,22 +30,24 @@ function createClient(config?: AxiosRequestConfig) {
         return;
       }
 
+      if (status === HttpStatusCode.Forbidden) {
+        window.location.href = "/users/log-in";
+        return;
+      }
+
       const { message } = error.response.data;
 
-      if (status === HttpStatusCode.Unauthorized) {
-        if (message.startsWith("접근 토큰이 만료되었습니다.")) {
-          const response = await accessToken(
-            getAccessToken(),
-            getRefreshToken()
-          );
-          setAccessToken(response.accessToken);
-          return;
-        }
+      if (message.startsWith("재발급 토큰이 만료되었습니다.")) {
+        window.location.href = "/users/log-in";
+        return;
+      }
 
-        if (message.startsWith("재발급 토큰이 만료되었습니다.")) {
-          window.location.href = "/users/log-in";
-          return;
-        }
+      if (message.startsWith("접근 토큰이 만료되었습니다.")) {
+        const response = await accessToken(getAccessToken(), getRefreshToken());
+        setAccessToken(response.accessToken);
+
+        window.location.reload();
+        return;
       }
 
       return Promise.reject(error);
