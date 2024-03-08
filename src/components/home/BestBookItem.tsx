@@ -24,7 +24,7 @@ const Style = styled.div`
     border-radius: 50%;
     font-weight: 700;
     font-style: italic;
-    border: 1px solid ${({ theme }) => theme.color.border};
+    border: ${({ theme }) => theme.border.default};
   }
 `;
 

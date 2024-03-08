@@ -5,8 +5,8 @@ import { formatPrice } from "../../utils/format";
 const Style = styled.div`
   width: 240px;
   padding: ${({ theme }) => theme.input.medium.padding};
-  border: 1px solid ${({ theme }) => theme.color.primary};
-  border-radius: ${({ theme }) => theme.borderRadius.default};
+  border: ${({ theme }) => theme.border.default};
+  border-radius: ${({ theme }) => theme.border.radius};
 
   dl {
     display: flex;

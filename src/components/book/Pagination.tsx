@@ -30,7 +30,7 @@ const Style = styled.div<{ transform: number }>`
     button {
       width: 16px;
       height: 16px;
-      border: 1px solid ${({ theme }) => theme.color.primary};
+      border: ${({ theme }) => theme.border.default};
       border-radius: 50%;
     }
   }

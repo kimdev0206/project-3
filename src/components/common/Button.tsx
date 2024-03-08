@@ -9,7 +9,7 @@ const Style = styled.button<Omit<Props, "children">>`
   background-color: ${({ theme, state }) =>
     theme.buttonState[state].background};
   border-color: ${({ theme }) => theme.color.primary};
-  border-radius: ${({ theme }) => theme.borderRadius.default};
+  border-radius: ${({ theme }) => theme.border.radius};
   cursor: pointer;
 `;
 

@@ -12,7 +12,7 @@ const Style = styled.header`
   align-items: end;
   margin: 0 auto;
   padding: 20px 0;
-  border-bottom: 1px solid ${({ theme }) => theme.color.primary};
+  border-bottom: ${({ theme }) => theme.border.default};
 
   a {
     text-decoration: none;

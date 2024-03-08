@@ -60,8 +60,8 @@ export const Style = styled(Link)<Pick<Props, "view">>`
       align-items: center;
       gap: ${({ theme }) => theme.gap.small};
       padding: ${({ theme }) => theme.input.small.padding};
-      border: 1px solid ${({ theme }) => theme.color.border};
-      border-radius: ${({ theme }) => theme.borderRadius.default};
+      border: ${({ theme }) => theme.border.default};
+      border-radius: ${({ theme }) => theme.border.radius};
     }
   }
 `;

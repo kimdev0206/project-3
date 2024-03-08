@@ -11,8 +11,8 @@ const Style = styled.div`
   justify-content: space-between;
   align-items: start;
   padding: ${({ theme }) => theme.input.medium.padding};
-  border: 1px solid ${({ theme }) => theme.color.primary};
-  border-radius: ${({ theme }) => theme.borderRadius.default};
+  border: ${({ theme }) => theme.border.default};
+  border-radius: ${({ theme }) => theme.border.radius};
 
   .center {
     display: flex;

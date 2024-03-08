@@ -7,7 +7,7 @@ const Style = styled.footer`
   margin: 0 auto;
   padding: 20px 0;
 
-  border-top: 1px solid ${({ theme }) => theme.color.primary};
+  border-top: ${({ theme }) => theme.border.default};
 `;
 
 export default function Footer() {

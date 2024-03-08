@@ -33,8 +33,8 @@ const Style = styled.div`
     right: 0;
     top: -70px;
     padding: ${({ theme }) => theme.input.medium.padding};
-    border-radius: ${({ theme }) => theme.borderRadius.default};
-    border: 1px solid ${({ theme }) => theme.color.primary};
+    border-radius: ${({ theme }) => theme.border.radius};
+    border: ${({ theme }) => theme.border.default};
     text-align: center;
 
     p {

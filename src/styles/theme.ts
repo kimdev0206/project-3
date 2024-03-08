@@ -13,7 +13,7 @@ interface Theme {
   heading: Record<Size, { fontSize: string }>;
   input: Record<Size, { fontSize: string; padding: string }>;
   gap: Record<Size, string>;
-  borderRadius: { default: string };
+  border: { default: string; radius: string };
   layout: {
     width: Record<Size, string>;
   };
@@ -44,7 +44,7 @@ const light: Theme = {
     medium: "12px",
     small: "8px",
   },
-  borderRadius: { default: "4px" },
+  border: { default: "1px solid black", radius: "4px" },
   layout: {
     width: { large: "1020px", medium: "760px", small: "320px" },
   },
@@ -61,6 +61,7 @@ const dark: Theme = {
     normal: { primary: "white", background: "black" },
     active: { primary: "black", background: "white" },
   },
+  border: { default: "1px solid white", radius: "4px" },
 };
 
 export function getTheme(themeName: ThemeName): Theme {

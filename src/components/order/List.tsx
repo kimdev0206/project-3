@@ -7,7 +7,7 @@ import { formatPrice } from "../../utils/format";
 const Style = styled.table`
   & {
     width: 100%;
-    border: 1px solid ${({ theme }) => theme.color.primary};
+    border: ${({ theme }) => theme.border.default};
     border-collapse: collapse;
 
     th,

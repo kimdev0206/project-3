@@ -10,7 +10,7 @@ const Style = styled.input<Props>`
   color: ${({ theme }) => theme.color.primary};
 
   border-color: ${({ theme }) => theme.color.primary};
-  border-radius: ${({ theme }) => theme.borderRadius.default};
+  border-radius: ${({ theme }) => theme.border.radius};
 `;
 
 interface Props

@@ -7,7 +7,7 @@ const Style = styled.div`
   .header {
     display: flex;
     gap: ${({ theme }) => theme.gap.small};
-    border-bottom: 1px solid ${({ theme }) => theme.color.primary};
+    border-bottom: ${({ theme }) => theme.border.default};
 
     button {
       border-bottom-left-radius: 0;
