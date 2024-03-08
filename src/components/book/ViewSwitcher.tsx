@@ -7,6 +7,10 @@ import Common from "../common";
 const Style = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.gap.small};
+
+  @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
+    gap: 0;
+  }
 `;
 
 const options = [

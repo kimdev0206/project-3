@@ -6,6 +6,10 @@ const Style = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: ${({ theme }) => theme.gap.medium};
+
+  @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 interface Props {

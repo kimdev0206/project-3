@@ -41,6 +41,27 @@ const Style = styled.header`
       }
     }
   }
+
+  @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
+    position: relative;
+    flex-direction: column;
+    align-items: start;
+    gap: ${({ theme }) => theme.gap.large};
+
+    nav {
+      width: 100%;
+
+      ul {
+        justify-content: space-between;
+
+        button {
+          position: absolute;
+          top: 20px;
+          right: 0;
+        }
+      }
+    }
+  }
 `;
 
 export default function Header() {

@@ -33,6 +33,16 @@ const Style = styled.div`
       }
     }
   }
+
+  @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
+    header {
+      flex-direction: column;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
 `;
 
 const items = [

@@ -9,6 +9,10 @@ const Style = styled.div<{ view: View }>`
   grid-template-columns: ${({ view }) =>
     view === "grid" ? "repeat(4, 1fr)" : "repeat(1, 1fr)"};
   gap: ${({ theme }) => theme.gap.large};
+
+  @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
+    grid-template-columns: ${({ view }) => view === "grid" && "repeat(2, 1fr)"};
+  }
 `;
 
 interface Props {

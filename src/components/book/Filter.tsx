@@ -12,6 +12,14 @@ const Style = styled.div`
     display: flex;
     gap: ${({ theme }) => theme.gap.small};
   }
+
+  @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
+    gap: ${({ theme }) => theme.gap.small};
+
+    .categories {
+      gap: 0;
+    }
+  }
 `;
 
 export default function Filter() {

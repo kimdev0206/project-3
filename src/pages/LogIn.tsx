@@ -23,6 +23,7 @@ export default function LogInPage() {
               size="medium"
               inputType="email"
               placeholder="이메일"
+              inputMode="email"
               {...register("email", { required: true })}
             />
 

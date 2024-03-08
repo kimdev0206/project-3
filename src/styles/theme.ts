@@ -6,6 +6,8 @@ export type ButtonState = "normal" | "active";
 
 export type Size = "large" | "medium" | "small";
 
+export type MediaQuery = "mobile" | "desktop";
+
 interface Theme {
   name: ThemeName;
   color: Record<ColorKey, string>;
@@ -17,6 +19,7 @@ interface Theme {
   layout: {
     width: Record<Size, string>;
   };
+  mediaQuery: Record<MediaQuery, string>;
 }
 
 const light: Theme = {
@@ -47,6 +50,10 @@ const light: Theme = {
   border: { default: "1px solid black", radius: "4px" },
   layout: {
     width: { large: "1020px", medium: "760px", small: "320px" },
+  },
+  mediaQuery: {
+    mobile: "(max-width: 768px)",
+    desktop: "(min-width: 1025x)",
   },
 };
 

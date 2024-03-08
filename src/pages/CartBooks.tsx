@@ -29,6 +29,10 @@ export const Style = styled.div`
     flex-direction: column;
     gap: ${({ theme }) => theme.gap.large};
   }
+
+  @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
+    flex-direction: column;
+  }
 `;
 
 export default function CartBooksPage() {

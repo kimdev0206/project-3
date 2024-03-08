@@ -57,6 +57,20 @@ export const Style = styled.div`
     margin: 0;
     padding-bottom: 0.5rem;
   }
+
+  @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
+    flex-direction: column;
+
+    form {
+      fieldset {
+        flex-direction: column;
+
+        div {
+          margin-left: auto;
+        }
+      }
+    }
+  }
 `;
 
 export interface IDeliveryForm extends IDelivery {
