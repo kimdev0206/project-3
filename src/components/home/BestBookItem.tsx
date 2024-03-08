@@ -22,7 +22,7 @@ const Style = styled.div`
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    font-weight: 700;
+    font-weight: bold;
     font-style: italic;
     border: ${({ theme }) => theme.border.default};
   }

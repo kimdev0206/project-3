@@ -55,6 +55,10 @@ export const Style = styled(Link)<Pick<Props, "view">>`
     margin-top: auto;
     padding: ${({ theme }) => theme.input.medium.padding};
 
+    .price {
+      font-weight: bold;
+    }
+
     .likes {
       display: inline-flex;
       align-items: center;
@@ -86,7 +90,7 @@ export default function Item({ book, view }: Props) {
       </div>
 
       <div className="footer">
-        <b>{formatPrice(book.price)}원</b>
+        <p className="price">{formatPrice(book.price)} 원</p>
 
         <div className="likes">
           <FaHeart />

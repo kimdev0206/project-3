@@ -11,6 +11,10 @@ const Style = styled.div`
   dl {
     display: flex;
     justify-content: space-between;
+
+    dd {
+      font-weight: bold;
+    }
   }
 `;
 
@@ -26,16 +30,12 @@ export default function Summary({ totalCount, totalPrice }: Props) {
 
       <dl>
         <dt>총 수량</dt>
-        <dd>
-          <b>{totalCount}권</b>
-        </dd>
+        <dd>{totalCount} 권</dd>
       </dl>
 
       <dl>
         <dt>총 금액</dt>
-        <dd>
-          <b>{formatPrice(totalPrice)}원</b>
-        </dd>
+        <dd>{formatPrice(totalPrice)} 원</dd>
       </dl>
     </Style>
   );
