@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Item from "./Item";
 import { IOrderListItem } from "../../models/order.model";
@@ -97,6 +97,8 @@ interface Props {
 }
 
 export default function List({ orders, selectedID, onSelect }: Props) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Style>
       <thead>
@@ -116,9 +118,14 @@ export default function List({ orders, selectedID, onSelect }: Props) {
       <tbody>
         {orders.map((order) => (
           <React.Fragment key={order.orderID}>
-            <Item order={order} onSelect={onSelect} />
+            <Item
+              order={order}
+              isOpen={isOpen}
+              onOpen={setIsOpen}
+              onSelect={onSelect}
+            />
 
-            {selectedID === order.orderID && (
+            {selectedID === order.orderID && isOpen && (
               <>
                 <tr className="selected">
                   <th>도서ID</th>
