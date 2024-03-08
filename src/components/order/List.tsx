@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import Common from "../common";
 import Item from "./Item";
 import { IOrderListItem } from "../../models/order.model";
 import { formatPrice } from "../../utils/format";
@@ -19,6 +21,11 @@ const Style = styled.table`
   th,
   td {
     padding: ${({ theme }) => theme.input.medium.padding};
+  }
+  th:nth-of-type(2) {
+    display: flex;
+    flex-direction: column;
+    gap: ${({ theme }) => theme.gap.small};
   }
 
   @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
@@ -98,13 +105,31 @@ interface Props {
 
 export default function List({ orders, selectedID, onSelect }: Props) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAsc, setIsAsc] = useState(true);
+
+  const onSort = (key: keyof Pick<IOrderListItem, "createdAt">) => {
+    setIsAsc(!isAsc);
+
+    orders.sort((a, b) =>
+      isAsc ? a[key].localeCompare(b[key]) : b[key].localeCompare(a[key])
+    );
+  };
 
   return (
     <Style>
       <thead>
         <tr>
           <th>주문ID</th>
-          <th>주문일자</th>
+          <th>
+            주문일자
+            <Common.Button
+              size="small"
+              state="normal"
+              onClick={() => onSort("createdAt")}
+            >
+              {isAsc ? <FaArrowUp /> : <FaArrowDown />}
+            </Common.Button>
+          </th>
           <th>주소</th>
           <th>수령인</th>
           <th>전화번호</th>
