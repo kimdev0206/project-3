@@ -19,6 +19,7 @@ interface Theme {
   layout: {
     width: Record<Size, string>;
   };
+  img: Record<Size, number>;
   mediaQuery: Record<MediaQuery, string>;
 }
 
@@ -51,6 +52,7 @@ const light: Theme = {
   layout: {
     width: { large: "1020px", medium: "760px", small: "320px" },
   },
+  img: { large: 600, medium: 300, small: 160 },
   mediaQuery: {
     mobile: "(max-width: 768px)",
     desktop: "(min-width: 1025x)",
@@ -73,4 +75,8 @@ const dark: Theme = {
 
 export function getTheme(themeName: ThemeName): Theme {
   return themeName === "light" ? light : dark;
+}
+
+export function getImgSize(size: Size) {
+  return light.img[size];
 }

@@ -78,7 +78,7 @@ export default function BookPage() {
   return (
     <Style>
       <header>
-        <Common.Image imgID={book.imgID} emptySize="large" alt={book.title} />
+        <Common.Image imgID={book.imgID} size="large" alt={book.title} />
 
         <div className="right">
           <Common.Title size="large">{book.title}</Common.Title>

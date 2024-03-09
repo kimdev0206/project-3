@@ -16,7 +16,8 @@ export const Style = styled(Link)<Pick<Props, "view">>`
   text-decoration: none;
 
   .img {
-    width: ${({ view }) => (view === "grid" ? "auto" : "160px")};
+    width: ${({ theme, view }) =>
+      view === "grid" ? "auto" : `${theme.img.small}px`};
 
     img {
       width: 100%;
@@ -79,7 +80,7 @@ export default function Item({ book, view }: Props) {
   return (
     <Style view={view} to={`/books/${book.id}`}>
       <div className="img">
-        <Common.Image imgID={book.imgID} emptySize="small" alt={book.title} />
+        <Common.Image imgID={book.imgID} size="medium" alt={book.title} />
       </div>
 
       <div className="content">
