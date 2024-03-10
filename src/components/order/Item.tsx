@@ -1,4 +1,6 @@
+import dayjs from "dayjs";
 import Common from "../common";
+import { useAlert } from "../../hooks/useAlert";
 import { IOrderListItem } from "../../models/order.model";
 import { formatDate, formatPrice } from "../../utils/format";
 
@@ -7,12 +9,30 @@ interface Props {
   isOpen: boolean;
   onOpen: (isOpen: boolean) => void;
   onSelect: (id: number) => void;
+  onDelete: (id: number) => void;
 }
 
-export default function Item({ order, isOpen, onOpen, onSelect }: Props) {
+export default function Item({
+  order,
+  isOpen,
+  onOpen,
+  onSelect,
+  onDelete,
+}: Props) {
+  const alert = useAlert();
+
   const handleClick = () => {
     onSelect(order.orderID);
     onOpen(!isOpen);
+  };
+
+  const handleDelete = () => {
+    if (dayjs().diff(dayjs(order.createdAt), "hour") > 3) {
+      alert("주문을 취소할 수 없습니다.");
+      return;
+    }
+
+    onDelete(order.orderID);
   };
 
   return (
@@ -28,6 +48,11 @@ export default function Item({ order, isOpen, onOpen, onSelect }: Props) {
       <td>
         <Common.Button size="small" state="normal" onClick={handleClick}>
           자세히
+        </Common.Button>
+      </td>
+      <td>
+        <Common.Button size="small" state="normal" onClick={handleDelete}>
+          취소
         </Common.Button>
       </td>
     </tr>

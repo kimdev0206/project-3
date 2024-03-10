@@ -1,5 +1,6 @@
+import { isAxiosError } from "axios";
 import { useEffect, useRef, useState } from "react";
-import { getOrder, getOrders } from "../apis/orders.api";
+import { getOrder, getOrders, deleteOrder } from "../apis/orders.api";
 import { IOrderListItem } from "../models/order.model";
 
 export default function useOrders() {
@@ -30,6 +31,17 @@ export default function useOrders() {
     setSelectedID(orderID);
   };
 
+  const handleDeleteID = async (orderID: number) => {
+    try {
+      await deleteOrder(orderID);
+      setOrders(orders.filter((order) => order.orderID !== orderID));
+    } catch (error) {
+      if (isAxiosError(error)) {
+        alert(error.response?.data.message);
+      }
+    }
+  };
+
   useEffect(() => {
     if (isRendered.current) return;
 
@@ -41,5 +53,5 @@ export default function useOrders() {
     isRendered.current = true;
   }, []);
 
-  return { orders, selectedID, handleSelectID, isEmpty };
+  return { orders, selectedID, handleSelectID, handleDeleteID, isEmpty };
 }

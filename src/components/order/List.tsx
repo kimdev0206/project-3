@@ -101,9 +101,15 @@ interface Props {
   orders: IOrderListItem[];
   selectedID: number | null;
   onSelect: (id: number) => void;
+  onDelete: (id: number) => void;
 }
 
-export default function List({ orders, selectedID, onSelect }: Props) {
+export default function List({
+  orders,
+  selectedID,
+  onSelect,
+  onDelete,
+}: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isAsc, setIsAsc] = useState(true);
 
@@ -136,7 +142,7 @@ export default function List({ orders, selectedID, onSelect }: Props) {
           <th>대표 도서명</th>
           <th>총 수량</th>
           <th>총 금액</th>
-          <th></th>
+          <th colSpan={2}></th>
         </tr>
       </thead>
 
@@ -148,6 +154,7 @@ export default function List({ orders, selectedID, onSelect }: Props) {
               isOpen={isOpen}
               onOpen={setIsOpen}
               onSelect={onSelect}
+              onDelete={onDelete}
             />
 
             {selectedID === order.orderID && isOpen && (

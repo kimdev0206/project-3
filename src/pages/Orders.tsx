@@ -7,7 +7,8 @@ import useOrders from "../hooks/useOrders";
 const Style = styled.div``;
 
 export default function OrdersPage() {
-  const { orders, selectedID, handleSelectID, isEmpty } = useOrders();
+  const { orders, selectedID, handleSelectID, handleDeleteID, isEmpty } =
+    useOrders();
 
   return (
     <>
@@ -24,6 +25,7 @@ export default function OrdersPage() {
             orders={orders}
             selectedID={selectedID}
             onSelect={handleSelectID}
+            onDelete={handleDeleteID}
           />
         )}
       </Style>

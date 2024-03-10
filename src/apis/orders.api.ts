@@ -32,3 +32,10 @@ export async function getOrder(orderID: number) {
   );
   return response.data;
 }
+
+export async function deleteOrder(orderID: number) {
+  const response = await httpClient.delete<{ message?: string }>(
+    `/orders/${orderID}`
+  );
+  return response.data;
+}
