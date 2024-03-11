@@ -21,7 +21,7 @@ export default function Item({
 }: Props) {
   const alert = useAlert();
 
-  const handleClick = () => {
+  const handleDetail = () => {
     onSelect(order.orderID);
     onOpen(!isOpen);
   };
@@ -46,7 +46,11 @@ export default function Item({
       <td>{order.totalCount}권</td>
       <td>{formatPrice(order.totalPrice)}원</td>
       <td>
-        <Common.Button size="small" state="normal" onClick={handleClick}>
+        <Common.Button
+          size="small"
+          state={isOpen ? "active" : "normal"}
+          onClick={handleDetail}
+        >
           자세히
         </Common.Button>
       </td>

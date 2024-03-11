@@ -151,7 +151,7 @@ export default function List({
           <React.Fragment key={order.orderID}>
             <Item
               order={order}
-              isOpen={isOpen}
+              isOpen={selectedID === order.orderID && isOpen}
               onOpen={setIsOpen}
               onSelect={onSelect}
               onDelete={onDelete}
