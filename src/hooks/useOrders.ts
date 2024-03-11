@@ -9,32 +9,33 @@ export default function useOrders() {
   const [isEmpty, setIsEmpty] = useState(true);
   const isRendered = useRef(false);
 
-  const handleSelectID = async (orderID: number) => {
-    const hasDetail = orders.filter((order) => order.orderID === orderID)[0]
-      .details;
+  const handleSelectID = async (deliveryID: number) => {
+    const hasDetail = orders.filter(
+      (order) => order.deliveryID === deliveryID
+    )[0].details;
 
     if (hasDetail) {
-      setSelectedID(orderID);
+      setSelectedID(deliveryID);
       return;
     }
 
-    const { data } = await getOrder(orderID);
+    const { data } = await getOrder(deliveryID);
     setOrders(
       orders.map((order) => {
-        if (order.orderID === orderID) {
+        if (order.deliveryID === deliveryID) {
           return { ...order, details: data };
         }
 
         return order;
       })
     );
-    setSelectedID(orderID);
+    setSelectedID(deliveryID);
   };
 
-  const handleDeleteID = async (orderID: number) => {
+  const handleDeleteID = async (deliveryID: number) => {
     try {
-      await deleteOrder(orderID);
-      setOrders(orders.filter((order) => order.orderID !== orderID));
+      await deleteOrder(deliveryID);
+      setOrders(orders.filter((order) => order.deliveryID !== deliveryID));
     } catch (error) {
       if (isAxiosError(error)) {
         alert(error.response?.data.message);

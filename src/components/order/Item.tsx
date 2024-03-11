@@ -22,7 +22,7 @@ export default function Item({
   const alert = useAlert();
 
   const handleDetail = () => {
-    onSelect(order.orderID);
+    onSelect(order.deliveryID);
     onOpen(!isOpen);
   };
 
@@ -32,12 +32,12 @@ export default function Item({
       return;
     }
 
-    onDelete(order.orderID);
+    onDelete(order.deliveryID);
   };
 
   return (
     <tr>
-      <td>{order.orderID}</td>
+      <td>{order.deliveryID}</td>
       <td>{formatDate(order.createdAt, "YYYY.MM.DD")}</td>
       <td>{order.address}</td>
       <td>{order.receiver}</td>

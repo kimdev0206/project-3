@@ -26,16 +26,16 @@ export async function getOrders() {
   }
 }
 
-export async function getOrder(orderID: number) {
+export async function getOrder(deliveryID: number) {
   const response = await httpClient.get<{ data: IOrderListItemDetail[] }>(
-    `/orders/${orderID}`
+    `/orders/${deliveryID}`
   );
   return response.data;
 }
 
-export async function deleteOrder(orderID: number) {
+export async function deleteOrder(deliveryID: number) {
   const response = await httpClient.delete<{ message?: string }>(
-    `/orders/${orderID}`
+    `/orders/${deliveryID}`
   );
   return response.data;
 }

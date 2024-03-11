@@ -52,7 +52,7 @@ const Style = styled.table`
       font-weight: bold;
     }
     td:nth-of-type(1):before {
-      content: "주문ID";
+      content: "배송ID";
     }
     td:nth-of-type(2):before {
       content: "주문일자";
@@ -125,7 +125,7 @@ export default function List({
     <Style>
       <thead>
         <tr>
-          <th>주문ID</th>
+          <th>배송ID</th>
           <th>
             주문일자
             <Common.Button
@@ -148,16 +148,16 @@ export default function List({
 
       <tbody>
         {orders.map((order) => (
-          <React.Fragment key={order.orderID}>
+          <React.Fragment key={order.deliveryID}>
             <Item
               order={order}
-              isOpen={selectedID === order.orderID && isOpen}
+              isOpen={selectedID === order.deliveryID && isOpen}
               onOpen={setIsOpen}
               onSelect={onSelect}
               onDelete={onDelete}
             />
 
-            {selectedID === order.orderID && isOpen && (
+            {selectedID === order.deliveryID && isOpen && (
               <>
                 <tr className="selected">
                   <th>도서ID</th>
