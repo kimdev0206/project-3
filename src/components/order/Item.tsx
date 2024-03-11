@@ -53,8 +53,6 @@ export default function Item({
         >
           자세히
         </Common.Button>
-      </td>
-      <td>
         <Common.Button size="small" state="normal" onClick={handleDelete}>
           취소
         </Common.Button>

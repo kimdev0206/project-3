@@ -18,14 +18,25 @@ const Style = styled.table`
   tr:last-child {
     border-bottom: 1px solid ${({ theme }) => theme.color.primary};
   }
+
   th,
   td {
     padding: ${({ theme }) => theme.input.medium.padding};
   }
-  th:nth-of-type(2) {
+  td:nth-of-type(9) {
+    display: flex;
+    gap: ${({ theme }) => theme.gap.small};
+  }
+
+  .created-at {
     display: flex;
     flex-direction: column;
-    gap: ${({ theme }) => theme.gap.small};
+    align-items: center;
+    gap: 4px;
+  }
+  .selected * {
+    color: ${({ theme }) => theme.color.background};
+    background-color: ${({ theme }) => theme.color.primary};
   }
 
   @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
@@ -82,9 +93,6 @@ const Style = styled.table`
     .selected td:nth-of-type(1):before {
       content: "도서ID";
     }
-    .selected td:nth-of-type(2):before {
-      content: "-";
-    }
     .selected td:nth-of-type(3):before {
       content: "도서명";
     }
@@ -126,7 +134,7 @@ export default function List({
       <thead>
         <tr>
           <th>배송ID</th>
-          <th>
+          <th className="created-at">
             주문일자
             <Common.Button
               size="small"
@@ -142,7 +150,7 @@ export default function List({
           <th>대표 도서명</th>
           <th>총 수량</th>
           <th>총 금액</th>
-          <th colSpan={2}></th>
+          <th></th>
         </tr>
       </thead>
 
@@ -161,7 +169,10 @@ export default function List({
               <>
                 <tr className="selected">
                   <th>도서ID</th>
-                  <th colSpan={4}>-</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
                   <th>도서명</th>
                   <th>수량</th>
                   <th>금액</th>
@@ -171,7 +182,7 @@ export default function List({
                 {order.details?.map((detail) => (
                   <tr key={detail.bookID} className="selected">
                     <td>{detail.bookID}</td>
-                    <td colSpan={4}>-</td>
+                    <td colSpan={4}></td>
                     <td>{detail.author}</td>
                     <td>{detail.count}권</td>
                     <td>{formatPrice(detail.price)}원</td>
