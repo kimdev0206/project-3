@@ -22,11 +22,17 @@ function createClient(config?: AxiosRequestConfig) {
       return response;
     },
     async (error) => {
+      if (!error.response) {
+        window.alert(error.message);
+        return;
+      }
+
       const { status } = error.response;
 
       if (status === HttpStatusCode.BadRequest) {
-        const { errors } = error.response.data;
-        window.alert(errors[0].msg);
+        const { data } = error.response;
+
+        window.alert(data.message ? data.message : data.errors[0].msg);
         return;
       }
 
@@ -36,6 +42,11 @@ function createClient(config?: AxiosRequestConfig) {
       }
 
       const { message } = error.response.data;
+
+      if (status === HttpStatusCode.InternalServerError) {
+        window.alert("서버 내부에서 에러가 발생하였습니다.");
+        return;
+      }
 
       if (message.startsWith("재발급 토큰이 만료되었습니다.")) {
         window.location.href = "/users/log-in";
