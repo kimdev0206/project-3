@@ -1,10 +1,29 @@
 {
   "compilerOptions": {
-    "skipLibCheck": true,
+    // Type Checking
     "strict": true,
+    "strictPropertyInitialization": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+
+    // Modules
+    "module": "nodenext",
+    "moduleResolution": "NodeNext",
+
+    // Interop Constraints
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // Emit
     "noEmit": true,
-    "jsx": "react-jsx"
+
+    // Language and Environment
+    "jsx": "react-jsx",
+
+    // Completeness
+    "skipLibCheck": true
   },
   "include": ["src"]
 }
