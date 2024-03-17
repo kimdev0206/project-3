@@ -54,5 +54,12 @@ export default function useOrders() {
     isRendered.current = true;
   }, []);
 
-  return { orders, selectedID, handleSelectID, handleDeleteID, isEmpty };
+  return {
+    orders,
+    setOrders,
+    selectedID,
+    handleSelectID,
+    handleDeleteID,
+    isEmpty,
+  };
 }

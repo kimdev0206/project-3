@@ -7,8 +7,14 @@ import useOrders from "../hooks/useOrders";
 const Style = styled.div``;
 
 export default function OrdersPage() {
-  const { orders, selectedID, handleSelectID, handleDeleteID, isEmpty } =
-    useOrders();
+  const {
+    orders,
+    setOrders,
+    selectedID,
+    handleSelectID,
+    handleDeleteID,
+    isEmpty,
+  } = useOrders();
 
   return (
     <>
@@ -23,6 +29,7 @@ export default function OrdersPage() {
         ) : (
           <Order.List
             orders={orders}
+            setOrders={setOrders}
             selectedID={selectedID}
             onSelect={handleSelectID}
             onDelete={handleDeleteID}

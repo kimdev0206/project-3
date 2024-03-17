@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { FaArrowUp, FaArrowDown } from "react-icons/fa";
-import Common from "../common";
+import Header from "./Header";
 import Item from "./Item";
 import { IOrderListItem } from "../../models/order.model";
 import { formatPrice } from "../../utils/format";
@@ -28,12 +27,6 @@ const Style = styled.table`
     gap: ${({ theme }) => theme.gap.small};
   }
 
-  .created-at {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
   .selected * {
     color: ${({ theme }) => theme.color.background};
     background-color: ${({ theme }) => theme.color.primary};
@@ -107,6 +100,7 @@ const Style = styled.table`
 
 interface Props {
   orders: IOrderListItem[];
+  setOrders: (orders: IOrderListItem[]) => void;
   selectedID: number | null;
   onSelect: (id: number) => void;
   onDelete: (id: number) => void;
@@ -114,45 +108,16 @@ interface Props {
 
 export default function List({
   orders,
+  setOrders,
   selectedID,
   onSelect,
   onDelete,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAsc, setIsAsc] = useState(true);
-
-  const onSort = (key: keyof Pick<IOrderListItem, "createdAt">) => {
-    setIsAsc(!isAsc);
-
-    orders.sort((a, b) =>
-      isAsc ? a[key].localeCompare(b[key]) : b[key].localeCompare(a[key])
-    );
-  };
 
   return (
     <Style>
-      <thead>
-        <tr>
-          <th>배송ID</th>
-          <th className="created-at">
-            주문일자
-            <Common.Button
-              size="small"
-              state="normal"
-              onClick={() => onSort("createdAt")}
-            >
-              {isAsc ? <FaArrowUp /> : <FaArrowDown />}
-            </Common.Button>
-          </th>
-          <th>주소</th>
-          <th>수령인</th>
-          <th>전화번호</th>
-          <th>대표 도서명</th>
-          <th>총 수량</th>
-          <th>총 금액</th>
-          <th></th>
-        </tr>
-      </thead>
+      <Header orders={orders} setOrders={setOrders} />
 
       <tbody>
         {orders.map((order) => (
