@@ -16,6 +16,10 @@ const Style = styled.div`
       font-weight: bold;
     }
   }
+
+  @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
+    width: auto;
+  }
 `;
 
 interface Props {

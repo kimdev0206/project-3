@@ -1,49 +1,10 @@
 import { useParams, Link } from "react-router-dom";
-import styled from "styled-components";
+import Style from "./Book.style";
 import Book from "../components/book";
 import Common from "../components/common";
 import useBook from "../hooks/useBook";
 import { IBook } from "../models/book.model";
 import { formatDate, formatPrice } from "../utils/format";
-
-const Style = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.gap.large};
-
-  header {
-    display: flex;
-    gap: ${({ theme }) => theme.gap.large};
-
-    .right {
-      display: flex;
-      flex-direction: column;
-      gap: ${({ theme }) => theme.gap.medium};
-
-      dl {
-        display: flex;
-        margin: 0;
-
-        dt {
-          width: 80px;
-        }
-      }
-      footer {
-        margin-top: auto;
-      }
-    }
-  }
-
-  @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
-    header {
-      flex-direction: column;
-
-      img {
-        width: 100%;
-      }
-    }
-  }
-`;
 
 const items = [
   {
@@ -76,11 +37,13 @@ export default function BookPage() {
   if (!book) return null;
 
   return (
-    <Style>
-      <header>
-        <Common.Image imgID={book.imgID} size="large" alt={book.title} />
+    <Style.Container>
+      <Style.Section>
+        <Style.LeftSection>
+          <Common.Image imgID={book.imgID} size="large" alt={book.title} />
+        </Style.LeftSection>
 
-        <div className="right">
+        <Style.RightSection>
           <Common.Title size="large">{book.title}</Common.Title>
 
           {items.map((item) => (
@@ -94,14 +57,14 @@ export default function BookPage() {
             </dl>
           ))}
 
-          <p className="summary">{book.summary}</p>
+          <p>{book.summary}</p>
 
-          <footer>
+          <Style.Buttons>
             <Book.LikeButton book={book} onClick={() => handleLike()} />
             <Book.AddtoCart book={book} />
-          </footer>
-        </div>
-      </header>
+          </Style.Buttons>
+        </Style.RightSection>
+      </Style.Section>
 
       <Common.Tabs>
         <Common.Tab title="상세 설명">
@@ -116,6 +79,6 @@ export default function BookPage() {
           </Common.ExpandBox>
         </Common.Tab>
       </Common.Tabs>
-    </Style>
+    </Style.Container>
   );
 }

@@ -1,32 +1,6 @@
-import styled from "styled-components";
+import Style from "./BestBookItem.style";
 import Book from "../book";
 import { IBookListItem } from "../../models/book.model";
-
-const Style = styled.div`
-  ${Book.BookItemStyle} {
-    .summary,
-    .footer {
-      display: none;
-    }
-  }
-
-  position: relative;
-
-  .index {
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-weight: bold;
-    font-style: italic;
-    border: ${({ theme }) => theme.border.default};
-  }
-`;
 
 interface Props {
   book: IBookListItem;
@@ -35,10 +9,10 @@ interface Props {
 
 export default function BestBookItem({ book, index }: Props) {
   return (
-    <Style>
+    <Style.Container>
       <Book.Item book={book} view="grid" />
 
-      <div className="index">{index + 1}</div>
-    </Style>
+      <Style.Index>{index + 1}</Style.Index>
+    </Style.Container>
   );
 }

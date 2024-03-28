@@ -8,6 +8,11 @@ const Style = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
+
+  h1 {
+    margin-bottom: 0;
+  }
 `;
 
 interface Props {

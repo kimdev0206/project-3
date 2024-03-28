@@ -3,16 +3,14 @@ import styled from "styled-components";
 import Button from "./Button";
 import { Props as TabProps } from "./Tab";
 
-const Style = styled.div`
-  .header {
-    display: flex;
-    gap: ${({ theme }) => theme.gap.small};
-    border-bottom: ${({ theme }) => theme.border.default};
+const Buttons = styled.section`
+  display: flex;
+  gap: ${({ theme }) => theme.gap.small};
+  border-bottom: ${({ theme }) => theme.border.default};
 
-    button {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-    }
+  button {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 `;
 
@@ -28,8 +26,8 @@ export default function Tabs({ children }: Props) {
   ) as React.ReactElement<TabProps>[];
 
   return (
-    <Style>
-      <div className="header">
+    <>
+      <Buttons>
         {tabs.map((tab, index) => (
           <Button
             size="large"
@@ -40,9 +38,9 @@ export default function Tabs({ children }: Props) {
             {tab.props.title}
           </Button>
         ))}
-      </div>
+      </Buttons>
 
       <div>{tabs[activeIndex]}</div>
-    </Style>
+    </>
   );
 }

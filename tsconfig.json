@@ -19,6 +19,9 @@
     // Emit
     "noEmit": true,
 
+    // JavaScript Support
+    "allowJs": true,
+
     // Language and Environment
     "jsx": "react-jsx",
 

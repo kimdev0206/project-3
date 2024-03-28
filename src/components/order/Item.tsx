@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import Style from "./List.style";
 import Common from "../common";
 import { useAlert } from "../../hooks/useAlert";
 import { IOrderListItem } from "../../models/order.model";
@@ -45,7 +46,7 @@ export default function Item({
       <td>{order.mainBookTitle}</td>
       <td>{order.totalCount}권</td>
       <td>{formatPrice(order.totalPrice)}원</td>
-      <td>
+      <Style.Buttons>
         <Common.Button
           size="small"
           state={isOpen ? "active" : "normal"}
@@ -56,7 +57,7 @@ export default function Item({
         <Common.Button size="small" state="normal" onClick={handleDelete}>
           취소
         </Common.Button>
-      </td>
+      </Style.Buttons>
     </tr>
   );
 }

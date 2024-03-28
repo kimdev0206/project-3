@@ -1,48 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import Style from "./AddtoCart.style";
 import Common from "../common";
 import useBook from "../../hooks/useBook";
 import { IBook } from "../../models/book.model";
-
-const Style = styled.div`
-  position: relative;
-  display: flex;
-  align-items: end;
-  gap: ${({ theme }) => theme.gap.small};
-
-  input::-webkit-inner-spin-button {
-    appearance: none;
-  }
-
-  .left {
-    display: inline-flex;
-    width: 50%;
-
-    input {
-      width: 100%;
-    }
-  }
-
-  .right {
-    margin-left: auto;
-  }
-
-  .added {
-    position: absolute;
-    right: 0;
-    top: -70px;
-    padding: ${({ theme }) => theme.input.medium.padding};
-    border-radius: ${({ theme }) => theme.border.radius};
-    border: ${({ theme }) => theme.border.default};
-    text-align: center;
-
-    p {
-      padding-bottom: 0.25rem;
-      margin: 0;
-    }
-  }
-`;
 
 interface Props {
   book: IBook;
@@ -56,8 +17,8 @@ export default function AddtoCart({ book }: Props) {
     setCount(+event.target.value);
 
   return (
-    <Style>
-      <div className="left">
+    <Style.Container>
+      <Style.LeftSection>
         <Common.InputText
           size="medium"
           inputType="number"
@@ -80,9 +41,9 @@ export default function AddtoCart({ book }: Props) {
         >
           -
         </Common.Button>
-      </div>
+      </Style.LeftSection>
 
-      <div className="right">
+      <Style.RightSection>
         <Common.Button
           size="medium"
           state="normal"
@@ -90,14 +51,14 @@ export default function AddtoCart({ book }: Props) {
         >
           장바구니 담기
         </Common.Button>
-      </div>
+      </Style.RightSection>
 
       {isAdded && (
-        <div className="added">
+        <Style.Alert>
           <p>장바구니에 추가되었습니다.</p>
           <Link to="/cart-books">장바구니로 이동</Link>
-        </div>
+        </Style.Alert>
       )}
-    </Style>
+    </Style.Container>
   );
 }

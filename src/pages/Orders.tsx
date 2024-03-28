@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import Common from "../components/common";
 import Order from "../components/order";
 import useOrders from "../hooks/useOrders";
-
-const Style = styled.div``;
 
 export default function OrdersPage() {
   const {
@@ -20,7 +17,7 @@ export default function OrdersPage() {
     <>
       <Common.Title size="large">주문 내역</Common.Title>
 
-      <Style>
+      <div>
         {isEmpty ? (
           <Common.Empty
             title="주문 내역이 없습니다."
@@ -35,7 +32,7 @@ export default function OrdersPage() {
             onDelete={handleDeleteID}
           />
         )}
-      </Style>
+      </div>
     </>
   );
 }

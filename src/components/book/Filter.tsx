@@ -1,26 +1,8 @@
 import { useSearchParams } from "react-router-dom";
-import styled from "styled-components";
+import Style from "./Filter.style";
 import Common from "../common";
 import ViewSwitcher from "./ViewSwitcher";
 import useCategories from "../../hooks/useCategories";
-
-const Style = styled.div`
-  display: flex;
-  gap: ${({ theme }) => theme.gap.large};
-
-  .categories {
-    display: flex;
-    gap: ${({ theme }) => theme.gap.small};
-  }
-
-  @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
-    gap: ${({ theme }) => theme.gap.small};
-
-    .categories {
-      gap: 0;
-    }
-  }
-`;
 
 export default function Filter() {
   const { categories } = useCategories();
@@ -51,8 +33,8 @@ export default function Filter() {
   };
 
   return (
-    <Style>
-      <div className="categories">
+    <Style.Container>
+      <Style.Categories>
         {categories.map((category) => (
           <Common.Button
             size="medium"
@@ -63,9 +45,9 @@ export default function Filter() {
             {category.category}
           </Common.Button>
         ))}
-      </div>
+      </Style.Categories>
 
-      <div className="new">
+      <section>
         <Common.Button
           size="medium"
           state={searchParams.get("isNew") ? "active" : "normal"}
@@ -73,9 +55,9 @@ export default function Filter() {
         >
           신간
         </Common.Button>
-      </div>
+      </section>
 
       <ViewSwitcher />
-    </Style>
+    </Style.Container>
   );
 }

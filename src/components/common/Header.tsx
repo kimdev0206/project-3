@@ -1,84 +1,25 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import Style from "./Header.style";
 import Button from "./Button";
+import Title from "./Title";
 import ThemeSwitcher from "../header/ThemeSwitcher";
 import { useUsersStore } from "../../stores/users.store";
-
-const Style = styled.header`
-  width: 100%;
-  max-width: ${({ theme }) => theme.layout.width.large};
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  margin: 0 auto;
-  padding: 20px 0;
-  border-bottom: ${({ theme }) => theme.border.default};
-
-  a {
-    text-decoration: none;
-  }
-  h1 {
-    margin: 0;
-  }
-  header {
-    display: flex;
-    align-items: end;
-    gap: ${({ theme }) => theme.gap.small};
-  }
-  nav {
-    ul {
-      display: flex;
-      align-items: end;
-      gap: ${({ theme }) => theme.gap.large};
-      list-style: none;
-      margin: 0;
-      padding-left: 0px;
-
-      li {
-        a {
-          font-size: ${({ theme }) => theme.input.large.fontSize};
-        }
-      }
-    }
-  }
-
-  @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
-    position: relative;
-    flex-direction: column;
-    align-items: start;
-    gap: ${({ theme }) => theme.gap.large};
-
-    nav {
-      width: 100%;
-
-      ul {
-        justify-content: space-between;
-
-        button {
-          position: absolute;
-          top: 20px;
-          right: 0;
-        }
-      }
-    }
-  }
-`;
 
 export default function Header() {
   const { isLoggedIn, setLoggedOut } = useUsersStore();
 
   return (
-    <Style>
-      <header>
-        <h1>
-          <Link to="/">온라인 서점</Link>
-        </h1>
+    <Style.Container>
+      <Style.Logo>
+        <Link to="/">
+          <Title size="large">온라인 서점</Title>
+        </Link>
 
         <ThemeSwitcher />
-      </header>
+      </Style.Logo>
 
-      <nav>
-        {isLoggedIn ? (
+      <Style.Navigation>
+        {isLoggedIn && (
           <ul>
             <li>
               <Link to="/books?view=grid">도서</Link>
@@ -96,7 +37,9 @@ export default function Header() {
               로그아웃
             </Button>
           </ul>
-        ) : (
+        )}
+
+        {!isLoggedIn && (
           <ul>
             <li>
               <Link to={"/books?view=grid"}>도서</Link>
@@ -111,7 +54,7 @@ export default function Header() {
             </li>
           </ul>
         )}
-      </nav>
-    </Style>
+      </Style.Navigation>
+    </Style.Container>
   );
 }

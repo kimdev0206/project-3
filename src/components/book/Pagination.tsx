@@ -1,40 +1,8 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import styled from "styled-components";
+import Style from "./Pagination.style";
 import Common from "../common";
 import IPagination from "../../models/pagination.model";
-
-const Style = styled.div<{ transform: number }>`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.gap.small};
-  overflow: hidden;
-
-  .slider {
-    display: flex;
-    transform: translateX(${({ transform }) => transform}%);
-    transition: transform 0.5s ease-in-out;
-
-    button {
-      display: inline-flex;
-      flex: 0 0 10%;
-      justify-content: center;
-    }
-  }
-
-  .pagination {
-    display: flex;
-    justify-content: center;
-    gap: ${({ theme }) => theme.gap.small};
-
-    button {
-      width: 16px;
-      height: 16px;
-      border: ${({ theme }) => theme.border.default};
-      border-radius: 50%;
-    }
-  }
-`;
 
 interface Props {
   pagination: IPagination;
@@ -57,8 +25,8 @@ export default function Pagination({ pagination }: Props) {
   return (
     <>
       {pages > 0 && (
-        <Style transform={pageGroup * -100}>
-          <div className="slider">
+        <Style.Container>
+          <Style.Slider transform={pageGroup * -100}>
             {Array.from({ length: pages }, (_, index) => (
               <Common.Button
                 size="small"
@@ -69,9 +37,9 @@ export default function Pagination({ pagination }: Props) {
                 {index + 1}
               </Common.Button>
             ))}
-          </div>
+          </Style.Slider>
 
-          <div className="pagination">
+          <Style.Sliders>
             {Array.from({ length: pageGroups }, (_, index) => (
               <Common.Button
                 size="small"
@@ -80,8 +48,8 @@ export default function Pagination({ pagination }: Props) {
                 key={index}
               />
             ))}
-          </div>
-        </Style>
+          </Style.Sliders>
+        </Style.Container>
       )}
     </>
   );

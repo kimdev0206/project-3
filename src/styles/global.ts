@@ -12,4 +12,8 @@ export const GlobalStyle = createGlobalStyle<Props>`
 
     color: ${({ themeName }) => (themeName === "light" ? "black" : "white")};
   }
+
+  p {
+    margin: 0;
+  }
 `;

@@ -1,13 +1,6 @@
 import { useState } from "react";
-import styled from "styled-components";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { IOrderListItem } from "../../models/order.model";
-
-const Style = styled.thead`
-  p {
-    margin: 0;
-  }
-`;
 
 const handleCompare = (key: keyof THeader) => (a: THeader, b: THeader) => {
   if (typeof a[key] === "string" && typeof b[key] === "string")
@@ -112,7 +105,7 @@ export default function Header({ orders, setOrders }: Props) {
   };
 
   return (
-    <Style>
+    <thead>
       <tr>
         {items.map((item) => (
           <th
@@ -126,6 +119,6 @@ export default function Header({ orders, setOrders }: Props) {
           </th>
         ))}
       </tr>
-    </Style>
+    </thead>
   );
 }

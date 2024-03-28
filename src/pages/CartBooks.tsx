@@ -1,39 +1,11 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import Style from "./CartBooks.style";
 import Cart from "../components/cart";
 import Common from "../components/common";
 import { useAlert, useConfirm } from "../hooks/useAlert";
 import useCartBooks from "../hooks/useCartBooks";
 import { IOrder } from "../models/order.model";
-
-export const Style = styled.div`
-  display: flex;
-  gap: ${({ theme }) => theme.gap.large};
-  justify-content: space-between;
-
-  .items {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: ${({ theme }) => theme.gap.medium};
-
-    .item {
-      padding: ${({ theme }) => theme.input.medium.padding};
-      border: ${({ theme }) => theme.border.default};
-      border-radius: ${({ theme }) => theme.border.radius};
-    }
-  }
-  .summary {
-    display: flex;
-    flex-direction: column;
-    gap: ${({ theme }) => theme.gap.large};
-  }
-
-  @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
-    flex-direction: column;
-  }
-`;
 
 export default function CartBooksPage() {
   const navigate = useNavigate();
@@ -96,12 +68,12 @@ export default function CartBooksPage() {
     <>
       <Common.Title size="large">장바구니</Common.Title>
 
-      <Style>
+      <Style.Container>
         {isEmpty ? (
           <Common.Empty title="장바구니가 비었습니다." />
         ) : (
           <>
-            <div className="items">
+            <Style.Items>
               {cartBooks.map((cartBook) => (
                 <Cart.Item
                   cartBook={cartBook}
@@ -111,9 +83,9 @@ export default function CartBooksPage() {
                   key={cartBook.bookID}
                 />
               ))}
-            </div>
+            </Style.Items>
 
-            <div className="summary">
+            <Style.Summary>
               <Cart.Summary totalCount={totalCount} totalPrice={totalPrice} />
 
               <Common.Button
@@ -124,10 +96,10 @@ export default function CartBooksPage() {
               >
                 주문 하기
               </Common.Button>
-            </div>
+            </Style.Summary>
           </>
         )}
-      </Style>
+      </Style.Container>
     </>
   );
 }
