@@ -4,11 +4,8 @@ import { Size } from "../../styles/theme";
 
 const Style = styled.input<Props>`
   font-size: ${({ theme, size }) => theme.input[size].fontSize};
-
   padding: ${({ theme, size }) => theme.input[size].padding};
-
   color: ${({ theme }) => theme.color.primary};
-
   border-color: ${({ theme }) => theme.color.primary};
   border-radius: ${({ theme }) => theme.border.radius};
 `;

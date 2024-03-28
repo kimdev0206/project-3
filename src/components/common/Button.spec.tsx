@@ -26,6 +26,7 @@ describe("Button 컴포넌트 테스트", () => {
     );
 
     expect(getByRole("button")).toHaveStyle({ fontSize: "1.5rem" });
+    expect(getByRole("button")).toHaveStyle({ padding: "1rem 2rem" });
   });
 
   it("state prop 적용", () => {
@@ -37,6 +38,7 @@ describe("Button 컴포넌트 테스트", () => {
       </ThemeProvider>
     );
 
+    expect(getByRole("button")).toHaveStyle({ color: "white" });
     expect(getByRole("button")).toHaveStyle({ backgroundColor: "black" });
   });
 });
