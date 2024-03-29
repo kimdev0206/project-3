@@ -20,9 +20,10 @@ export default function OrdersPage() {
       <div>
         {isEmpty ? (
           <Common.Empty
-            title="주문 내역이 없습니다."
             description={<Link to="/cart-books">장바구니로 이동</Link>}
-          />
+          >
+            주문 내역이 없습니다.
+          </Common.Empty>
         ) : (
           <Order.List
             orders={orders}

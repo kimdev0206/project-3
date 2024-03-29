@@ -17,7 +17,7 @@ export default function Image({ imgID, size, ...props }: Props) {
 
   return (
     <Style>
-      {isError && <Empty title="이미지가 존재하지 않습니다." size={size} />}
+      {isError && <Empty size={size}>이미지가 존재하지 않습니다.</Empty>}
 
       {!isError && (
         <img

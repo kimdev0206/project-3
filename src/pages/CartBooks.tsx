@@ -70,7 +70,7 @@ export default function CartBooksPage() {
 
       <Style.Container>
         {isEmpty ? (
-          <Common.Empty title="장바구니가 비었습니다." />
+          <Common.Empty>장바구니가 비었습니다.</Common.Empty>
         ) : (
           <>
             <Style.Items>

@@ -16,15 +16,15 @@ const Style = styled.div`
 `;
 
 interface Props {
-  title: string;
+  children: string;
   size?: Size;
   description?: React.ReactNode;
 }
 
-export default function Empty({ title, size, description }: Props) {
+export default function Empty({ children, size, description }: Props) {
   return (
     <Style>
-      <Title size={size ? size : "large"}>{title}</Title>
+      <Title size={size ? size : "large"}>{children}</Title>
 
       <p>{description}</p>
     </Style>
