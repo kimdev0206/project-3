@@ -22,8 +22,13 @@ export default function useBooks() {
         : undefined,
       isNew: searchParams.get("isNew") ? true : false,
       isBest: false,
+      isTitle: searchParams.get("isTitle"),
+      isSummary: searchParams.get("isSummary"),
+      isContents: searchParams.get("isContents"),
+      isDetail: searchParams.get("isDetail"),
       page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
       limit: 8,
+      keyword: searchParams.get("keyword"),
     }).then(({ data, meta }) => {
       setBooks(data);
       setPagination(meta);

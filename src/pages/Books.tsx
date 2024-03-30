@@ -16,6 +16,7 @@ export default function BooksPage() {
 
       <Style.MiddleSection>
         <Book.ButtonFilter />
+        <Book.KeywordFilter />
       </Style.MiddleSection>
 
       {!isEmpty && <Book.Pagination pagination={pagination} />}

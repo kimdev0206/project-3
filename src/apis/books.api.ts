@@ -6,8 +6,13 @@ interface Params {
   categoryID?: number;
   isNew: boolean;
   isBest: boolean;
+  isTitle?: string | null;
+  isSummary?: string | null;
+  isContents?: string | null;
+  isDetail?: string | null;
   page: number;
   limit: number;
+  keyword?: string | null;
 }
 
 interface Response {
