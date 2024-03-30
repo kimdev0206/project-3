@@ -1,10 +1,9 @@
 import { useSearchParams } from "react-router-dom";
-import Style from "./Filter.style";
+import Style from "./ButtonFilter.style";
 import Common from "../common";
-import ViewSwitcher from "./ViewSwitcher";
 import useCategories from "../../hooks/useCategories";
 
-export default function Filter() {
+export default function ButtonFilter() {
   const { categories } = useCategories();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -34,7 +33,7 @@ export default function Filter() {
 
   return (
     <Style.Container>
-      <Style.Categories>
+      <section>
         {categories.map((category) => (
           <Common.Button
             size="medium"
@@ -45,7 +44,7 @@ export default function Filter() {
             {category.category}
           </Common.Button>
         ))}
-      </Style.Categories>
+      </section>
 
       <section>
         <Common.Button
@@ -56,8 +55,6 @@ export default function Filter() {
           신간
         </Common.Button>
       </section>
-
-      <ViewSwitcher />
     </Style.Container>
   );
 }

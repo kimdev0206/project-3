@@ -2,23 +2,30 @@ import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   gap: ${({ theme }) => theme.gap.large};
+`;
 
-  @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
-    gap: ${({ theme }) => theme.gap.small};
+const TopSection = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+
+  h1 {
+    margin-bottom: 0;
   }
 `;
 
-const Categories = styled.section`
+const MiddleSection = styled.section`
   display: flex;
-  gap: ${({ theme }) => theme.gap.small};
 
   @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
-    gap: 0;
+    flex-direction: column;
   }
 `;
 
 export default {
   Container,
-  Categories,
+  TopSection,
+  MiddleSection,
 };
