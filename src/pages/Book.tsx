@@ -28,6 +28,11 @@ const items = [
     key: "price",
     filter: (book: IBook) => `${formatPrice(book.price)} 원`,
   },
+  {
+    label: "남은 수량",
+    key: "count",
+    filter: (book: IBook) => `${book.count} 권`,
+  },
 ];
 
 export default function BookPage() {

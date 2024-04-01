@@ -45,6 +45,11 @@ export default function useBook(bookID: number | undefined) {
 
     if (!book) return;
 
+    if (count > book.count) {
+      alert("남은 수량이 부족합니다.");
+      return;
+    }
+
     try {
       await postCartBook(book.id, { count });
       setIsAdded(true);
