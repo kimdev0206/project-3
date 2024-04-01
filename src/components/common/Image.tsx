@@ -5,6 +5,12 @@ import { Size, getImgSize } from "../../styles/theme";
 
 const Style = styled.div`
   aspect-ratio: 1 / 1;
+
+  @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
+    img {
+      width: 100%;
+    }
+  }
 `;
 
 interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {

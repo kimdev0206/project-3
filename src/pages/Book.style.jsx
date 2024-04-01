@@ -12,15 +12,10 @@ const Section = styled.section`
 
   @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
     flex-direction: column;
-    img {
-      width: 100%;
-    }
   }
 `;
 
-const LeftSection = styled.section`
-  width: 100%;
-`;
+const LeftSection = styled.section``;
 
 const RightSection = styled.section`
   display: flex;
