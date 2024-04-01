@@ -3,7 +3,7 @@ import Style from "./List.style";
 import Header from "./Header";
 import Item from "./Item";
 import { IOrderListItem } from "../../models/order.model";
-import { formatPrice } from "../../utils/format";
+import { formatCount, formatPrice } from "../../utils/format";
 
 interface Props {
   orders: IOrderListItem[];
@@ -56,8 +56,8 @@ export default function List({
                     <td>{detail.bookID}</td>
                     <td colSpan={4}></td>
                     <td>{detail.author}</td>
-                    <td>{detail.count}권</td>
-                    <td>{formatPrice(detail.price)}원</td>
+                    <td>{formatCount(detail.count)}</td>
+                    <td>{formatPrice(detail.price)}</td>
                     <td></td>
                   </Style.Detail>
                 ))}

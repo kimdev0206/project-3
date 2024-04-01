@@ -4,7 +4,7 @@ import Book from "../components/book";
 import Common from "../components/common";
 import useBook from "../hooks/useBook";
 import { IBook } from "../models/book.model";
-import { formatDate, formatPrice } from "../utils/format";
+import { formatCount, formatDate, formatPrice } from "../utils/format";
 
 const items = [
   {
@@ -26,12 +26,12 @@ const items = [
   {
     label: "가격",
     key: "price",
-    filter: (book: IBook) => `${formatPrice(book.price)} 원`,
+    filter: (book: IBook) => `${formatPrice(book.price)}`,
   },
   {
     label: "남은 수량",
     key: "count",
-    filter: (book: IBook) => `${book.count} 권`,
+    filter: (book: IBook) => `${formatCount(book.count)}`,
   },
 ];
 

@@ -6,6 +6,7 @@ import Common from "../components/common";
 import Order from "../components/order";
 import useOrder from "../hooks/useOrder";
 import { IDelivery, IOrder } from "../models/order.model";
+import { formatCount } from "../utils/format";
 
 export interface IDeliveryForm extends IDelivery {
   addressDetail: string;
@@ -85,7 +86,7 @@ export default function OrderPage() {
           <Style.Item>
             <Common.Title size="medium">주문 상품</Common.Title>
             <strong>
-              {mainBookTitle} 등 총 {totalCount}권
+              {mainBookTitle} 등 총 {formatCount(totalCount)}
             </strong>
           </Style.Item>
         </Style.Items>

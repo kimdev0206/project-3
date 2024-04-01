@@ -4,7 +4,7 @@ import CheckButton from "./CheckButton";
 import Common from "../common";
 import { useConfirm } from "../../hooks/useAlert";
 import ICartBook from "../../models/cart-book.model";
-import { formatPrice } from "../../utils/format";
+import { formatCount, formatPrice } from "../../utils/format";
 
 interface Props {
   cartBook: ICartBook;
@@ -39,8 +39,8 @@ export default function Item({
         <Common.Title size="medium">{cartBook.title}</Common.Title>
 
         <p>{cartBook.summary}</p>
-        <span>{formatPrice(cartBook.price)}원</span>
-        <span>{cartBook.count}권</span>
+        <span>{formatPrice(cartBook.price)}</span>
+        <span>{formatCount(cartBook.count)}</span>
       </Style.MiddleSection>
 
       <Common.Button

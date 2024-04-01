@@ -3,7 +3,7 @@ import Style from "./List.style";
 import Common from "../common";
 import { useAlert } from "../../hooks/useAlert";
 import { IOrderListItem } from "../../models/order.model";
-import { formatDate, formatPrice } from "../../utils/format";
+import { formatCount, formatDate, formatPrice } from "../../utils/format";
 
 interface Props {
   order: IOrderListItem;
@@ -44,8 +44,8 @@ export default function Item({
       <td>{order.receiver}</td>
       <td>{order.contact}</td>
       <td>{order.mainBookTitle}</td>
-      <td>{order.totalCount}권</td>
-      <td>{formatPrice(order.totalPrice)}원</td>
+      <td>{formatCount(order.totalCount)}</td>
+      <td>{formatPrice(order.totalPrice)}</td>
       <Style.Buttons>
         <Common.Button
           size="small"

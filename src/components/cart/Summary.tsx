@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Common from "../common";
-import { formatPrice } from "../../utils/format";
+import { formatCount, formatPrice } from "../../utils/format";
 
 const Style = styled.div`
   width: 240px;
@@ -34,12 +34,12 @@ export default function Summary({ totalCount, totalPrice }: Props) {
 
       <dl>
         <dt>총 수량</dt>
-        <dd>{totalCount} 권</dd>
+        <dd>{formatCount(totalCount)}</dd>
       </dl>
 
       <dl>
         <dt>총 금액</dt>
-        <dd>{formatPrice(totalPrice)} 원</dd>
+        <dd>{formatPrice(totalPrice)}</dd>
       </dl>
     </Style>
   );

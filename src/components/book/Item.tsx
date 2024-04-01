@@ -25,7 +25,7 @@ export default function Item({ book, view }: Props) {
       </Style.MiddleSection>
 
       <Style.BottomSection view={view}>
-        <strong>{formatPrice(book.price)} 원</strong>
+        <strong>{formatPrice(book.price)}</strong>
 
         <Style.LikesButtonBox>
           <FaHeart />
