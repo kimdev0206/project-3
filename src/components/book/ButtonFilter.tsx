@@ -34,16 +34,22 @@ export default function ButtonFilter() {
   return (
     <Style.Container>
       <section>
-        {categories.map((category) => (
-          <Common.Button
-            size="medium"
-            state={category.isActive ? "active" : "normal"}
-            key={category.id}
-            onClick={() => handleCategory(category.id)}
-          >
-            {category.category}
-          </Common.Button>
-        ))}
+        {categories.map((category) => {
+          const isMatch =
+            category.id === Number(searchParams.get("categoryID"));
+          const hasCategoryID = category.id || searchParams.get("categoryID");
+
+          return (
+            <Common.Button
+              size="medium"
+              state={isMatch ? "active" : !hasCategoryID ? "active" : "normal"}
+              key={category.id}
+              onClick={() => handleCategory(category.id)}
+            >
+              {category.category}
+            </Common.Button>
+          );
+        })}
       </section>
 
       <section>
