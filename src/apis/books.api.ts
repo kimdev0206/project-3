@@ -3,13 +3,13 @@ import { IBookListItem, IBook } from "../models/book.model";
 import IPagination from "../models/pagination.model";
 
 interface Params {
-  categoryID?: number;
-  isNew: boolean;
-  isBest: boolean;
-  isTitle?: string | null;
-  isSummary?: string | null;
-  isContents?: string | null;
-  isDetail?: string | null;
+  categoryID?: number | null;
+  isNew?: boolean;
+  isBest?: boolean;
+  isTitle?: boolean;
+  isSummary?: boolean;
+  isContents?: boolean;
+  isDetail?: boolean;
   page: number;
   limit: number;
   keyword?: string | null;

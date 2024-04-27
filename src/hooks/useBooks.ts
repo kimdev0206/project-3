@@ -19,13 +19,12 @@ export default function useBooks() {
     getBooks({
       categoryID: searchParams.get("categoryID")
         ? Number(searchParams.get("categoryID"))
-        : undefined,
+        : null,
       isNew: searchParams.get("isNew") ? true : false,
-      isBest: false,
-      isTitle: searchParams.get("isTitle"),
-      isSummary: searchParams.get("isSummary"),
-      isContents: searchParams.get("isContents"),
-      isDetail: searchParams.get("isDetail"),
+      isTitle: searchParams.get("isTitle") ? true : false,
+      isSummary: searchParams.get("isSummary") ? true : false,
+      isContents: searchParams.get("isContents") ? true : false,
+      isDetail: searchParams.get("isDetail") ? true : false,
       page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
       limit: 8,
       keyword: searchParams.get("keyword"),

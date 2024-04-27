@@ -8,8 +8,7 @@ export default function useHome() {
 
   useEffect(() => {
     getBooks({
-      categoryID: undefined,
-      isNew: false,
+      categoryID: undefined,      
       isBest: true,
       page: 1,
       limit: 10,
@@ -17,8 +16,7 @@ export default function useHome() {
 
     getBooks({
       categoryID: undefined,
-      isNew: true,
-      isBest: false,
+      isNew: true,      
       page: 1,
       limit: 4,
     }).then(({ data }) => setNewBooks(data));
