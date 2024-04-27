@@ -39,8 +39,8 @@ export default function Item({
         <Common.Title size="medium">{cartBook.title}</Common.Title>
 
         <p>{cartBook.summary}</p>
-        <span>{formatPrice(cartBook.price)}</span>
         <span>{formatCount(cartBook.count)}</span>
+        <span>{formatPrice(cartBook.price)}</span>
       </Style.MiddleSection>
 
       <Common.Button

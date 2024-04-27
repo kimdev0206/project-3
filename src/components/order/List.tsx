@@ -55,7 +55,7 @@ export default function List({
                   <Style.Detail key={detail.bookID}>
                     <td>{detail.bookID}</td>
                     <td colSpan={4}></td>
-                    <td>{detail.author}</td>
+                    <td>{detail.title}</td>
                     <td>{formatCount(detail.count)}</td>
                     <td>{formatPrice(detail.price)}</td>
                     <td></td>
