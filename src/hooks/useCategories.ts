@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { getCategories } from "../apis/categories.api";
+import CategoriesAPI from "../apis/categories.api";
 import ICategory from "../models/category.model";
 
 export default function useCategories() {
@@ -9,7 +9,7 @@ export default function useCategories() {
   useEffect(() => {
     if (isRendered.current) return;
 
-    getCategories().then(({ data }) =>
+    CategoriesAPI.getCategories().then((data) =>
       setCategories([{ id: null, category: "전체" }, ...data])
     );
 

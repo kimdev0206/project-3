@@ -1,21 +1,19 @@
 import { useEffect, useState } from "react";
 import { IBookListItem } from "../models/book.model";
-import { getBooks } from "../apis/books.api";
+import BooksAPI from "../apis/books.api";
 
 export default function useHome() {
   const [bestBooks, setBestBooks] = useState<IBookListItem[]>([]);
   const [newBooks, setNewBooks] = useState<IBookListItem[]>([]);
 
   useEffect(() => {
-    getBooks({
-      categoryID: undefined,      
+    BooksAPI.getBooks({      
       isBest: true,
       page: 1,
       limit: 10,
     }).then(({ data }) => setBestBooks(data));
 
-    getBooks({
-      categoryID: undefined,
+    BooksAPI.getBooks({      
       isNew: true,      
       page: 1,
       limit: 4,

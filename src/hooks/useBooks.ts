@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { getBooks } from "../apis/books.api";
+import BooksAPI from "../apis/books.api";
 import { IBookListItem } from "../models/book.model";
 import IPagination from "../models/pagination.model";
 
@@ -16,7 +16,7 @@ export default function useBooks() {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
 
-    getBooks({
+    BooksAPI.getBooks({
       categoryID: searchParams.get("categoryID")
         ? Number(searchParams.get("categoryID"))
         : null,
@@ -30,8 +30,8 @@ export default function useBooks() {
       keyword: searchParams.get("keyword"),
     }).then(({ data, meta }) => {
       setBooks(data);
-      setPagination(meta);
-      setIsEmpty(!data.length);
+      meta && setPagination(meta);
+      setIsEmpty(!data);
     });
   }, [location.search]);
 

@@ -1,4 +1,4 @@
-import httpClient from "./http";
+import AuthorizeInterceptor from "../interceptors/authorize.interceptor";
 import { IBookListItem, IBook } from "../models/book.model";
 import IPagination from "../models/pagination.model";
 
@@ -15,29 +15,34 @@ interface Params {
   keyword?: string | null;
 }
 
-interface Response {
-  data: IBookListItem[];
-  meta: IPagination;
-}
+export default class BooksAPI {
+  static url = process.env.REACT_APP_BASE_URL + "/books";
 
-export async function getBooks(params: Params) {
-  try {
-    const response = await httpClient.get<Response>("/books", {
-      params,
+  static async getBooks(params: Params) {
+    const url = new URL(this.url);
+    let searchParams = new URLSearchParams();
+
+    for (const [key, value] of Object.entries(params)) {
+      if (value) searchParams.append(key, value);
+    }
+
+    url.search = searchParams.toString();
+
+    const response = await fetch(url, {
+      method: "GET",
     });
-    return response.data;
-  } catch (error) {
-    return {
-      data: [],
-      meta: {
-        page: 1,
-        count: 0,
-      },
-    };
-  }
-}
 
-export async function getBook(bookID: number) {
-  const response = await httpClient.get<{ data: IBook }>(`/books/${bookID}`);
-  return response.data;
+    const { data, meta }: { data: IBookListItem[]; meta: IPagination } =
+      await response.json();
+    return { data, meta };
+  }
+
+  static async getBook(bookID: number) {
+    const response = await AuthorizeInterceptor.fetch(this.url + `/${bookID}`, {
+      method: "GET",
+    });
+
+    const { data }: { data: IBook } = await response.json();
+    return data;
+  }
 }

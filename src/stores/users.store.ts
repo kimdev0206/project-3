@@ -7,37 +7,17 @@ interface State {
 }
 
 export const useUsersStore = create<State>((set) => ({
-  isLoggedIn: getAccessToken() ? true : false,
+  isLoggedIn: localStorage.getItem("access-token") ? true : false,
 
   setLoggedIn: (accessToken: string, refreshToken: string) => {
-    setAccessToken(accessToken);
-    setRefreshToken(refreshToken);
+    localStorage.setItem("access-token", accessToken);
+    localStorage.setItem("refresh-token", refreshToken);
     set({ isLoggedIn: true });
   },
 
   setLoggedOut: () => {
-    removeTokens();
+    localStorage.removeItem("access-token");
+    localStorage.removeItem("refresh-token");
     set({ isLoggedIn: false });
   },
 }));
-
-export function getAccessToken() {
-  return localStorage.getItem("access-token") || undefined;
-}
-
-export function getRefreshToken() {
-  return localStorage.getItem("refresh-token") || undefined;
-}
-
-export function setAccessToken(accessToken: string) {
-  localStorage.setItem("access-token", accessToken);
-}
-
-function setRefreshToken(refreshToken: string) {
-  localStorage.setItem("refresh-token", refreshToken);
-}
-
-function removeTokens() {
-  localStorage.removeItem("access-token");
-  localStorage.removeItem("refresh-token");
-}

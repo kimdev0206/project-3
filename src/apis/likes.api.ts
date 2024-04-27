@@ -1,15 +1,21 @@
-import httpClient from "./http";
+import AuthorizeInterceptor from "../interceptors/authorize.interceptor";
 
-export async function postLike(bookID: number) {
-  const response = await httpClient.post<{ message: string }>(
-    `/likes/${bookID}`
-  );
-  return response.data;
-}
+export default class LikesAPI {
+  static url = process.env.REACT_APP_BASE_URL + "/likes";
 
-export async function deleteLike(bookID: number) {
-  const response = await httpClient.delete<{ message?: string }>(
-    `/likes/${bookID}`
-  );
-  return response.data;
+  static async postLike(bookID: number) {
+    const response = await AuthorizeInterceptor.fetch(this.url + `/${bookID}`, {
+      method: "POST",
+    });
+
+    return { status: response.status };
+  }
+
+  static async deleteLike(bookID: number) {
+    const response = await AuthorizeInterceptor.fetch(this.url + `/${bookID}`, {
+      method: "DELETE",
+    });
+
+    return { status: response.status };
+  }
 }

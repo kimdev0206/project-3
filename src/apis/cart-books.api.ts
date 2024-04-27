@@ -1,26 +1,35 @@
-import httpClient from "./http";
+import AuthorizeInterceptor from "../interceptors/authorize.interceptor";
 import ICartBook from "../models/cart-book.model";
 
-interface Params {
-  count: number;
-}
+export default class CartBooksAPI {
+  static url = process.env.REACT_APP_BASE_URL + "/cart-books";
 
-export async function postCartBook(bookID: number, params: Params) {
-  const response = await httpClient.post<{ message: string }>(
-    `/cart-books/${bookID}`,
-    params
-  );
-  return response.data;
-}
+  static async postCartBook(bookID: number, count: number) {
+    const response = await AuthorizeInterceptor.fetch(this.url + `/${bookID}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ count }),
+    });
 
-export async function getCartBooks() {
-  const response = await httpClient.get<{ data: ICartBook[] }>("/cart-books");
-  return response.data;
-}
+    return { status: response.status };
+  }
 
-export async function deleteCartBook(bookID: number) {
-  const response = await httpClient.delete<{ message?: string }>(
-    `/cart-books/${bookID}`
-  );
-  return response.data;
+  static async getCartBooks() {
+    const response = await AuthorizeInterceptor.fetch(this.url, {
+      method: "GET",
+    });
+
+    const { data }: { data: ICartBook[] } = await response.json();
+    return data;
+  }
+
+  static async deleteCartBook(bookID: number) {
+    const response = await AuthorizeInterceptor.fetch(this.url + `/${bookID}`, {
+      method: "DELETE",
+    });
+
+    return { status: response.status };
+  }
 }

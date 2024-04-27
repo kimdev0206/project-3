@@ -1,15 +1,14 @@
-import httpClient from "./http";
 import ICategory from "../models/category.model";
 
-export async function getCategories() {
-  try {
-    const response = await httpClient.get<{ data: ICategory[] }>(
-      "/categories"
-    );
-    return response.data;
-  } catch (error) {
-    return {
-      data: [],
-    };
+export default class CategoriesAPI {
+  static url = process.env.REACT_APP_BASE_URL + "/categories";
+
+  static async getCategories() {
+    const response = await fetch(this.url, {
+      method: "GET",
+    });
+
+    const { data }: { data: ICategory[] } = await response.json();
+    return data;
   }
 }

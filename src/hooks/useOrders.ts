@@ -1,6 +1,5 @@
-import { isAxiosError } from "axios";
 import { useEffect, useRef, useState } from "react";
-import { getOrder, getOrders, deleteOrder } from "../apis/orders.api";
+import OrdersAPI from "../apis/orders.api";
 import { IOrderListItem } from "../models/order.model";
 
 export default function useOrders() {
@@ -19,7 +18,7 @@ export default function useOrders() {
       return;
     }
 
-    const { data } = await getOrder(deliveryID);
+    const data = await OrdersAPI.getOrder(deliveryID);
     setOrders(
       orders.map((order) => {
         if (order.deliveryID === deliveryID) {
@@ -33,20 +32,17 @@ export default function useOrders() {
   };
 
   const handleDeleteID = async (deliveryID: number) => {
-    try {
-      await deleteOrder(deliveryID);
-      setOrders(orders.filter((order) => order.deliveryID !== deliveryID));
-    } catch (error) {
-      if (isAxiosError(error)) {
-        alert(error.response?.data.message);
-      }
-    }
+    const response = await OrdersAPI.deleteOrder(deliveryID);
+
+    if (response.status !== 204) return;
+
+    setOrders(orders.filter((order) => order.deliveryID !== deliveryID));
   };
 
   useEffect(() => {
     if (isRendered.current) return;
 
-    getOrders().then(({ data }) => {
+    OrdersAPI.getOrders().then((data) => {
       setOrders(data);
       setIsEmpty(!data.length);
     });

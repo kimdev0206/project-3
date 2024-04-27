@@ -19,7 +19,7 @@ interface Props {
 export default function BestBookList({ books }: Props) {
   return (
     <Style>
-      {books.map((book, index) => (
+      {books?.map((book, index) => (
         <BestBookItem book={book} index={index} key={book.id} />
       ))}
     </Style>

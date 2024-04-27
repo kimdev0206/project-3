@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  signUp,
-  logIn,
-  postResetPassword,
-  putResetPassword,
-} from "../apis/users.api";
+import UsersAPI from "../apis/users.api";
 import { useAlert } from "./useAlert";
 import { Props } from "../pages/SignUp";
 import { useUsersStore } from "../stores/users.store";
@@ -17,29 +12,41 @@ export default function useUsers() {
   const { setLoggedIn } = useUsersStore();
 
   const handleSignUp = async (props: Props) => {
-    const response = await signUp(props);
-
+    const response = await UsersAPI.signUp(props);
     alert(response.message);
+
+    if (response.status !== 201) return;
+
     navigate("/users/log-in");
   };
 
   const handleLogIn = async (props: Props) => {
-    const response = await logIn(props);
-    setLoggedIn(response.accessToken, response.refreshToken);
-
+    const response = await UsersAPI.logIn(props);
     alert(response.message);
+
+    if (response.status !== 200) return;
+
+    setLoggedIn(response.accessToken, response.refreshToken);
     navigate("/");
   };
 
   const handleResetPassword = async (props: Props) => {
-    if (isRequested) {
-      const response = await putResetPassword(props);
+    if (!isRequested) {
+      const response = await UsersAPI.postResetPassword(props.email);
       alert(response.message);
-      return navigate("/users/log-in");
+
+      if (response.status !== 200) return;
+
+      setIsRequested(true);
+      return;
     }
 
-    await postResetPassword(props);
-    setIsRequested(true);
+    const response = await UsersAPI.putResetPassword(props);
+    alert(response.message);
+
+    if (response.status !== 200) return;
+
+    navigate("/users/log-in");
   };
 
   return { handleSignUp, handleLogIn, handleResetPassword, isRequested };

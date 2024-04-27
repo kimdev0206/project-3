@@ -1,33 +1,27 @@
 import { useEffect, useRef, useState } from "react";
-import { isAxiosError } from "axios";
-import { deleteCartBook, getCartBooks } from "../apis/cart-books.api";
-import { useAlert } from "./useAlert";
+import CartBooksAPI from "../apis/cart-books.api";
 import ICartBook from "../models/cart-book.model";
 
 export default function useCartBooks() {
   const [cartBooks, setCartBooks] = useState<ICartBook[]>([]);
   const [isEmpty, setIsEmpty] = useState(true);
   const isRendered = useRef(false);
-  const alert = useAlert();
 
   const handleDelete = async (bookID: number) => {
-    await deleteCartBook(bookID);
+    const response = await CartBooksAPI.deleteCartBook(bookID);
+
+    if (response.status !== 204) return;
+
     setCartBooks(cartBooks.filter((cartBook) => cartBook.bookID !== bookID));
   };
 
   useEffect(() => {
     if (isRendered.current) return;
 
-    getCartBooks()
-      .then(({ data }) => {
-        setCartBooks(data);
-        setIsEmpty(!data.length);
-      })
-      .catch((error) => {
-        if (isAxiosError(error)) {
-          alert(error.response?.data.message);
-        }
-      });
+    CartBooksAPI.getCartBooks().then((data) => {
+      setCartBooks(data);
+      setIsEmpty(!data.length);
+    });
 
     isRendered.current = true;
   }, []);

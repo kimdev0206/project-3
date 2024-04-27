@@ -1,41 +1,51 @@
-import httpClient from "./http";
+import AuthorizeInterceptor from "../interceptors/authorize.interceptor";
 import {
   IOrder,
   IOrderListItem,
   IOrderListItemDetail,
 } from "../models/order.model";
 
-export async function postOrder(params: IOrder) {
-  const response = await httpClient.post<{ message: string }>(
-    "/orders",
-    params
-  );
-  return response.data;
-}
+export default class OrdersAPI {
+  static url = process.env.REACT_APP_BASE_URL + "/orders";
 
-export async function getOrders() {
-  try {
-    const response = await httpClient.get<{ data: IOrderListItem[] }>(
-      "/orders"
-    );
-    return response.data;
-  } catch (error) {
-    return {
-      data: [],
-    };
+  static async postOrder(params: IOrder) {
+    const response = await AuthorizeInterceptor.fetch(this.url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(params),
+    });
+
+    const { message } = await response.json();
+    return { status: response.status, message };
   }
-}
 
-export async function getOrder(deliveryID: number) {
-  const response = await httpClient.get<{ data: IOrderListItemDetail[] }>(
-    `/orders/${deliveryID}`
-  );
-  return response.data;
-}
+  static async getOrders() {
+    const response = await AuthorizeInterceptor.fetch(this.url, {
+      method: "GET",
+    });
 
-export async function deleteOrder(deliveryID: number) {
-  const response = await httpClient.delete<{ message?: string }>(
-    `/orders/${deliveryID}`
-  );
-  return response.data;
+    const { data }: { data: IOrderListItem[] } = await response.json();
+    return data;
+  }
+
+  static async getOrder(deliveryID: number) {
+    const response = await AuthorizeInterceptor.fetch(
+      `${this.url}/${deliveryID}`,
+      { method: "GET" }
+    );
+
+    const { data }: { data: IOrderListItemDetail[] } = await response.json();
+    return data;
+  }
+
+  static async deleteOrder(deliveryID: number) {
+    const response = await AuthorizeInterceptor.fetch(
+      `${this.url}/${deliveryID}`,
+      { method: "DELETE" }
+    );
+
+    return { status: response.status };
+  }
 }

@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { isAxiosError } from "axios";
-import { getBook } from "../apis/books.api";
-import { postCartBook } from "../apis/cart-books.api";
-import { postLike, deleteLike } from "../apis/likes.api";
+import BooksAPI from "../apis/books.api";
+import CartBooksAPI from "../apis/cart-books.api";
+import LikesAPI from "../apis/likes.api";
 import { useAlert } from "./useAlert";
 import { IBook } from "../models/book.model";
 import { useUsersStore } from "../stores/users.store";
@@ -22,18 +21,18 @@ export default function useBook(bookID: number | undefined) {
 
     if (!book) return;
 
-    try {
-      if (book.liked) {
-        await deleteLike(book.id);
-        setBook({ ...book, liked: false, likes: book.likes - 1 });
-      } else {
-        await postLike(book.id);
-        setBook({ ...book, liked: true, likes: book.likes + 1 });
-      }
-    } catch (error) {
-      if (isAxiosError(error)) {
-        alert(error.response?.data.message);
-      }
+    if (book.liked) {
+      const response = await LikesAPI.deleteLike(book.id);
+
+      if (response.status !== 204) return;
+
+      setBook({ ...book, liked: false, likes: book.likes - 1 });
+    } else {
+      const response = await LikesAPI.postLike(book.id);
+
+      if (response.status !== 201) return;
+
+      setBook({ ...book, liked: true, likes: book.likes + 1 });
     }
   };
 
@@ -50,14 +49,11 @@ export default function useBook(bookID: number | undefined) {
       return;
     }
 
-    try {
-      await postCartBook(book.id, { count });
-      setIsAdded(true);
-    } catch (error) {
-      if (isAxiosError(error)) {
-        alert(error.response?.data.message);
-      }
-    }
+    const response = await CartBooksAPI.postCartBook(book.id, count);
+
+    if (response.status !== 201) return;
+
+    setIsAdded(true);
   };
 
   useEffect(() => {
@@ -65,7 +61,7 @@ export default function useBook(bookID: number | undefined) {
 
     if (isRendered.current) return;
 
-    getBook(bookID).then(({ data }) => setBook(data));
+    BooksAPI.getBook(bookID).then((data) => setBook(data));
 
     isRendered.current = true;
   }, [bookID]);
