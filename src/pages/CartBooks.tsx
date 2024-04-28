@@ -90,7 +90,7 @@ export default function CartBooksPage() {
 
               <Common.Button
                 size="large"
-                state="default"
+                $state="default"
                 type="button"
                 onClick={handleOrder}
               >

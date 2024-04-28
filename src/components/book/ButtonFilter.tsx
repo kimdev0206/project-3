@@ -42,7 +42,7 @@ export default function ButtonFilter() {
           return (
             <Common.Button
               size="medium"
-              state={isMatch ? "active" : !hasCategoryID ? "active" : "default"}
+              $state={isMatch ? "active" : !hasCategoryID ? "active" : "default"}
               key={category.id}
               onClick={() => handleCategory(category.id)}
             >
@@ -55,7 +55,7 @@ export default function ButtonFilter() {
       <section>
         <Common.Button
           size="medium"
-          state={searchParams.get("isNew") ? "active" : "default"}
+          $state={searchParams.get("isNew") ? "active" : "default"}
           onClick={() => handleNew()}
         >
           신간

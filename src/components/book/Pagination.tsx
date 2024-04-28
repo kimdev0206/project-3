@@ -30,7 +30,7 @@ export default function Pagination({ pagination }: Props) {
             {Array.from({ length: pages }, (_, index) => (
               <Common.Button
                 size="small"
-                state={index + 1 === +page ? "active" : "default"}
+                $state={index + 1 === +page ? "active" : "default"}
                 onClick={() => onClick(index + 1)}
                 key={index}
               >
@@ -43,7 +43,7 @@ export default function Pagination({ pagination }: Props) {
             {Array.from({ length: pageGroups }, (_, index) => (
               <Common.Button
                 size="small"
-                state={index === pageGroup ? "active" : "default"}
+                $state={index === pageGroup ? "active" : "default"}
                 onClick={() => setPageGroup(index)}
                 key={index}
               />

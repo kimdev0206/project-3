@@ -15,7 +15,7 @@ interface Props {
 
 export default function LikeButton({ book, onClick }: Props) {
   return (
-    <Style size="medium" state="default" onClick={onClick}>
+    <Style size="medium" $state="default" onClick={onClick}>
       {book.liked ? <GoHeartFill /> : <GoHeart />}
       {book.likes}
     </Style>

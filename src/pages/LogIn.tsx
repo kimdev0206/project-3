@@ -42,7 +42,7 @@ export default function LogInPage() {
         </fieldset>
 
         <fieldset>
-          <Common.Button size="medium" state="default" type="submit">
+          <Common.Button size="medium" $state="default" type="submit">
             로그인
           </Common.Button>
         </fieldset>

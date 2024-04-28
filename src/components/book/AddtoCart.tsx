@@ -28,7 +28,7 @@ export default function AddtoCart({ book }: Props) {
 
         <Common.Button
           size="medium"
-          state="default"
+          $state="default"
           onClick={() => setCount(count + 1)}
         >
           +
@@ -36,7 +36,7 @@ export default function AddtoCart({ book }: Props) {
 
         <Common.Button
           size="medium"
-          state="default"
+          $state="default"
           onClick={() => count > 1 && setCount(count - 1)}
         >
           -
@@ -46,7 +46,7 @@ export default function AddtoCart({ book }: Props) {
       <Style.RightSection>
         <Common.Button
           size="medium"
-          state="default"
+          $state="default"
           onClick={() => handleAddtoCart(count)}
         >
           장바구니 담기

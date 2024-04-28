@@ -28,7 +28,7 @@ export default function AddressButton({ onCompleted }: Props) {
   return (
     <Common.Button
       size="medium"
-      state="default"
+      $state="default"
       type="button"
       onClick={handleOpen}
     >

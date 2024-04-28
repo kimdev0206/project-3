@@ -49,12 +49,12 @@ export default function Item({
       <Style.Buttons>
         <Common.Button
           size="small"
-          state={isOpen ? "active" : "default"}
+          $state={isOpen ? "active" : "default"}
           onClick={handleDetail}
         >
           자세히
         </Common.Button>
-        <Common.Button size="small" state="default" onClick={handleDelete}>
+        <Common.Button size="small" $state="default" onClick={handleDelete}>
           취소
         </Common.Button>
       </Style.Buttons>

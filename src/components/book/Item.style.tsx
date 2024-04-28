@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Props } from "./Item";
 
-const Container = styled(Link)<Pick<Props, "view">>`
+const Container = styled(Link)<Pick<Props, "$view">>`
   display: flex;
-  flex-direction: ${({ view }) => (view === "grid" ? "column" : "row")};
+  flex-direction: ${({ $view }) => ($view === "grid" ? "column" : "row")};
   box-shadow: ${({ theme }) =>
     theme.name === "light"
       ? "0 0 4px rgba(0, 0, 0, 0.2)"
@@ -12,18 +12,18 @@ const Container = styled(Link)<Pick<Props, "view">>`
   text-decoration: none;
 `;
 
-const TopSection = styled.section<Pick<Props, "view">>`
-  width: ${({ theme, view }) =>
-    view === "grid" ? "auto" : `${theme.img.small}px`};
+const TopSection = styled.section<Pick<Props, "$view">>`
+  width: ${({ theme, $view }) =>
+    $view === "grid" ? "auto" : `${theme.img.small}px`};
 
   img {
     width: 100%;
   }
 `;
 
-const MiddleSection = styled.section<Pick<Props, "view">>`
+const MiddleSection = styled.section<Pick<Props, "$view">>`
   display: flex;
-  flex: ${({ view }) => (view === "grid" ? 0 : 1)};
+  flex: ${({ $view }) => ($view === "grid" ? 0 : 1)};
   flex-direction: column;
   justify-content: space-between;
   padding: ${({ theme }) => theme.input.medium.padding};
@@ -44,11 +44,11 @@ const MiddleSection = styled.section<Pick<Props, "view">>`
   }
 `;
 
-const BottomSection = styled.section<Pick<Props, "view">>`
+const BottomSection = styled.section<Pick<Props, "$view">>`
   display: flex;
-  flex-direction: ${({ view }) => (view === "grid" ? "row" : "column")};
-  gap: ${({ theme, view }) => view === "list" && theme.gap.small};
-  justify-content: ${({ view }) => view === "grid" && "space-between"};
+  flex-direction: ${({ $view }) => ($view === "grid" ? "row" : "column")};
+  gap: ${({ theme, $view }) => $view === "list" && theme.gap.small};
+  justify-content: ${({ $view }) => $view === "grid" && "space-between"};
   align-items: end;
   margin-top: auto;
   padding: ${({ theme }) => theme.input.medium.padding};

@@ -33,7 +33,7 @@ export default function Header() {
               <Link to="/orders">주문 내역</Link>
             </li>
 
-            <Button size="medium" state="default" onClick={setLoggedOut}>
+            <Button size="medium" $state="default" onClick={setLoggedOut}>
               로그아웃
             </Button>
           </ul>

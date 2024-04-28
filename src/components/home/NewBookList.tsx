@@ -20,7 +20,7 @@ export default function NewBookList({ books }: Props) {
   return (
     <Style>
       {books?.map((book) => (
-        <Book.Item book={book} view="grid" key={book.id} />
+        <Book.Item book={book} $view="grid" key={book.id} />
       ))}
     </Style>
   );

@@ -7,24 +7,24 @@ import { formatPrice } from "../../utils/format";
 
 export interface Props {
   book: IBookListItem;
-  view: View;
+  $view: View;
 }
 
-export default function Item({ book, view }: Props) {
+export default function Item({ book, $view }: Props) {
   return (
-    <Style.Container view={view} to={`/books/${book.id}`}>
-      <Style.TopSection view={view}>
+    <Style.Container $view={$view} to={`/books/${book.id}`}>
+      <Style.TopSection $view={$view}>
         <Common.Image imgID={book.imgID} size="medium" alt={book.title} />
       </Style.TopSection>
 
-      <Style.MiddleSection view={view}>
+      <Style.MiddleSection $view={$view}>
         <Common.Title size="medium">{book.title}</Common.Title>
 
         <p>{book.summary}</p>
         <span>{book.author}</span>
       </Style.MiddleSection>
 
-      <Style.BottomSection view={view}>
+      <Style.BottomSection $view={$view}>
         <strong>{formatPrice(book.price)}</strong>
 
         <Style.LikesButtonBox>

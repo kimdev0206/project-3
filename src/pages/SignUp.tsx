@@ -46,7 +46,7 @@ export default function SignUpPage() {
         </fieldset>
 
         <fieldset>
-          <Common.Button size="medium" state="default" type="submit">
+          <Common.Button size="medium" $state="default" type="submit">
             회원가입
           </Common.Button>
         </fieldset>

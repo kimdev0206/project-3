@@ -41,7 +41,7 @@ export default function ViewSwitcher() {
       {options.map((option) => (
         <Common.Button
           size="medium"
-          state={
+          $state={
             searchParams.get("view") === option.value ? "active" : "default"
           }
           key={option.value}

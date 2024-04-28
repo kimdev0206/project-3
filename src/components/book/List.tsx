@@ -4,14 +4,15 @@ import Item from "./Item";
 import { View } from "./ViewSwitcher";
 import { IBookListItem } from "../../models/book.model";
 
-const Style = styled.div<{ view: View }>`
+const Style = styled.div<{ $view: View }>`
   display: grid;
-  grid-template-columns: ${({ view }) =>
-    view === "grid" ? "repeat(4, 1fr)" : "repeat(1, 1fr)"};
+  grid-template-columns: ${({ $view }) =>
+    $view === "grid" ? "repeat(4, 1fr)" : "repeat(1, 1fr)"};
   gap: ${({ theme }) => theme.gap.large};
 
   @media screen AND (${({ theme }) => theme.mediaQuery.mobile}) {
-    grid-template-columns: ${({ view }) => view === "grid" && "repeat(2, 1fr)"};
+    grid-template-columns: ${({ $view }) =>
+      $view === "grid" && "repeat(2, 1fr)"};
   }
 `;
 
@@ -24,11 +25,11 @@ export default function List({ books }: Props) {
   const searchParams = new URLSearchParams(location.search);
 
   return (
-    <Style view={searchParams.get("view") as View}>
+    <Style $view={searchParams.get("view") as View}>
       {books?.map((book) => (
         <Item
           book={book}
-          view={searchParams.get("view") as View}
+          $view={searchParams.get("view") as View}
           key={book.id}
         />
       ))}

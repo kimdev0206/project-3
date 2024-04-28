@@ -5,21 +5,21 @@ import Button from "./Button";
 
 export interface Props {
   children: React.ReactNode;
-  limit: number;
+  $limit: number;
   $isExpand: boolean;
 }
 
-export default function ExpandBox({ children, limit }: Props) {
+export default function ExpandBox({ children, $limit }: Props) {
   const [isExpand, setIsExpand] = useState(false);
 
   return (
-    <Style.Container limit={limit} $isExpand={isExpand}>
+    <Style.Container $limit={$limit} $isExpand={isExpand}>
       <p>{children}</p>
 
       <Style.BottomSection $isExpand={isExpand}>
         <Button
           size="small"
-          state="default"
+          $state="default"
           onClick={() => setIsExpand(!isExpand)}
         >
           {isExpand ? "접기" : "펼치기"} <FaAngleDown />

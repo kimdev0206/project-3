@@ -7,7 +7,7 @@ describe("Button 컴포넌트 테스트", () => {
   it("렌더 여부", () => {
     const { getByText } = render(
       <ThemeProvider>
-        <Button size="large" state="normal">
+        <Button size="large" $state="default">
           버튼
         </Button>
       </ThemeProvider>
@@ -19,7 +19,7 @@ describe("Button 컴포넌트 테스트", () => {
   it("size prop 적용", () => {
     const { getByRole } = render(
       <ThemeProvider>
-        <Button size="large" state="normal">
+        <Button size="large" $state="default">
           버튼
         </Button>
       </ThemeProvider>
@@ -29,10 +29,10 @@ describe("Button 컴포넌트 테스트", () => {
     expect(getByRole("button")).toHaveStyle({ padding: "1rem 2rem" });
   });
 
-  it("state prop 적용", () => {
+  it("$state prop 적용", () => {
     const { getByRole } = render(
       <ThemeProvider>
-        <Button size="large" state="active">
+        <Button size="large" $state="default">
           버튼
         </Button>
       </ThemeProvider>

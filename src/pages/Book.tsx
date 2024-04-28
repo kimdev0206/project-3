@@ -73,13 +73,13 @@ export default function BookPage() {
 
       <Common.Tabs>
         <Common.Tab title="상세 설명">
-          <Common.ExpandBox limit={4} $isExpand={false}>
+          <Common.ExpandBox $limit={4} $isExpand={false}>
             {book.detail}
           </Common.ExpandBox>
         </Common.Tab>
 
         <Common.Tab title="목차">
-          <Common.ExpandBox limit={4} $isExpand={false}>
+          <Common.ExpandBox $limit={4} $isExpand={false}>
             {book.contents}
           </Common.ExpandBox>
         </Common.Tab>

@@ -44,13 +44,13 @@ export default function ResetPasswordPage() {
 
         {isRequested ? (
           <fieldset>
-            <Common.Button size="medium" state="default" type="submit">
+            <Common.Button size="medium" $state="default" type="submit">
               비밀번호 초기화
             </Common.Button>
           </fieldset>
         ) : (
           <fieldset>
-            <Common.Button size="medium" state="default" type="submit">
+            <Common.Button size="medium" $state="default" type="submit">
               초기화 요청
             </Common.Button>
           </fieldset>

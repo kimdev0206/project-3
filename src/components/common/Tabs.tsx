@@ -31,7 +31,7 @@ export default function Tabs({ children }: Props) {
         {tabs.map((tab, index) => (
           <Button
             size="large"
-            state={activeIndex === index ? "active" : "default"}
+            $state={activeIndex === index ? "active" : "default"}
             key={index}
             onClick={() => setActiveIndex(index)}
           >

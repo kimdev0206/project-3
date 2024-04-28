@@ -6,8 +6,8 @@ const Container = styled.div<Omit<Props, "children">>`
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: ${({ limit, $isExpand }) =>
-      $isExpand ? "none" : limit};
+    -webkit-line-clamp: ${({ $limit, $isExpand }) =>
+      $isExpand ? "none" : $limit};
     -webkit-box-orient: vertical;
   }
 `;

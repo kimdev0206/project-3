@@ -20,7 +20,7 @@ describe("Item 컴포넌트 테스트", () => {
   it("렌더 여부", () => {
     const { getByAltText, getByText } = render(
       <ThemeProvider>
-        <Item book={book} view="grid" />
+        <Item book={book} $view="grid" />
       </ThemeProvider>
     );
 

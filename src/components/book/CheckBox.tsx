@@ -60,7 +60,7 @@ export default function CheckBox({ checkedKeys, setCheckedKeys }: Props) {
     <Style.Container>
       <Common.Button
         size="medium"
-        state="default"
+        $state="default"
         onClick={() => setIsOpen(!isOpen)}
       >
         선택
@@ -71,7 +71,7 @@ export default function CheckBox({ checkedKeys, setCheckedKeys }: Props) {
           {items.map((item) => (
             <Common.Button
               size="medium"
-              state={checkedKeys.includes(item.key) ? "active" : "default"}
+              $state={checkedKeys.includes(item.key) ? "active" : "default"}
               key={item.key}
               onClick={() => handleCheck(item.key)}
             >
