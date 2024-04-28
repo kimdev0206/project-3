@@ -20,7 +20,15 @@ const MiddleSection = styled.section`
   }
 `;
 
+const RightSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: ${({ theme }) => theme.gap.small};
+`;
+
 export default {
   Container,
   MiddleSection,
+  RightSection,
 };

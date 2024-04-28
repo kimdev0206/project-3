@@ -3,6 +3,9 @@ export interface IOrder {
   books: {
     bookID: number;
     count: number;
+    price: number;
+    title: string;
+    author: string;
   }[];
   delivery: IDelivery;
   totalCount: number;

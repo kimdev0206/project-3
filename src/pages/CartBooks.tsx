@@ -37,6 +37,9 @@ export default function CartBooksPage() {
         return {
           bookID: cartBook.bookID,
           count: cartBook.count,
+          price: cartBook.price,
+          title: cartBook.title,
+          author: cartBook.author,
         };
       });
 

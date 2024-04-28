@@ -4,4 +4,5 @@ export default interface ICartBook {
   summary: string;
   count: number;
   price: number;
+  author: string;
 }

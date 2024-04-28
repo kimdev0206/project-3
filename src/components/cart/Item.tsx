@@ -39,18 +39,22 @@ export default function Item({
         <Common.Title size="medium">{cartBook.title}</Common.Title>
 
         <p>{cartBook.summary}</p>
-        <span>{formatCount(cartBook.count)}</span>
-        <span>{formatPrice(cartBook.price)}</span>
       </Style.MiddleSection>
 
-      <Common.Button
-        size="medium"
-        $state="default"
-        type="button"
-        onClick={handleDelete}
-      >
-        장바구니 삭제
-      </Common.Button>
+      <Style.RightSection>
+        <Common.Button
+          size="medium"
+          $state="default"
+          type="button"
+          onClick={handleDelete}
+        >
+          장바구니 삭제
+        </Common.Button>
+
+        <span>{formatCount(cartBook.count)}</span>
+        <span>{formatPrice(cartBook.price)}</span>
+        <span>{cartBook.author}</span>
+      </Style.RightSection>
     </Style.Container>
   );
 }
