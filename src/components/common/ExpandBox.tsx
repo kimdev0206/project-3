@@ -19,7 +19,7 @@ export default function ExpandBox({ children, limit }: Props) {
       <Style.BottomSection $isExpand={isExpand}>
         <Button
           size="small"
-          state="normal"
+          state="default"
           onClick={() => setIsExpand(!isExpand)}
         >
           {isExpand ? "접기" : "펼치기"} <FaAngleDown />

@@ -96,7 +96,7 @@ export default function OrderPage() {
 
           <Common.Button
             size="large"
-            state="normal"
+            state="default"
             onClick={handleSubmit(handleOrder)}
           >
             주문 하기

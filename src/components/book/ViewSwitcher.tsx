@@ -42,7 +42,7 @@ export default function ViewSwitcher() {
         <Common.Button
           size="medium"
           state={
-            searchParams.get("view") === option.value ? "active" : "normal"
+            searchParams.get("view") === option.value ? "active" : "default"
           }
           key={option.value}
           onClick={() => handleSwitch(option.value as View)}

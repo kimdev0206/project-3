@@ -45,7 +45,7 @@ export default function Item({
 
       <Common.Button
         size="medium"
-        state="normal"
+        state="default"
         type="button"
         onClick={handleDelete}
       >

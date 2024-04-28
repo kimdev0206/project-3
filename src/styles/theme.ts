@@ -2,7 +2,7 @@ export type ThemeName = "light" | "dark";
 
 export type ColorKey = "primary" | "background";
 
-export type ButtonState = "normal" | "active";
+export type ButtonState = "default" | "active";
 
 export type Size = "large" | "medium" | "small";
 
@@ -30,7 +30,7 @@ const light: Theme = {
     background: "white",
   },
   buttonState: {
-    normal: { primary: "black", background: "white" },
+    default: { primary: "black", background: "white" },
     active: { primary: "white", background: "black" },
   },
   heading: {
@@ -67,7 +67,7 @@ const dark: Theme = {
     background: "black",
   },
   buttonState: {
-    normal: { primary: "white", background: "black" },
+    default: { primary: "white", background: "black" },
     active: { primary: "black", background: "white" },
   },
   border: { default: "1px solid white", radius: "4px" },
