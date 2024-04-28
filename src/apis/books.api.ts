@@ -19,7 +19,7 @@ export default class BooksAPI {
   static url = process.env.REACT_APP_BASE_URL + "/books";
 
   static async getBooks(params: Params) {
-    const url = new URL(this.url);
+    let url = new URL(this.url);
     let searchParams = new URLSearchParams();
 
     for (const [key, value] of Object.entries(params)) {
