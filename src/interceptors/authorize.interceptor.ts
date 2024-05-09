@@ -77,7 +77,7 @@ export default class AuthorizeInterceptor {
       credentials: "include",
       headers: {
         ...options.headers,
-        Authorization: accessToken,
+        "Access-Token": accessToken,
       },
     });
 

@@ -41,7 +41,7 @@ export default class UsersAPI {
     return {
       status: response.status,
       message,
-      accessToken: response.headers.get("authorization")!,
+      accessToken: response.headers.get("access-token")!,
       refreshToken: response.headers.get("refresh-token")!,
     };
   }
@@ -85,7 +85,7 @@ export default class UsersAPI {
     const response = await fetch(this.url + "/access-token", {
       method: "GET",
       headers: {
-        Authorization: expiredAccessToken,
+        "Access-Token": expiredAccessToken,
         "Refresh-Token": refreshToken,
       },
     });
@@ -95,7 +95,7 @@ export default class UsersAPI {
     return {
       status: response.status,
       message,
-      accessToken: response.headers.get("authorization"),
+      accessToken: response.headers.get("access-token"),
     };
   }
 }
