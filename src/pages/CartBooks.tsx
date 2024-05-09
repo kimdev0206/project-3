@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Style from "./CartBooks.style";
 import Cart from "../components/cart";
 import Common from "../components/common";
@@ -73,7 +73,9 @@ export default function CartBooksPage() {
 
       <Style.Container>
         {isEmpty ? (
-          <Common.Empty>장바구니가 비었습니다.</Common.Empty>
+          <Common.Empty description={<Link to="/books">도서로 이동</Link>}>
+            장바구니가 비었습니다.
+          </Common.Empty>
         ) : (
           <>
             <Style.Items>

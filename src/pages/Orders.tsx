@@ -17,23 +17,21 @@ export default function OrdersPage() {
     <>
       <Common.Title size="large">주문 내역</Common.Title>
 
-      <div>
-        {isEmpty ? (
-          <Common.Empty
-            description={<Link to="/cart-books">장바구니로 이동</Link>}
-          >
-            주문 내역이 없습니다.
-          </Common.Empty>
-        ) : (
-          <Order.List
-            orders={orders}
-            setOrders={setOrders}
-            selectedID={selectedID}
-            onSelect={handleSelectID}
-            onDelete={handleDeleteID}
-          />
-        )}
-      </div>
+      {isEmpty ? (
+        <Common.Empty
+          description={<Link to="/cart-books">장바구니로 이동</Link>}
+        >
+          주문 내역이 없습니다.
+        </Common.Empty>
+      ) : (
+        <Order.List
+          orders={orders}
+          setOrders={setOrders}
+          selectedID={selectedID}
+          onSelect={handleSelectID}
+          onDelete={handleDeleteID}
+        />
+      )}      
     </>
   );
 }
