@@ -27,7 +27,7 @@ export default function List({
       <Header orders={orders} setOrders={setOrders} />
 
       <tbody>
-        {orders.map((order) => (
+        {orders?.map((order) => (
           <React.Fragment key={order.deliveryID}>
             <Item
               order={order}

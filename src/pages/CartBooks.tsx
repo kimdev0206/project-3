@@ -54,13 +54,13 @@ export default function CartBooksPage() {
   };
 
   const totalCount = useMemo(() => {
-    return cartBooks.reduce((acc, cartBook) => {
+    return cartBooks?.reduce((acc, cartBook) => {
       return checkedIDs.includes(cartBook.bookID) ? acc + cartBook.count : acc;
     }, 0);
   }, [cartBooks, checkedIDs]);
 
   const totalPrice = useMemo(() => {
-    return cartBooks.reduce((acc, cartBook) => {
+    return cartBooks?.reduce((acc, cartBook) => {
       return checkedIDs.includes(cartBook.bookID)
         ? acc + cartBook.count * cartBook.price
         : acc;

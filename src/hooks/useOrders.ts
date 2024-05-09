@@ -44,7 +44,7 @@ export default function useOrders() {
 
     OrdersAPI.getOrders().then((data) => {
       setOrders(data);
-      setIsEmpty(!data.length);
+      setIsEmpty(!data);
     });
 
     isRendered.current = true;

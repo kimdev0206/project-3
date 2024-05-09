@@ -20,7 +20,7 @@ export default function useCartBooks() {
 
     CartBooksAPI.getCartBooks().then((data) => {
       setCartBooks(data);
-      setIsEmpty(!data.length);
+      setIsEmpty(!data);
     });
 
     isRendered.current = true;
