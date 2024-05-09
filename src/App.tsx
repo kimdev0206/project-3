@@ -58,7 +58,8 @@ const router = createBrowserRouter(
       ...route,
       element: <Layout>{route.element}</Layout>,
     };
-  })
+  }),
+  { basename: process.env.PUBLIC_URL }
 );
 
 export default function App() {
