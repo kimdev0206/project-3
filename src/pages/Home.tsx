@@ -10,10 +10,14 @@ const Style = styled.div`
 `;
 
 export default function HomePage() {
-  const { bestBooks, newBooks } = useHome();
+  const { bestBooks, newBooks, promotions } = useHome();
 
   return (
     <Style>
+      <section>
+        <Home.PromotionList promotions={promotions} />
+      </section>
+
       <section>
         <Common.Title size="large">베스트 셀러</Common.Title>
         <Home.BestBookList books={bestBooks} />

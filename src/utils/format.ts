@@ -11,3 +11,7 @@ export function formatDate(date: string, format?: string) {
 export function formatCount(count: number) {
   return `${count} 권`;
 }
+
+export function formatDiscountRate(rate: number) {
+  return `${rate * 100}% 할인`;
+}

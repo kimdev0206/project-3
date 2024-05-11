@@ -14,7 +14,9 @@ const Slider = styled.section<{ transform: number }>`
 
   button {
     display: inline-flex;
-    flex: 0 0 10%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 10%;
     justify-content: center;
   }
 `;
