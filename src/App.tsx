@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import Common from "./components/common";
 import Layout from "./components/layout/Layout";
 import { ThemeProvider } from "./contexts/theme.context";
@@ -52,14 +52,13 @@ const routes = [
   },
 ];
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   routes.map((route) => {
     return {
       ...route,
       element: <Layout>{route.element}</Layout>,
     };
-  }),
-  { basename: process.env.PUBLIC_URL }
+  })
 );
 
 export default function App() {

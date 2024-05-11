@@ -17,7 +17,7 @@ export default class AuthorizeInterceptor {
       window.alert(
         "로그인 API 를 통해 접근 토큰 및 재발급 토큰을 발급 받으세요."
       );
-      window.location.href = "/users/log-in";
+      window.location.href = "#/users/log-in";
       return;
     }
 
@@ -26,7 +26,7 @@ export default class AuthorizeInterceptor {
 
       if (response.status === 403) {
         window.alert(response.message);
-        window.location.href = "/users/log-in";
+        window.location.href = "#/users/log-in";
         return;
       }
 
@@ -51,7 +51,7 @@ export default class AuthorizeInterceptor {
 
         if (response.status === 403) {
           window.alert(response.message);
-          window.location.href = "/users/log-in";
+          window.location.href = "#/users/log-in";
           return;
         }
 
@@ -62,7 +62,7 @@ export default class AuthorizeInterceptor {
       }
 
       if (message.startsWith("재발급 토큰이 만료되었습니다.")) {
-        window.location.href = "/users/log-in";
+        window.location.href = "#/users/log-in";
         return;
       }
     }
