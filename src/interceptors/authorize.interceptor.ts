@@ -20,21 +20,17 @@ export default class AuthorizeInterceptor {
       window.location.href = "#/users/log-in";
       return;
     }
-
-    if (accessToken && refreshToken) {
-      const response = await UsersAPI.getAccessToken(accessToken, refreshToken);
-
-      if (response.status === 403) {
-        window.alert(response.message);
-        window.location.href = "#/users/log-in";
-        return;
-      }
-
-      localStorage.setItem("access-token", response.accessToken!);
-    }
   }
 
   static async postResponse(response: Response) {
+    if (response.status === 403) {
+      const { message } = await response.json();
+
+      window.alert(message);
+      window.location.href = "#/users/log-in";
+      return;
+    }
+
     if (response.status === 401) {
       const { message } = await response.json();
 
@@ -48,12 +44,6 @@ export default class AuthorizeInterceptor {
           accessToken,
           refreshToken
         );
-
-        if (response.status === 403) {
-          window.alert(response.message);
-          window.location.href = "#/users/log-in";
-          return;
-        }
 
         localStorage.setItem("access-token", response.accessToken!);
 
