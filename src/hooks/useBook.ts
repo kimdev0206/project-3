@@ -58,7 +58,11 @@ export default function useBook(bookID: number | undefined) {
   useEffect(() => {
     if (!bookID) return;
 
-    BooksAPI.getBook(bookID).then((data) => setBook(data));
+    if (!isLoggedIn) {
+      BooksAPI.getBook(bookID).then((data) => setBook(data));
+    } else {
+      BooksAPI.getBookWithAuthorize(bookID).then((data) => setBook(data));
+    }
   }, [bookID]);
 
   return { book, handleLike, handleAddtoCart, isAdded };

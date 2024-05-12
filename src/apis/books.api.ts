@@ -38,9 +38,19 @@ export default class BooksAPI {
   }
 
   static async getBook(bookID: number) {
-    const response = await AuthorizeInterceptor.fetch(this.url + `/${bookID}`, {
+    const response = await fetch(this.url + `/${bookID}`, {
       method: "GET",
     });
+
+    const { data }: { data: IBook } = await response.json();
+    return data;
+  }
+
+  static async getBookWithAuthorize(bookID: number) {
+    const response = await AuthorizeInterceptor.fetch(
+      this.url + `/${bookID}/authorized`,
+      { method: "GET" }
+    );
 
     const { data }: { data: IBook } = await response.json();
     return data;
