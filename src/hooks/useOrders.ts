@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import OrdersAPI from "../apis/orders.api";
 import { IOrderListItem } from "../models/order.model";
 
@@ -6,7 +6,6 @@ export default function useOrders() {
   const [orders, setOrders] = useState<IOrderListItem[]>([]);
   const [selectedID, setSelectedID] = useState<number | null>(null);
   const [isEmpty, setIsEmpty] = useState(true);
-  const isRendered = useRef(false);
 
   const handleSelectID = async (deliveryID: number) => {
     const hasDetail = orders.filter(
@@ -40,14 +39,10 @@ export default function useOrders() {
   };
 
   useEffect(() => {
-    if (isRendered.current) return;
-
     OrdersAPI.getOrders().then((data) => {
       setOrders(data);
       setIsEmpty(!data);
     });
-
-    isRendered.current = true;
   }, []);
 
   return {

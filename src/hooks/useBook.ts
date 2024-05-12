@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import BooksAPI from "../apis/books.api";
 import CartBooksAPI from "../apis/cart-books.api";
 import LikesAPI from "../apis/likes.api";
@@ -9,7 +9,6 @@ import { useUsersStore } from "../stores/users.store";
 export default function useBook(bookID: number | undefined) {
   const [book, setBook] = useState<IBook>();
   const [isAdded, setIsAdded] = useState(false);
-  const isRendered = useRef(false);
   const alert = useAlert();
   const { isLoggedIn } = useUsersStore();
 
@@ -59,11 +58,7 @@ export default function useBook(bookID: number | undefined) {
   useEffect(() => {
     if (!bookID) return;
 
-    if (isRendered.current) return;
-
     BooksAPI.getBook(bookID).then((data) => setBook(data));
-
-    isRendered.current = true;
   }, [bookID]);
 
   return { book, handleLike, handleAddtoCart, isAdded };
