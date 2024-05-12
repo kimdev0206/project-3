@@ -10,6 +10,7 @@ const Container = styled(Link)<Pick<Props, "$view">>`
       ? "0 0 4px rgba(0, 0, 0, 0.2)"
       : "0 0 4px rgba(255, 255, 255, 0.2)"};
   text-decoration: none;
+  height: 100%;
 `;
 
 const TopSection = styled.section<Pick<Props, "$view">>`

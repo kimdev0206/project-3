@@ -15,10 +15,14 @@ const Section = styled.section`
   }
 `;
 
-const LeftSection = styled.section``;
+const LeftSection = styled.section`
+  display: flex;
+  flex: 1;
+`;
 
 const RightSection = styled.section`
   display: flex;
+  flex: 2;
   flex-direction: column;
   gap: ${({ theme }) => theme.gap.medium};
 
