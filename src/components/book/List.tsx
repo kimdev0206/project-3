@@ -26,7 +26,7 @@ export default function List({ books }: Props) {
 
   return (
     <Style $view={searchParams.get("view") as View}>
-      {books?.map((book) => (
+      {books.map((book) => (
         <Item
           book={book}
           $view={searchParams.get("view") as View}

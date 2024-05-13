@@ -28,11 +28,20 @@ export default function useBooks() {
       page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
       limit: 8,
       keyword: searchParams.get("keyword"),
-    }).then(({ data, meta }) => {
-      setBooks(data);
-      meta && setPagination(meta);
-      setIsEmpty(!data);
-    });
+    })
+      .then(({ data, meta }) => {
+        setBooks(data);
+        setPagination(meta);
+        setIsEmpty(!data);
+      })
+      .catch(() => {
+        setBooks([]);
+        setPagination({
+          page: 1,
+          count: 0,
+        });
+        setIsEmpty(true);
+      });
   }, [location.search]);
 
   return { books, pagination, isEmpty };

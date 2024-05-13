@@ -14,15 +14,21 @@ export default function useHome() {
       isBest: true,
       page: 1,
       limit: 10,
-    }).then(({ data }) => setBestBooks(data));
+    })
+      .then(({ data }) => setBestBooks(data))
+      .catch(() => setBestBooks([]));
 
     BooksAPI.getBooks({
       isNew: true,
       page: 1,
       limit: 4,
-    }).then(({ data }) => setNewBooks(data));
+    })
+      .then(({ data }) => setNewBooks(data))
+      .catch(() => setBestBooks([]));
 
-    PromotionsAPI.getPromotions().then((data) => setPromotions(data));
+    PromotionsAPI.getPromotions()
+      .then((data) => setPromotions(data))
+      .catch(() => setBestBooks([]));
   }, []);
 
   return { bestBooks, newBooks, promotions };

@@ -39,10 +39,15 @@ export default function useOrders() {
   };
 
   useEffect(() => {
-    OrdersAPI.getOrders().then((data) => {
-      setOrders(data);
-      setIsEmpty(!data);
-    });
+    OrdersAPI.getOrders()
+      .then((data) => {
+        setOrders(data);
+        setIsEmpty(!data);
+      })
+      .catch(() => {
+        setOrders([]);
+        setIsEmpty(true);
+      });
   }, []);
 
   return {

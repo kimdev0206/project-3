@@ -6,9 +6,9 @@ export default function useCategories() {
   const [categories, setCategories] = useState<ICategory[]>([]);
 
   useEffect(() => {
-    CategoriesAPI.getCategories().then((data) =>
-      setCategories([{ id: null, category: "전체" }, ...data])
-    );
+    CategoriesAPI.getCategories()
+      .then((data) => setCategories([{ id: null, category: "전체" }, ...data]))
+      .catch(() => setCategories([{ id: null, category: "전체" }]));
   }, []);
 
   return { categories };

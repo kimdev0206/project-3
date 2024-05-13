@@ -15,10 +15,15 @@ export default function useCartBooks() {
   };
 
   useEffect(() => {
-    CartBooksAPI.getCartBooks().then((data) => {
-      setCartBooks(data);
-      setIsEmpty(!data);
-    });
+    CartBooksAPI.getCartBooks()
+      .then((data) => {
+        setCartBooks(data);
+        setIsEmpty(!data);
+      })
+      .catch(() => {
+        setCartBooks([]);
+        setIsEmpty(true);
+      });
   }, []);
 
   return { cartBooks, isEmpty, handleDelete };
