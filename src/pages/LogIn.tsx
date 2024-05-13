@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Style from "./SignUp.style";
 import Common from "../components/common";
+import useDebounce from "../hooks/useDebounce";
 import useUsers from "../hooks/useUsers";
 import { Props } from "./SignUp";
 
@@ -12,12 +13,13 @@ export default function LogInPage() {
     formState: { errors },
   } = useForm<Props>();
   const { handleLogIn } = useUsers();
+  const { debounced, isHandling } = useDebounce(handleLogIn);
 
   return (
     <>
       <Common.Title size="large">로그인</Common.Title>
 
-      <Style.Form onSubmit={handleSubmit(handleLogIn)}>
+      <Style.Form onSubmit={handleSubmit(debounced)}>
         <fieldset>
           <Common.InputText
             size="medium"
@@ -42,8 +44,13 @@ export default function LogInPage() {
         </fieldset>
 
         <fieldset>
-          <Common.Button size="medium" $state="default" type="submit">
-            로그인
+          <Common.Button
+            size="medium"
+            $state={isHandling ? "active" : "default"}
+            type="submit"
+            disabled={isHandling}
+          >
+            {isHandling ? "처리 중" : "로그인"}
           </Common.Button>
         </fieldset>
 

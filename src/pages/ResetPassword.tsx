@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import Style from "./SignUp.style";
 import Common from "../components/common";
 import useUsers from "../hooks/useUsers";
+import useDebounce from "../hooks/useDebounce";
 import { Props } from "./SignUp";
 
 export default function ResetPasswordPage() {
@@ -11,12 +12,13 @@ export default function ResetPasswordPage() {
     formState: { errors },
   } = useForm<Props>();
   const { handleResetPassword, isRequested } = useUsers();
+  const { debounced, isHandling } = useDebounce(handleResetPassword);
 
   return (
     <>
       <Common.Title size="large">비밀번호 초기화</Common.Title>
 
-      <Style.Form onSubmit={handleSubmit(handleResetPassword)}>
+      <Style.Form onSubmit={handleSubmit(debounced)}>
         <fieldset>
           <Common.InputText
             size="medium"
@@ -44,14 +46,24 @@ export default function ResetPasswordPage() {
 
         {isRequested ? (
           <fieldset>
-            <Common.Button size="medium" $state="default" type="submit">
-              비밀번호 초기화
+            <Common.Button
+              size="medium"
+              $state="default"
+              type="submit"
+              disabled={isHandling}
+            >
+              {isHandling ? "처리 중" : "비밀번호 초기화"}
             </Common.Button>
           </fieldset>
         ) : (
           <fieldset>
-            <Common.Button size="medium" $state="default" type="submit">
-              초기화 요청
+            <Common.Button
+              size="medium"
+              $state={isHandling ? "active" : "default"}
+              type="submit"
+              disabled={isHandling}
+            >
+              {isHandling ? "처리 중" : "초기화 요청"}
             </Common.Button>
           </fieldset>
         )}
