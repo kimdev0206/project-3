@@ -26,12 +26,21 @@ const items = [
   {
     label: "가격",
     key: "price",
-    filter: (book: IBook) => `${formatPrice(book.price)}`,
+    filter: (book: IBook) =>
+      book.discountedPrice ? (
+        <>
+          <del>{formatPrice(book.price)}</del>
+          &nbsp;/&nbsp;
+          <span>{formatPrice(book.discountedPrice)}</span>
+        </>
+      ) : (
+        formatPrice(book.price)
+      ),
   },
   {
     label: "남은 수량",
     key: "count",
-    filter: (book: IBook) => `${formatCount(book.count)}`,
+    filter: (book: IBook) => formatCount(book.count),
   },
 ];
 
