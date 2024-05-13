@@ -26,6 +26,7 @@ export default function Image({ imgID, size, alt }: Props) {
   return (
     <Style>
       <img
+        rel="preconnect"
         src={`https://picsum.photos/id/${imgID}/${getImgSize(size)}`}
         onError={() => setIsError(true)}
         alt={isError ? "이미지가 존재하지 않습니다." : alt}
