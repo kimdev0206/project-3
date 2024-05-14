@@ -15,9 +15,7 @@ export default class AuthorizeInterceptor {
     const refreshToken = getRefreshToken();
 
     if ((!accessToken && !refreshToken) || !refreshToken) {
-      window.alert(
-        "로그인 API 를 통해 접근 토큰 및 재발급 토큰을 발급 받으세요."
-      );
+      window.alert("로그인을 통해 접근 토큰 및 재발급 토큰을 발급 받으세요.");
       window.location.href = "#/users/log-in";
     }
 
@@ -25,7 +23,15 @@ export default class AuthorizeInterceptor {
       const response = await UsersAPI.getAccessToken("", refreshToken);
       window.alert(response.message);
 
-      localStorage.setItem("access-token", response.accessToken!);
+      if (!response.accessToken) {
+        window.alert(
+          "접근 토큰 재발급에 실패하였습니다. 로그인을 통해 재시도 해주세요."
+        );
+        window.location.href = "#/users/log-in";
+        return;
+      }
+
+      localStorage.setItem("access-token", response.accessToken);
     }
   }
 
@@ -57,7 +63,15 @@ export default class AuthorizeInterceptor {
           refreshToken
         );
 
-        localStorage.setItem("access-token", response.accessToken!);
+        if (!response.accessToken) {
+          window.alert(
+            "접근 토큰 재발급에 실패하였습니다. 로그인을 통해 재시도 해주세요."
+          );
+          window.location.href = "#/users/log-in";
+          return;
+        }
+
+        localStorage.setItem("access-token", response.accessToken);
         window.location.reload();
       }
 
