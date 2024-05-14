@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import BooksAPI from "../apis/books.api";
 import { IBookListItem } from "../models/book.model";
 import IPagination from "../models/pagination.model";
+import { useUsersStore } from "../stores/users.store";
 
 export default function useBooks() {
   const [books, setBooks] = useState<IBookListItem[]>([]);
@@ -12,11 +13,11 @@ export default function useBooks() {
   });
   const [isEmpty, setIsEmpty] = useState(true);
   const location = useLocation();
+  const { isLoggedIn } = useUsersStore();
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-
-    BooksAPI.getBooks({
+    const params = {
       categoryID: searchParams.get("categoryID")
         ? Number(searchParams.get("categoryID"))
         : null,
@@ -28,20 +29,30 @@ export default function useBooks() {
       page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
       limit: 8,
       keyword: searchParams.get("keyword"),
-    })
-      .then(({ data, meta }) => {
-        setBooks(data);
-        setPagination(meta);
-        setIsEmpty(!data);
-      })
-      .catch(() => {
-        setBooks([]);
-        setPagination({
-          page: 1,
-          count: 0,
+    };
+
+    try {
+      if (!isLoggedIn) {
+        BooksAPI.getBooks(params).then(({ data, meta }) => {
+          setBooks(data);
+          setPagination(meta);
+          setIsEmpty(!data);
         });
-        setIsEmpty(true);
+      } else {
+        BooksAPI.getBooksWithAuthorize(params).then(({ data, meta }) => {
+          setBooks(data);
+          setPagination(meta);
+          setIsEmpty(!data);
+        });
+      }
+    } catch {
+      setBooks([]);
+      setPagination({
+        page: 1,
+        count: 0,
       });
+      setIsEmpty(true);
+    }
   }, [location.search]);
 
   return { books, pagination, isEmpty };

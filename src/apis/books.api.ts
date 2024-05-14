@@ -37,6 +37,25 @@ export default class BooksAPI {
     return { data, meta };
   }
 
+  static async getBooksWithAuthorize(params: Params) {
+    let url = new URL(this.url + "/authorized");
+    let searchParams = new URLSearchParams();
+
+    for (const [key, value] of Object.entries(params)) {
+      if (value) searchParams.append(key, value);
+    }
+
+    url.search = searchParams.toString();
+
+    const response = await AuthorizeInterceptor.fetch(url.toString(), {
+      method: "GET",
+    });
+
+    const { data, meta }: { data: IBookListItem[]; meta: IPagination } =
+      await response.json();
+    return { data, meta };
+  }
+
   static async getBook(bookID: number) {
     const response = await fetch(this.url + `/${bookID}`, {
       method: "GET",
