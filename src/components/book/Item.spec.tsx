@@ -11,7 +11,9 @@ const book = {
   summary:
     "Canonicus commemoro super ancilla cilicium cilicium viridis ullus aeternus architecto. Aperte desparatus custodia cruciamentum.",
   author: "Russell Ryan",
-  price: 228,
+  price: 1000,
+  discountedPrice: 600,
+  discountRate: 0.3,
   likes: 1000,
   pubDate: "2023-11-03",
 };

@@ -4,7 +4,7 @@ import Book from "../components/book";
 import Common from "../components/common";
 import useBook from "../hooks/useBook";
 import { IBook } from "../models/book.model";
-import { formatCount, formatDate, formatPrice } from "../utils/format";
+import { formatCount, formatDate } from "../utils/format";
 
 const items = [
   {
@@ -26,16 +26,7 @@ const items = [
   {
     label: "가격",
     key: "price",
-    filter: (book: IBook) =>
-      book.discountedPrice ? (
-        <>
-          <del>{formatPrice(book.price)}</del>
-          &nbsp;/&nbsp;
-          <span>{formatPrice(book.discountedPrice)}</span>
-        </>
-      ) : (
-        formatPrice(book.price)
-      ),
+    filter: (book: IBook) => <Book.PriceBox book={book} />,
   },
   {
     label: "남은 수량",

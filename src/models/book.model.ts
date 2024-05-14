@@ -1,10 +1,15 @@
-export interface IBookListItem {
+export interface IBookPrice {
+  price: number;
+  discountedPrice?: number;
+  discountRate?: number;
+}
+
+export interface IBookListItem extends IBookPrice {
   id: number;
   title: string;
   imgID: number;
   summary: string;
   author: string;
-  price: number;
   likes: number;
 }
 
@@ -16,7 +21,6 @@ export interface IBook extends IBookListItem {
   detail: string;
   pages: number;
   contents: string;
-  discountedPrice?: number;
   count: number;
   liked?: boolean;
   pubDate: string;

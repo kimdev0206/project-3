@@ -20,7 +20,7 @@ export default function PromotionItem({ promotion }: Props) {
   return (
     <Style>
       <Common.Title size="large">{promotion.title}</Common.Title>
-      <span>{formatDiscountRate(promotion.discountRate)}</span>
+      <span>{formatDiscountRate(promotion.discountRate)} 할인</span>
       <span>
         {promotion.startAt &&
           `${formatDate(promotion.startAt)} - ${formatDate(promotion.endAt!)}`}

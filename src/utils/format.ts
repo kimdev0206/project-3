@@ -13,5 +13,5 @@ export function formatCount(count: number) {
 }
 
 export function formatDiscountRate(rate: number) {
-  return `${rate * 100}% 할인`;
+  return `${rate * 100}%`;
 }
