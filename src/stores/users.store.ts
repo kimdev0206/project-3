@@ -19,6 +19,8 @@ export const useUsersStore = create<State>((set) => ({
     localStorage.removeItem("access-token");
     localStorage.removeItem("refresh-token");
     set({ isLoggedIn: false });
+
+    window.location.reload();
   },
 }));
 
