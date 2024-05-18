@@ -23,7 +23,7 @@ export default function BooksPage() {
 
       {isEmpty ? (
         <Common.Empty
-          description={<Link to="/books">전체 검색 결과로 이동</Link>}
+          description={<Link to="/books?view=grid">전체 검색 결과로 이동</Link>}
         >
           검색 결과가 없습니다.
         </Common.Empty>

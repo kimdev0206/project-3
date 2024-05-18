@@ -12,31 +12,35 @@ export default function useHome() {
   const { isLoggedIn } = useUsersStore();
 
   useEffect(() => {
+    const bestBooksParam = {
+      isBest: true,
+      page: 1,
+      limit: 10,
+    };
+
+    const newBooksParam = {
+      isNew: true,
+      page: 1,
+      limit: 4,
+    };
+
     try {
       if (!isLoggedIn) {
-        BooksAPI.getBooks({
-          isBest: true,
-          page: 1,
-          limit: 10,
-        }).then(({ data }) => setBestBooks(data));
+        BooksAPI.getBooks(bestBooksParam).then((result) =>
+          setBestBooks(result.data)
+        );
 
-        BooksAPI.getBooks({
-          isNew: true,
-          page: 1,
-          limit: 4,
-        }).then(({ data }) => setNewBooks(data));
+        BooksAPI.getBooks(newBooksParam).then((result) =>
+          setNewBooks(result.data)
+        );
       } else {
-        BooksAPI.getBooksWithAuthorize({
-          isBest: true,
-          page: 1,
-          limit: 10,
-        }).then(({ data }) => setBestBooks(data));
+        BooksAPI.getBooksWithAuthorize(bestBooksParam).then((result) =>
+          setBestBooks(result.data)
+        );
 
-        BooksAPI.getBooksWithAuthorize({
-          isNew: true,
-          page: 1,
-          limit: 4,
-        }).then(({ data }) => setNewBooks(data));
+        BooksAPI.getBooksWithAuthorize(newBooksParam).then((result) =>
+          setNewBooks(result.data)
+        );
       }
     } catch {
       setBestBooks([]);

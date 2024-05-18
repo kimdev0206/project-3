@@ -2,14 +2,15 @@ import { useState } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { IOrderListItem } from "../../models/order.model";
 
-const handleCompare = (key: keyof THeader) => (a: THeader, b: THeader) => {
-  if (typeof a[key] === "string" && typeof b[key] === "string")
-    return (a[key] as string).localeCompare(b[key] as string);
+const handleCompare =
+  (key: keyof IOrderListItem) => (a: IOrderListItem, b: IOrderListItem) => {
+    if (typeof a[key] === "string" && typeof b[key] === "string")
+      return (a[key] as string).localeCompare(b[key] as string);
 
-  if (a[key] === b[key]) return 0;
-  if (a[key] > b[key]) return 1;
-  return -1;
-};
+    if (a[key] === b[key]) return 0;
+    if (a[key] > b[key]) return 1;
+    return -1;
+  };
 
 const items = [
   {
@@ -42,12 +43,10 @@ const items = [
   },
 ];
 
-type THeader = Omit<IOrderListItem, "books" | "details">;
-
-interface IConfig {
-  key: keyof THeader;
-  type: "DESC" | "ASC";
-  onCompare: (a: THeader, b: THeader) => number;
+interface ISort {
+  key: keyof IOrderListItem;
+  direction: "DESC" | "ASC";
+  onCompare: (a: IOrderListItem, b: IOrderListItem) => number;
 }
 
 interface Props {
@@ -56,17 +55,17 @@ interface Props {
 }
 
 export default function Header({ orders, setOrders }: Props) {
-  const [configs, setConfigs] = useState<IConfig[]>([]);
+  const [configs, setConfigs] = useState<ISort[]>([]);
 
-  const getOrders = (newConfigs: IConfig[]) => {
+  const getOrders = (newConfigs: ISort[]) => {
     const newOrders = [...orders];
 
-    return newOrders.sort((a: THeader, b: THeader) => {
+    return newOrders.sort((a: IOrderListItem, b: IOrderListItem) => {
       for (const config of newConfigs) {
         const compared = config.onCompare(a, b);
 
         if (compared) {
-          if (config.type === "ASC") return compared;
+          if (config.direction === "ASC") return compared;
           else return -compared;
         }
       }
@@ -76,32 +75,32 @@ export default function Header({ orders, setOrders }: Props) {
   };
 
   const handleClick = (
-    key: keyof THeader,
-    onCompare: (a: THeader, b: THeader) => number
+    key: keyof IOrderListItem,
+    onCompare: (a: IOrderListItem, b: IOrderListItem) => number
   ) => {
     let newConfigs = [...configs];
     const index = configs.findIndex((sort) => sort.key === key);
 
     if (index > -1) {
-      const { type } = newConfigs[index];
+      const { direction } = newConfigs[index];
       newConfigs.splice(index, 1);
 
-      if (type === "DESC") {
-        newConfigs = [...newConfigs, { key, type: "ASC", onCompare }];
+      if (direction === "DESC") {
+        newConfigs = [...newConfigs, { key, direction: "ASC", onCompare }];
       }
     } else {
-      newConfigs = [...newConfigs, { key, type: "DESC", onCompare }];
+      newConfigs = [...newConfigs, { key, direction: "DESC", onCompare }];
     }
 
     setConfigs(newConfigs);
     setOrders(getOrders(newConfigs));
   };
 
-  const getType = (key: keyof THeader) => {
+  const getDirection = (key: keyof IOrderListItem) => {
     const config = configs.find((config) => config.key === key);
 
     if (!config) return;
-    return config.type === "DESC" ? <FaArrowDown /> : <FaArrowUp />;
+    return config.direction === "DESC" ? <FaArrowDown /> : <FaArrowUp />;
   };
 
   return (
@@ -111,11 +110,11 @@ export default function Header({ orders, setOrders }: Props) {
           <th
             key={item.key}
             onClick={() =>
-              handleClick(item.key as keyof THeader, item.onCompare)
+              handleClick(item.key as keyof IOrderListItem, item.onCompare)
             }
           >
             <p>{item.label}</p>
-            <p>{getType(item.key as keyof THeader)}</p>
+            <p>{getDirection(item.key as keyof IOrderListItem)}</p>
           </th>
         ))}
       </tr>

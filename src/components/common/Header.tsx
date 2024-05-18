@@ -42,7 +42,7 @@ export default function Header() {
         {!isLoggedIn && (
           <ul>
             <li>
-              <Link to={"/books?view=grid"}>도서</Link>
+              <Link to="/books?view=grid">도서</Link>
             </li>
 
             <li>

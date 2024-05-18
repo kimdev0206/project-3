@@ -51,7 +51,7 @@ export default function List({
                   <th></th>
                 </Style.Detail>
 
-                {order.details?.map((detail) => (
+                {order.details.map((detail) => (
                   <Style.Detail key={detail.bookID}>
                     <td>{detail.bookID}</td>
                     <td colSpan={4}></td>
