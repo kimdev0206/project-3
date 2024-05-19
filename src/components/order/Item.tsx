@@ -9,8 +9,8 @@ interface Props {
   order: IOrderListItem;
   isOpen: boolean;
   onOpen: (isOpen: boolean) => void;
-  onSelect: (id: number) => void;
-  onDelete: (id: number) => void;
+  onSelect: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
 export default function Item({
@@ -38,7 +38,7 @@ export default function Item({
 
   return (
     <tr>
-      <td>{order.deliveryID}</td>
+      <td>{order.seq}</td>
       <td>{formatDate(order.createdAt, "YYYY.MM.DD")}</td>
       <td>{order.address}</td>
       <td>{order.receiver}</td>

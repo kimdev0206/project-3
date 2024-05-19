@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { v1 as uuid } from "uuid";
 import OrdersAPI from "../apis/orders.api";
 import { useAlert, useConfirm } from "../hooks/useAlert";
 import { IOrder } from "../models/order.model";
@@ -11,6 +12,7 @@ export default function useOrder() {
   const confirm = useConfirm();
 
   const handleOrder = async (formData: IDeliveryForm) => {
+    const deliveryID = uuid();
     const params: IOrder = {
       ...location.state,
       delivery: {
@@ -20,10 +22,20 @@ export default function useOrder() {
     };
 
     confirm("주문을 진행하시겠습니까?", async () => {
-      const response = await OrdersAPI.postOrder(params);
-      alert(response.message);
+      const maxRetreis = 3;
 
-      if (response.status !== 201) return;
+      for (let retry = 1; retry <= maxRetreis; retry += 1) {
+        try {
+          const response = await OrdersAPI.postOrder(deliveryID, params);
+          alert(response.message);
+
+          if (response.status === 201) break;
+        } catch (error) {
+          if (retry === maxRetreis) break;
+
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
+      }
 
       navigate("/orders");
     });

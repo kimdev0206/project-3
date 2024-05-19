@@ -19,7 +19,8 @@ export interface IDelivery {
 }
 
 export interface IOrderListItem extends Omit<IOrder, "delivery">, IDelivery {
-  deliveryID: number;
+  seq: number;
+  deliveryID: string;
   createdAt: string;
   details: IOrderListItemDetail[];
 }

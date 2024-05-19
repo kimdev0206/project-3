@@ -8,14 +8,17 @@ import {
 export default class OrdersAPI {
   static url = process.env.REACT_APP_BASE_URL + "/orders";
 
-  static async postOrder(params: IOrder) {
-    const response = await AuthorizeInterceptor.fetch(this.url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(params),
-    });
+  static async postOrder(deliveryID: string, params: IOrder) {
+    const response = await AuthorizeInterceptor.fetch(
+      `${this.url}/${deliveryID}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(params),
+      }
+    );
 
     const { message } = await response.json();
     return { status: response.status, message };
@@ -30,7 +33,7 @@ export default class OrdersAPI {
     return data;
   }
 
-  static async getOrder(deliveryID: number) {
+  static async getOrder(deliveryID: string) {
     const response = await AuthorizeInterceptor.fetch(
       `${this.url}/${deliveryID}`,
       { method: "GET" }
@@ -40,7 +43,7 @@ export default class OrdersAPI {
     return data;
   }
 
-  static async deleteOrder(deliveryID: number) {
+  static async deleteOrder(deliveryID: string) {
     const response = await AuthorizeInterceptor.fetch(
       `${this.url}/${deliveryID}`,
       { method: "DELETE" }

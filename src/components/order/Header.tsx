@@ -14,9 +14,9 @@ const handleCompare =
 
 const items = [
   {
-    label: "배송ID",
-    key: "deliveryID",
-    onCompare: handleCompare("deliveryID"),
+    label: "일련번호",
+    key: "seq",
+    onCompare: handleCompare("seq"),
   },
   {
     label: "주문일자",

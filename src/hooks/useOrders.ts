@@ -4,10 +4,10 @@ import { IOrderListItem } from "../models/order.model";
 
 export default function useOrders() {
   const [orders, setOrders] = useState<IOrderListItem[]>([]);
-  const [selectedID, setSelectedID] = useState<number | null>(null);
+  const [selectedID, setSelectedID] = useState<string | null>(null);
   const [isEmpty, setIsEmpty] = useState(true);
 
-  const handleSelectID = async (deliveryID: number) => {
+  const handleSelectID = async (deliveryID: string) => {
     const hasDetail = orders.filter(
       (order) => order.deliveryID === deliveryID
     )[0].details;
@@ -30,7 +30,7 @@ export default function useOrders() {
     setSelectedID(deliveryID);
   };
 
-  const handleDeleteID = async (deliveryID: number) => {
+  const handleDeleteID = async (deliveryID: string) => {
     const response = await OrdersAPI.deleteOrder(deliveryID);
 
     if (response.status !== 204) return;

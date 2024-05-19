@@ -40,7 +40,7 @@ const Table = styled.table`
       font-weight: bold;
     }
     td:nth-of-type(1):before {
-      content: "배송ID";
+      content: "일련번호";
     }
     td:nth-of-type(2):before {
       content: "주문일자";

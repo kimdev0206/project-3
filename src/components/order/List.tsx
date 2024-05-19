@@ -8,9 +8,9 @@ import { formatCount, formatPrice } from "../../utils/format";
 interface Props {
   orders: IOrderListItem[];
   setOrders: (orders: IOrderListItem[]) => void;
-  selectedID: number | null;
-  onSelect: (id: number) => void;
-  onDelete: (id: number) => void;
+  selectedID: string | null;
+  onSelect: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
 export default function List({
