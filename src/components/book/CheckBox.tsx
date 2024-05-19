@@ -23,11 +23,6 @@ export default function CheckBox({ checkedKeys, setCheckedKeys }: Props) {
   const alert = useAlert();
 
   const handleCheck = (key: string) => {
-    if (!searchParams.get("keyword")) {
-      alert("검색어를 입력해주세요.");
-      return;
-    }
-
     const isChecked = checkedKeys.includes(key);
     const newSearchParams = new URLSearchParams(searchParams);
 
@@ -42,27 +37,32 @@ export default function CheckBox({ checkedKeys, setCheckedKeys }: Props) {
     setSearchParams(newSearchParams);
   };
 
-  const handleOpen = (event: MouseEvent) => {
+  const handleOpen = () => {
+    if (!searchParams.get("keyword")) {
+      alert("검색어를 입력해주세요.");
+      return;
+    }
+
+    setIsOpen(!isOpen);
+  };
+
+  const handleClose = (event: MouseEvent) => {
     ref.current &&
       !ref.current.contains(event.target as Node) &&
       setIsOpen(false);
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleOpen);
+    document.addEventListener("mousedown", handleClose);
 
     return () => {
-      document.removeEventListener("mousedown", handleOpen);
+      document.removeEventListener("mousedown", handleClose);
     };
   }, [ref]);
 
   return (
     <Style.Container>
-      <Common.Button
-        size="medium"
-        $state="default"
-        onClick={() => setIsOpen(!isOpen)}
-      >
+      <Common.Button size="medium" $state="default" onClick={handleOpen}>
         선택
       </Common.Button>
 

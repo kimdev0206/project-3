@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Style from "./KeywordFilter.style";
 import Common from "../common";
@@ -17,7 +17,6 @@ export default function KeywordFilter() {
 
   const handleKeyword = () => {
     const newSearchParams = new URLSearchParams(searchParams);
-    console.log(keyword);
 
     if (keyword) {
       setCheckedKeys(keys);
@@ -33,6 +32,10 @@ export default function KeywordFilter() {
     setSearchParams(newSearchParams);
   };
 
+  useEffect(() => {
+    setKeyword(searchParams.get("keyword") || "");
+  }, [searchParams.get("keyword")]);
+
   return (
     <Style.Container>
       <CheckBox checkedKeys={checkedKeys} setCheckedKeys={setCheckedKeys} />
@@ -40,7 +43,7 @@ export default function KeywordFilter() {
       <Common.InputText
         size="medium"
         placeholder="검색어"
-        defaultValue={keyword}
+        value={keyword}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
           setKeyword(event.target.value)
         }
