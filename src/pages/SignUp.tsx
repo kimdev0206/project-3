@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Style from "./SignUp.style";
 import Common from "../components/common";
-import useDebounce from "../hooks/useDebounce";
 import useUsers from "../hooks/useUsers";
 
 export interface Props {
@@ -17,13 +16,12 @@ export default function SignUpPage() {
     formState: { errors },
   } = useForm<Props>();
   const { handleSignUp } = useUsers();
-  const { debounced, isHandling } = useDebounce(handleSignUp);
 
   return (
     <>
       <Common.Title size="large">회원가입</Common.Title>
 
-      <Style.Form onSubmit={handleSubmit(debounced)}>
+      <Style.Form onSubmit={handleSubmit(handleSignUp)}>
         <fieldset>
           <Common.InputText
             size="medium"
@@ -48,13 +46,8 @@ export default function SignUpPage() {
         </fieldset>
 
         <fieldset>
-          <Common.Button
-            size="medium"
-            $state={isHandling ? "active" : "default"}
-            type="submit"
-            disabled={isHandling}
-          >
-            {isHandling ? "처리 중" : "회원가입"}
+          <Common.Button size="medium" $state="default" type="submit">
+            회원가입
           </Common.Button>
         </fieldset>
 
