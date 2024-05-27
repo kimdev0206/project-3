@@ -10,7 +10,7 @@ export default function ResetPasswordPage() {
     handleSubmit,
     formState: { errors },
   } = useForm<Props>();
-  const { handleResetPassword, isRequested } = useUsers();
+  const { handleResetPassword, isRequested, isLoading } = useUsers();
 
   return (
     <>
@@ -44,13 +44,23 @@ export default function ResetPasswordPage() {
 
         {isRequested ? (
           <fieldset>
-            <Common.Button size="medium" $state="default" type="submit">
+            <Common.Button
+              size="medium"
+              $state={isLoading ? "active" : "default"}
+              disabled={isLoading ? true : false}
+              type="submit"
+            >
               비밀번호 초기화
             </Common.Button>
           </fieldset>
         ) : (
           <fieldset>
-            <Common.Button size="medium" $state="default" type="submit">
+            <Common.Button
+              size="medium"
+              $state={isLoading ? "active" : "default"}
+              disabled={isLoading ? true : false}
+              type="submit"
+            >
               초기화 요청
             </Common.Button>
           </fieldset>

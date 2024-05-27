@@ -15,7 +15,7 @@ export default function SignUpPage() {
     handleSubmit,
     formState: { errors },
   } = useForm<Props>();
-  const { handleSignUp } = useUsers();
+  const { handleSignUp, isLoading } = useUsers();
 
   return (
     <>
@@ -46,7 +46,12 @@ export default function SignUpPage() {
         </fieldset>
 
         <fieldset>
-          <Common.Button size="medium" $state="default" type="submit">
+          <Common.Button
+            size="medium"
+            $state={isLoading ? "active" : "default"}
+            disabled={isLoading ? true : false}
+            type="submit"
+          >
             회원가입
           </Common.Button>
         </fieldset>

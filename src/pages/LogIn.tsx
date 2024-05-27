@@ -11,7 +11,7 @@ export default function LogInPage() {
     handleSubmit,
     formState: { errors },
   } = useForm<Props>();
-  const { handleLogIn } = useUsers();
+  const { handleLogIn, isLoading } = useUsers();
 
   return (
     <>
@@ -42,7 +42,12 @@ export default function LogInPage() {
         </fieldset>
 
         <fieldset>
-          <Common.Button size="medium" $state="default" type="submit">
+          <Common.Button
+            size="medium"
+            $state={isLoading ? "active" : "default"}
+            disabled={isLoading ? true : false}
+            type="submit"
+          >
             로그인
           </Common.Button>
         </fieldset>
