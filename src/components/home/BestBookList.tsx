@@ -20,7 +20,7 @@ interface Props {
 export default function BestBookList({ books }: Props) {
   return (
     <>
-      {!books.length ? (
+      {!books?.length ? (
         <Common.Empty>도서가 없습니다.</Common.Empty>
       ) : (
         <Style>
