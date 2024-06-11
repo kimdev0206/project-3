@@ -10,9 +10,8 @@ interface Props {
 
 export default function Pagination({ pagination }: Props) {
   const [pageGroup, setPageGroup] = useState<number>(0);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const { page, count } = pagination;
-  const pages = Math.ceil(count / 8);
+  const [searchParams, setSearchParams] = useSearchParams();    
+  const pages = Math.ceil(pagination.counted / 8);
   const pageGroups = Math.ceil(pages / 10);
 
   const onClick = (page: number) => {
@@ -30,7 +29,7 @@ export default function Pagination({ pagination }: Props) {
             {Array.from({ length: pages }, (_, index) => (
               <Common.Button
                 size="small"
-                $state={index + 1 === +page ? "active" : "default"}
+                $state={index + 1 === pagination.page ? "active" : "default"}
                 onClick={() => onClick(index + 1)}
                 key={index}
               >

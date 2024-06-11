@@ -9,7 +9,7 @@ export default function useBooks() {
   const [books, setBooks] = useState<IBookListItem[]>([]);
   const [pagination, setPagination] = useState<IPagination>({
     page: 1,
-    count: 0,
+    counted: 0,
   });
   const [isEmpty, setIsEmpty] = useState(true);
   const location = useLocation();
@@ -49,7 +49,7 @@ export default function useBooks() {
       setBooks([]);
       setPagination({
         page: 1,
-        count: 0,
+        counted: 0,
       });
       setIsEmpty(true);
     }
