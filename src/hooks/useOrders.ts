@@ -4,38 +4,37 @@ import { IOrderListItem } from "../models/order.model";
 
 export default function useOrders() {
   const [orders, setOrders] = useState<IOrderListItem[]>([]);
-  const [selectedID, setSelectedID] = useState<number | null>(null);
+  const [selectedID, setSelectedID] = useState<string | null>(null);
   const [isEmpty, setIsEmpty] = useState(true);
 
-  const handleSelectID = async (deliveryID: number) => {
-    const hasDetail = orders.filter(
-      (order) => order.deliveryID === deliveryID
-    )[0].details;
+  const handleSelectID = async (orderID: string) => {
+    const hasDetail = orders.filter((order) => order.orderID === orderID)[0]
+      .details;
 
     if (hasDetail) {
-      setSelectedID(deliveryID);
+      setSelectedID(orderID);
       return;
     }
 
-    const data = await OrdersAPI.getOrder(deliveryID);
+    const data = await OrdersAPI.getOrder(orderID);
     setOrders(
       orders.map((order) => {
-        if (order.deliveryID === deliveryID) {
+        if (order.orderID === orderID) {
           return { ...order, details: data };
         }
 
         return order;
       })
     );
-    setSelectedID(deliveryID);
+    setSelectedID(orderID);
   };
 
-  const handleDeleteID = async (deliveryID: number) => {
-    const response = await OrdersAPI.deleteOrder(deliveryID);
+  const handleDeleteID = async (orderID: string) => {
+    const response = await OrdersAPI.deleteOrder(orderID);
 
     if (response.status !== 204) return;
 
-    setOrders(orders.filter((order) => order.deliveryID !== deliveryID));
+    setOrders(orders.filter((order) => order.orderID !== orderID));
   };
 
   useEffect(() => {

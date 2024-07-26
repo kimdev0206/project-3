@@ -15,7 +15,7 @@ const book = {
   discountedPrice: 600,
   discountRate: 0.3,
   likes: 1000,
-  pubDate: "2023-11-03",
+  publishedAt: "2023-11-03",
 };
 
 describe("Item 컴포넌트 테스트", () => {

@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
-import CategoriesAPI from "../apis/categories.api";
+import { useState } from "react";
 import ICategory from "../models/category.model";
 
 export default function useCategories() {
-  const [categories, setCategories] = useState<ICategory[]>([]);
-
-  useEffect(() => {
-    CategoriesAPI.getCategories()
-      .then((data) => setCategories([{ id: null, category: "전체" }, ...data]))
-      .catch(() => setCategories([{ id: null, category: "전체" }]));
-  }, []);
+  const data = [
+    { id: 1, category: "IT" },
+    { id: 2, category: "건강" },
+    { id: 3, category: "교육" },
+  ];
+  const [categories, setCategories] = useState<ICategory[]>([
+    { id: null, category: "전체" },
+    ...data,
+  ]);
 
   return { categories };
 }

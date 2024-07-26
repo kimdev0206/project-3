@@ -1,12 +1,7 @@
 export interface IOrder {
+  orderID: string;
   mainBookTitle: string;
-  books: {
-    bookID: number;
-    count: number;
-    price: number;
-    title: string;
-    author: string;
-  }[];
+  books: IOrderListItemDetail[];
   delivery: IDelivery;
   totalCount: number;
   totalPrice: number;
@@ -19,7 +14,6 @@ export interface IDelivery {
 }
 
 export interface IOrderListItem extends Omit<IOrder, "delivery">, IDelivery {
-  deliveryID: number;
   createdAt: string;
   details: IOrderListItemDetail[];
 }

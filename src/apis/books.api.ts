@@ -1,5 +1,6 @@
 import AuthorizeInterceptor from "../interceptors/authorize.interceptor";
 import { IBookListItem, IBook } from "../models/book.model";
+import ICartBook from "../models/cart-book.model";
 import IPagination from "../models/pagination.model";
 
 interface Params {
@@ -73,5 +74,62 @@ export default class BooksAPI {
 
     const { data }: { data: IBook } = await response.json();
     return data;
+  }
+
+  static async postLike(bookID: number) {
+    const response = await AuthorizeInterceptor.fetch(
+      this.url + `/${bookID}/like`,
+      {
+        method: "POST",
+      }
+    );
+
+    return { status: response.status };
+  }
+
+  static async deleteLike(bookID: number) {
+    const response = await AuthorizeInterceptor.fetch(
+      this.url + `/${bookID}/like`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    return { status: response.status };
+  }
+
+  static async postCartBook(bookID: number, count: number) {
+    const response = await AuthorizeInterceptor.fetch(
+      this.url + `/${bookID}/cart`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ count }),
+      }
+    );
+
+    return { status: response.status };
+  }
+
+  static async getCartBooks() {
+    const response = await AuthorizeInterceptor.fetch(this.url + "/carts", {
+      method: "GET",
+    });
+
+    const { data }: { data: ICartBook[] } = await response.json();
+    return data;
+  }
+
+  static async deleteCartBook(bookID: number) {
+    const response = await AuthorizeInterceptor.fetch(
+      this.url + `/${bookID}/cart`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    return { status: response.status };
   }
 }

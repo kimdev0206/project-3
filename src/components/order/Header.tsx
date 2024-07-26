@@ -15,17 +15,29 @@ const handleCompare =
 const items = [
   {
     label: "배송ID",
-    key: "deliveryID",
-    onCompare: handleCompare("deliveryID"),
+    key: "orderID",
+    onCompare: handleCompare("orderID"),
   },
   {
     label: "주문일자",
     key: "createdAt",
     onCompare: handleCompare("createdAt"),
   },
-  { label: "주소", key: "address", onCompare: handleCompare("address") },
-  { label: "수령인", key: "receiver", onCompare: handleCompare("receiver") },
-  { label: "전화번호", key: "contact", onCompare: handleCompare("contact") },
+  {
+    label: "주소",
+    key: "address",
+    onCompare: handleCompare("address"),
+  },
+  {
+    label: "수령인",
+    key: "receiver",
+    onCompare: handleCompare("receiver"),
+  },
+  {
+    label: "전화번호",
+    key: "contact",
+    onCompare: handleCompare("contact"),
+  },
   {
     label: "대표 도서명",
     key: "mainBookTitle",

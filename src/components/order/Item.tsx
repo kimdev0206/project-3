@@ -9,8 +9,8 @@ interface Props {
   order: IOrderListItem;
   isOpen: boolean;
   onOpen: (isOpen: boolean) => void;
-  onSelect: (id: number) => void;
-  onDelete: (id: number) => void;
+  onSelect: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
 export default function Item({
@@ -23,7 +23,7 @@ export default function Item({
   const alert = useAlert();
 
   const handleDetail = () => {
-    onSelect(order.deliveryID);
+    onSelect(order.orderID);
     onOpen(!isOpen);
   };
 
@@ -33,12 +33,12 @@ export default function Item({
       return;
     }
 
-    onDelete(order.deliveryID);
+    onDelete(order.orderID);
   };
 
   return (
     <tr>
-      <td>{order.deliveryID}</td>
+      <td>{order.orderID}</td>
       <td>{formatDate(order.createdAt, "YYYY.MM.DD")}</td>
       <td>{order.address}</td>
       <td>{order.receiver}</td>

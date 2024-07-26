@@ -43,7 +43,7 @@ export default function CartBooksPage() {
         };
       });
 
-    const data: Omit<IOrder, "delivery"> = {
+    const data = {
       mainBookTitle: mainBook!.title,
       books,
       totalCount,

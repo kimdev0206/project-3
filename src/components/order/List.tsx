@@ -8,9 +8,9 @@ import { formatCount, formatPrice } from "../../utils/format";
 interface Props {
   orders: IOrderListItem[];
   setOrders: (orders: IOrderListItem[]) => void;
-  selectedID: number | null;
-  onSelect: (id: number) => void;
-  onDelete: (id: number) => void;
+  selectedID: string | null;
+  onSelect: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
 export default function List({
@@ -28,16 +28,16 @@ export default function List({
 
       <tbody>
         {orders.map((order) => (
-          <React.Fragment key={order.deliveryID}>
+          <React.Fragment key={order.orderID}>
             <Item
               order={order}
-              isOpen={selectedID === order.deliveryID && isOpen}
+              isOpen={selectedID === order.orderID && isOpen}
               onOpen={setIsOpen}
               onSelect={onSelect}
               onDelete={onDelete}
             />
 
-            {selectedID === order.deliveryID && isOpen && (
+            {selectedID === order.orderID && isOpen && (
               <>
                 <Style.Detail>
                   <th>도서ID</th>
