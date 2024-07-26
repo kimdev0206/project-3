@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import CartBooksAPI from "../apis/cart-books.api";
+import BooksAPI from "../apis/books.api";
 import ICartBook from "../models/cart-book.model";
 
 export default function useCartBooks() {
@@ -7,7 +7,7 @@ export default function useCartBooks() {
   const [isEmpty, setIsEmpty] = useState(true);
 
   const handleDelete = async (bookID: number) => {
-    const response = await CartBooksAPI.deleteCartBook(bookID);
+    const response = await BooksAPI.deleteCartBook(bookID);
 
     if (response.status !== 204) return;
 
@@ -15,7 +15,7 @@ export default function useCartBooks() {
   };
 
   useEffect(() => {
-    CartBooksAPI.getCartBooks()
+    BooksAPI.getCartBooks()
       .then((data) => {
         setCartBooks(data);
         setIsEmpty(!data);

@@ -20,8 +20,8 @@ const items = [
   { label: "쪽수", key: "pages" },
   {
     label: "출간일",
-    key: "pubDate",
-    filter: (book: IBook) => formatDate(book.pubDate),
+    key: "publishedAt",
+    filter: (book: IBook) => formatDate(book.publishedAt),
   },
   {
     label: "가격",
@@ -30,8 +30,8 @@ const items = [
   },
   {
     label: "남은 수량",
-    key: "count",
-    filter: (book: IBook) => formatCount(book.count),
+    key: "amount",
+    filter: (book: IBook) => formatCount(book.amount),
   },
 ];
 

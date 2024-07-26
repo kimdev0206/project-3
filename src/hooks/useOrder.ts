@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { v1 as uuid } from "uuid";
 import OrdersAPI from "../apis/orders.api";
 import { useAlert, useConfirm } from "../hooks/useAlert";
 import { IOrder } from "../models/order.model";
@@ -11,8 +12,10 @@ export default function useOrder() {
   const confirm = useConfirm();
 
   const handleOrder = async (formData: IDeliveryForm) => {
+    const orderID = uuid();
     const params: IOrder = {
       ...location.state,
+      orderID,
       delivery: {
         ...formData,
         address: `${formData.address} ${formData.addressDetail}`,

@@ -21,7 +21,7 @@ export interface IBook extends IBookListItem {
   detail: string;
   pages: number;
   contents: string;
-  count: number;
+  amount: number;
   liked?: boolean;
-  pubDate: string;
+  publishedAt: string;
 }

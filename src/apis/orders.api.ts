@@ -9,13 +9,17 @@ export default class OrdersAPI {
   static url = process.env.REACT_APP_BASE_URL + "/orders";
 
   static async postOrder(params: IOrder) {
-    const response = await AuthorizeInterceptor.fetch(this.url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(params),
-    });
+    const { orderID, ...body } = params;
+    const response = await AuthorizeInterceptor.fetch(
+      this.url + `/${orderID}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    );
 
     const { message } = await response.json();
     return { status: response.status, message };
@@ -30,9 +34,9 @@ export default class OrdersAPI {
     return data;
   }
 
-  static async getOrder(deliveryID: number) {
+  static async getOrder(orderID: string) {
     const response = await AuthorizeInterceptor.fetch(
-      `${this.url}/${deliveryID}`,
+      this.url + `/${orderID}`,
       { method: "GET" }
     );
 
@@ -40,9 +44,9 @@ export default class OrdersAPI {
     return data;
   }
 
-  static async deleteOrder(deliveryID: number) {
+  static async deleteOrder(orderID: string) {
     const response = await AuthorizeInterceptor.fetch(
-      `${this.url}/${deliveryID}`,
+      this.url + `/${orderID}`,
       { method: "DELETE" }
     );
 
